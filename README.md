@@ -135,7 +135,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Your email** - Usman Umar Garba  [@yourusername](ugarba202@gmail.com) - ugarba202@gmail.com
+**Your email** - Usman Umar Garba  (ugarba202@gmail.com) - ugarba202@gmail.com
 
 **Project link**: [https://github.com/techusman-codes/Grabby](https://github.com/techusman-codes/Grabby)
 
