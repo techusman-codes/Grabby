@@ -4,7 +4,7 @@
 
 
 <div align="center">
-  <img src="assets/images/logo.png" alt="Grabby Logo" width="200"/>
+  <img src="assets/icons/logo.png" alt="Grabby Logo" width="200"/>
   
   ### Shop Smart, Shop Fast
   
@@ -117,10 +117,10 @@ grabby/
 ## 📝 Development Blog
 
 Follow my development journey on:
-- [Twitter/X](https://twitter.com/yourusername)
-- [LinkedIn](https://linkedin.com/in/yourusername)
-- [Dev.to](https://dev.to/yourusername)
-- [Medium](https://medium.com/@yourusername)
+- [Twitter/X](https://x.com/dev_useee)
+- [LinkedIn](https://www.linkedin.com/in/usman-umar-garba/)
+- [Dev.to](https://dev.to/code-warrior)
+- [Medium](https://medium.com/@code_warrior)
 
 ---
 
@@ -135,9 +135,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Your Name** - [@yourusername](https://twitter.com/yourusername) - your.email@example.com
+**Your email** - Usman Umar Garba  [@yourusername](ugarba202@gmail.com) - ugarba202@gmail.com
 
-**Project Link**: [https://github.com/yourusername/grabby](https://github.com/yourusername/grabby)
+**Project link**: [https://github.com/techusman-codes/Grabby](https://github.com/techusman-codes/Grabby)
 
 ---
 
@@ -145,6 +145,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   
   ### ⭐ Star this repo if you find it interesting!
   
-  Made with ❤️Flutter and lots of ☕
+  Made with Flutter❤️ and lots of ☕
   
 </div>
