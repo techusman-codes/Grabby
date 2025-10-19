@@ -43,3 +43,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter/Dart build outputs
+build/
+.android/
+.ios/
+.android/app/build/
+.idea/
+.gradle/
+.dart_tool/
+pubspec.lock
+*.apk
+*.aab
+*.so
