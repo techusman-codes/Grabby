@@ -44,15 +44,28 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Flutter/Dart build outputs
+
+# Flutter build output
 build/
 .android/
 .ios/
-.android/app/build/
-.idea/
-.gradle/
+.flutter-plugins
+.flutter-plugins-dependencies
 .dart_tool/
 pubspec.lock
+
+# Gradle and IDE files
+.gradle/
+.idea/
+*.iml
+
+# Generated binaries
 *.apk
 *.aab
 *.so
+
+# macOS and Linux
+.DS_Store
+
+
+
