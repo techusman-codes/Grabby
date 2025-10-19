@@ -5,6 +5,7 @@ class AppColors {
   static const Color primary = Color(0xFF00A86B); // Grabby green (example)
   static const Color primaryDark = Color(0xFF008555);
   static const Color primaryLight = Color(0xFF4DD599);
+  static const Color bgColor = Colors.white;
 
   // Secondary Colors
   static const Color secondary = Color(0xFFFF6B35); // Orange accent
@@ -23,6 +24,9 @@ class AppColors {
   static const Color textSecondary = Color(0xFF6C757D);
   static const Color textHint = Color(0xFFADB5BD);
   static const Color textWhite = Color(0xFFFFFFFF);
+  static const Color black = Colors.black;
+  static const Color purple = Colors.deepPurpleAccent;
+  static const Color purple1 = Colors.deepPurple;
 
   // Border & Divider
   static const Color border = Color(0xFFDEE2E6);
@@ -31,4 +35,8 @@ class AppColors {
   // Rating Star
   static const Color starActive = Color(0xFFFFD700);
   static const Color starInactive = Color(0xFFE0E0E0);
+
+  // Dot Indicator Colors
+  static const Color dotActive = Color(0xFF7C3AED); // Purple for active dot
+  static const Color dotInactive = Color(0xFFE5E7EB);
 }

@@ -14,10 +14,11 @@ buildscript {
 }
 
 plugins {
-    // Use the same version Gradle already loaded (8.7.3)
+    // Use the same version Gradle already loaded (8.1.0)
     id("com.android.application") version "8.7.3" apply false
     id("org.jetbrains.kotlin.android") version "2.1.0" apply false
     id("com.google.gms.google-services") version "4.4.2" apply false
+    
     
 }
 
@@ -28,5 +29,15 @@ allprojects {
     }
 }
 
+rootProject.buildDir = file("../build")
+subprojects {
+    project.buildDir = file("${rootProject.buildDir}/${project.name}")
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
 
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
 
