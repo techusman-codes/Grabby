@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Primary Colors - Adjust these to match your design
-  static const Color primary = Color(0xFF00A86B); // Grabby green (example)
-  static const Color primaryDark = Color(0xFF008555);
-  static const Color primaryLight = Color(0xFF4DD599);
+
   static const Color bgColor = Colors.white;
 
   // Secondary Colors
@@ -39,4 +37,9 @@ class AppColors {
   // Dot Indicator Colors
   static const Color dotActive = Color(0xFF7C3AED); // Purple for active dot
   static const Color dotInactive = Color(0xFFE5E7EB);
+
+  // Primary Colors - Purple from your design
+  static const Color primary = Color(0xFF6C5CE7); // Lighter purple
+  static const Color primaryDark = Color(0xFF5F4DD1);
+  static const Color primaryLight = Color(0xFF8B7FF5);
 }

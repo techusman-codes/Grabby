@@ -49,6 +49,13 @@ class AppStrings {
       'To search for nearby merchants,We want to know your location';
   static const String registrationText = 'Congratulations';
   static const String registrationDesc = 'Your account has been activated';
+  static String rememberMe = 'remember me';
+
+  static String signInToContinue = 'SignIn to Continue';
+
+  static String welcomeBack = 'Welcome Back';
+  static String hintEmail = 'Email';
+  static String hintPassword = 'Password';
 
   // Navigation
   static const String home = 'Home';
@@ -79,6 +86,18 @@ class AppStrings {
   static const String passwordsDontMatch = 'Passwords do not match';
   static const String nameRequired = 'Name is required';
   static const String phoneRequired = 'Phone number is required';
+
+  // Error Messages
+  static const String loginFailed = 'Login failed. Please try again';
+  static const String invalidCredentials = 'Invalid email or password';
+  static const String networkError = 'Network error. Check your connection';
+  static const String somethingWentWrong = 'Something went wrong';
+
+  // Success Messages
+  static const String loginSuccess = 'Login successful!';
+  static const String accountCreated = 'Account created successfully!';
+  static const String passwordResetSent =
+      'Password reset link sent to your email';
 
   // General
   static const String loading = 'Loading...';

@@ -60,7 +60,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
+          borderSide: const BorderSide(color: AppColors.border, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -88,15 +88,6 @@ class AppTheme {
           textStyle: AppTextStyles.button, // Using text style
         ),
       ),
-
-      // // Card Theme
-      // cardTheme: CardTheme(
-      //   color: AppColors.surface,
-      //   elevation: 2,
-      //   shape: RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.circular(12),
-      //   ),
-      // ),
 
       // Bottom Navigation Bar Theme
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

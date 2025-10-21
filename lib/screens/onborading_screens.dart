@@ -8,7 +8,7 @@ import 'package:grabby_app/screens/onboaring/widgets/onboarding_page_widget.dart
 import 'package:grabby_app/services/storage_service.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();

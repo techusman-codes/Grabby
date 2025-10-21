@@ -43,6 +43,7 @@ class AppTextStyles {
     height: 1.25,
     letterSpacing: 0,
     color: AppColors.textPrimary,
+    fontStyle: FontStyle.normal,
   );
 
   static const TextStyle headlineMedium = TextStyle(

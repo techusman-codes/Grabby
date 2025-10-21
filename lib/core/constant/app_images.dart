@@ -17,4 +17,9 @@ class AppImages {
   static const String onboarding2 = 'assets/icons/onboarding_2.png';
   static const String onboarding3 = 'assets/icons/onboarding_3.png';
   static const String onboarding4 = 'assets/icons/onboarding_4.png';
+
+  // Social Icons
+  static const String googleIcon = 'assets/icons/google.svg';
+  static const String facebookIcon = '/assets/icons/facebook.svg';
+  static const String appleIcon = 'assets/icons/apple.svg';
 }
