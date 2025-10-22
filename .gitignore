@@ -46,7 +46,7 @@ app.*.map.json
 
 
 # Flutter build output
-build/
+.build/
 .android/
 .ios/
 .flutter-plugins
@@ -54,7 +54,7 @@ build/
 .dart_tool/
 pubspec.lock
 
-# Gradle and IDE files
+# Gradle and IDE f . . iles
 .gradle/
 .idea/
 *.iml
