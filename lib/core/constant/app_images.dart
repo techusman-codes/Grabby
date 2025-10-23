@@ -13,10 +13,11 @@ class AppImages {
   static const String noOrders = '$_basePath/no_orders.png';
 
   // Onboarding (if you have onboarding screens)
-  static const String onboarding1 = '$_basePath/logo.png';
+  static const String onboarding1 = 'assets/icons/logo.png';
   static const String onboarding2 = 'assets/icons/onboarding_2.png';
   static const String onboarding3 = 'assets/icons/onboarding_3.png';
   static const String onboarding4 = 'assets/icons/onboarding_4.png';
+  static const String rocketScuccess = 'assets/icons/rocketsucces.png';
 
   // Social Icons
   static const String googleIcon = 'assets/icons/google.svg';

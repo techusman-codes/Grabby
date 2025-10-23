@@ -5,6 +5,8 @@ import 'package:grabby_app/core/themes/app_theme.dart';
 import 'package:grabby_app/screens/auth/forgot_password.dart';
 import 'package:grabby_app/screens/auth/login_screen.dart';
 import 'package:grabby_app/screens/auth/registra_screen.dart';
+import 'package:grabby_app/screens/auth/veriition_screen.dart';
+import 'package:grabby_app/screens/onboaring/widgets/account_activate_screen.dart';
 import 'package:grabby_app/screens/onborading_screens.dart';
 
 import 'screens/splash/splash_screen.dart';
@@ -31,14 +33,21 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      initialRoute: AppRoutes.splash,
+      initialRoute: AppRoutes.activateAccount,
       routes: {
         AppRoutes.splash: (context) => const SplashScreen(),
         AppRoutes.onboarding: (context) => const OnboardingScreen(),
         AppRoutes.login: (context) => const LoginScreen(),
         AppRoutes.register: (context) => const RegisterScreen(),
         AppRoutes.forgotPassword: (context) => const ForgotPasswordScreen(),
-        // We'll add more routes as we build screens
+        AppRoutes.activateAccount: (context) => const AccountActivatedScreen(),
+        AppRoutes.verification: (context) {
+          // Get email from arguments
+          final email = ModalRoute.of(context)?.settings.arguments as String?;
+          return VerificationScreen(email: email);
+
+          // We'll add more routes as we build screens
+        },
       },
     );
   }

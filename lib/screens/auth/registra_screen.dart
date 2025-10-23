@@ -76,8 +76,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (mounted) {
         _showSnackBar('Account created successfully!', isError: false);
 
-        // Navigate to login or home
-        Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+        // Navigate to verification screen
+        Navigator.of(
+          context,
+        ).pushReplacementNamed(AppRoutes.verification, arguments: email);
       }
     } catch (e) {
       if (mounted) {

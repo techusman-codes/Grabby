@@ -13,7 +13,7 @@ class OnboardingBottomNav extends StatelessWidget {
     required this.currentPage,
     required this.totalPages,
     required this.onNextPressed,
-    required this.isLastPage,
+    required this.isLastPage, required void Function() onPressed,
   });
 
   @override

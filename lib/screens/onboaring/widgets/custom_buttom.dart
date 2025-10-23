@@ -1,8 +1,5 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_colors.dart';
-
 
 ///
 /// Usage:
@@ -66,9 +63,9 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppColors.primary,
+          backgroundColor: backgroundColor ?? AppColors.purple,
           foregroundColor: textColor ?? AppColors.textWhite,
-          disabledBackgroundColor: (backgroundColor ?? AppColors.primary)
+          disabledBackgroundColor: (backgroundColor ?? AppColors.purple)
               // ignore: deprecated_member_use
               .withOpacity(0.6),
           shape: RoundedRectangleBorder(
@@ -95,8 +92,8 @@ class CustomButton extends StatelessWidget {
                   Text(
                     text,
                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
                       color: textColor ?? AppColors.textWhite,
                     ),
                   ),

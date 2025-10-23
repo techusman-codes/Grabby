@@ -187,16 +187,15 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
                   height: 1.2,
                 ),
 
-                
-                cursorHeight: 20, 
-                cursorColor: AppColors.primary, 
+                cursorHeight: 20,
+                cursorColor: AppColors.primary,
 
                 decoration: InputDecoration(
                   hintText: 'Phone Number',
                   hintStyle: TextStyle(
                     color: AppColors.textHint,
                     fontSize: 14,
-                    height: 1.2, 
+                    height: 1.2,
                   ),
                   filled: true,
                   fillColor: Color(0xFFF5F5F5),
@@ -228,7 +227,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
                     vertical: 20,
                   ),
                   isDense: true,
-                  alignLabelWithHint: true, 
+                  alignLabelWithHint: true,
                 ),
               ),
             ),

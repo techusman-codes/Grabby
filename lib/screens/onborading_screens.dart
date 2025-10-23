@@ -118,6 +118,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               totalPages: _totalPages,
               onNextPressed: _handleNextPressed,
               isLastPage: _currentPage == _totalPages - 1,
+              onPressed: () {},
             ),
           ],
         ),

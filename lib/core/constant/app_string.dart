@@ -110,5 +110,17 @@ class AppStrings {
   static const String filter = 'Filter';
   static const String sort = 'Sort';
 
-  // BTN  Text
+  // Email Verification
+  static const String activateAccount = 'Activate your account';
+  static const String verificationCodeSent =
+      'A verification code has been sent to your email address';
+  static const String enterVerificationCode = 'Enter verification code';
+  static const String resendCode = 'Resend Code';
+  static const String verifying = 'Verifying...';
+  static const String codeResent = 'Code resent successfully!';
+  static const String invalidCode = 'Invalid verification code';
+  static const String verificationSuccess = 'Your account has been activated';
+  static const String verificationFailed =
+      'Verification failed. Please try again.';
+  static const String congratulations = 'Congratulatons';
 }
