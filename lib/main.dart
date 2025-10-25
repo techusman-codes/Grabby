@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/core/themes/app_theme.dart';
+import 'package:grabby_app/features/enable_location_screen.dart';
 import 'package:grabby_app/screens/auth/forgot_password.dart';
 import 'package:grabby_app/screens/auth/login_screen.dart';
 import 'package:grabby_app/screens/auth/registra_screen.dart';
 import 'package:grabby_app/screens/auth/veriition_screen.dart';
+import 'package:grabby_app/screens/home/main_screen.dart';
 import 'package:grabby_app/screens/onboaring/widgets/account_activate_screen.dart';
 import 'package:grabby_app/screens/onborading_screens.dart';
 
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      initialRoute: AppRoutes.activateAccount,
+      initialRoute: AppRoutes.splash,
       routes: {
         AppRoutes.splash: (context) => const SplashScreen(),
         AppRoutes.onboarding: (context) => const OnboardingScreen(),
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.register: (context) => const RegisterScreen(),
         AppRoutes.forgotPassword: (context) => const ForgotPasswordScreen(),
         AppRoutes.activateAccount: (context) => const AccountActivatedScreen(),
+        AppRoutes.enableLocation: (context) => const EnableLocationScreen(),
+        AppRoutes.main_screen: (context) => const MainScreen(),
         AppRoutes.verification: (context) {
           // Get email from arguments
           final email = ModalRoute.of(context)?.settings.arguments as String?;

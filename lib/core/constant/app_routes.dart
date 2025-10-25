@@ -5,7 +5,7 @@ class AppRoutes {
   static const String register = '/register';
   static const String forgotPassword = '/forgot-password';
   static const String verification = '/verification'; // ← ADD THIS
-  static const String home = '/home';
+  static const String main_screen = '/home';
   static const String productList = '/products';
   static const String productDetail = '/product-detail';
   static const String cart = '/cart';
@@ -17,4 +17,5 @@ class AppRoutes {
   static const String addresses = '/addresses';
   static const String addAddress = '/add-address';
   static const String activateAccount = '/activate-account';
+  static const String enableLocation = '/enable_location_screen';
 }

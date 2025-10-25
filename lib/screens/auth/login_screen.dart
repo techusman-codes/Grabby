@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_colors.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/utils/validator.dart';
+import 'package:grabby_app/services/storage_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,27 +38,24 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      debugPrint('Email: ${_emailController.text}');
-      debugPrint('Password: ${_passwordController.text}');
+      final email = _emailController.text.trim();
+      debugPrint('Login attempt - Email: $email');
+
+      // TODO: Implement actual login with Firebase
+      // For now, simulate success
+
+      await StorageService.instance.setLoggedIn(true);
+      await StorageService.instance.setUserId('user123');
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Login successful!'),
-            backgroundColor: AppColors.success,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        _showSnackBar('Login Successful!', isError: false);
+        Navigator.of(
+          context,
+        ).pushNamedAndRemoveUntil(AppRoutes.main_screen, (route) => false);
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Login failed'),
-            backgroundColor: AppColors.error,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        _showSnackBar('Login Failed. Please try again', isError: true);
       }
     } finally {
       if (mounted) {
@@ -92,6 +90,15 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       }
     }
+  }
+
+  void _showSnackBar(String message, {bool isError = false}) {
+    final snackBar = SnackBar(
+      content: Text(message),
+      backgroundColor: isError ? AppColors.error : AppColors.info,
+      behavior: SnackBarBehavior.floating,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -323,7 +330,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         // Text Field
         SizedBox(
-          height: 40, 
+          height: 40,
           child: TextFormField(
             controller: controller,
             obscureText: obscureText,
@@ -338,7 +345,7 @@ class _LoginScreenState extends State<LoginScreen> {
               //
               filled: true,
               fillColor: const Color(0xFFF5F5F5),
-              isDense: true, 
+              isDense: true,
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 14,

@@ -44,7 +44,7 @@ class AppStrings {
       'To continue, Google will share your name, email address,language preference and profile picture with Ronda. Before using this app, you can review Ronda’s privacy policy and terms of service .';
   static const String activateDesc =
       'A verification code has been sent to your email address';
-  static const String geoText = 'Enable Your Location';
+  static const String geoText = 'Enable your location';
   static const String geoDesc =
       'To search for nearby merchants,We want to know your location';
   static const String registrationText = 'Congratulations';

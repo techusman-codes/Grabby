@@ -167,7 +167,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // Full Name Field
                 CustomTextField(
                   controller: _fullNameController,
-                  label: 'Full Name',
+                  label: '',
+                  hint: 'Full Name',
                   textCapitalization: TextCapitalization.words,
                   validator: Validators.validateName,
                 ),
@@ -177,7 +178,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // Email Field
                 CustomTextField(
                   controller: _emailController,
-                  label: 'Email',
+                  label: '',
+                  hint: 'Email',
                   keyboardType: TextInputType.emailAddress,
                   validator: Validators.validateEmail,
                   textCapitalization: TextCapitalization.none,
@@ -202,8 +204,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 // Password Field
                 CustomTextField(
+                  label: '',
                   controller: _passwordController,
-                  label: 'Password',
+                  hint: 'Password',
                   isPassword: true,
                   validator: Validators.validatePassword,
                   textCapitalization: TextCapitalization.none,
