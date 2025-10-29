@@ -1,34 +1,39 @@
-/// Product model representing a single product/item
+/// Product model representing an item for sale
 class ProductModel {
   final String id;
   final String name;
   final String description;
   final double price;
   final String image;
-  final String category;
-  final String merchantId;
-  final String merchantName;
+  final String categoryId;
+  final String? merchantId;
   final double rating;
   final int reviewCount;
   final bool isAvailable;
-  final bool isFavorite;
-  
+  final List<String>? tags;
+
   ProductModel({
     required this.id,
     required this.name,
     required this.description,
     required this.price,
     required this.image,
-    required this.category,
-    required this.merchantId,
-    required this.merchantName,
+    required this.categoryId,
+    this.merchantId,
     this.rating = 0.0,
     this.reviewCount = 0,
     this.isAvailable = true,
-    this.isFavorite = false,
+    this.tags,
   });
-  
-  /// Create from JSON
+
+  /// Format price as currency
+  String get formattedPrice {
+    return '₦${price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
+  }
+
+  /// Check if product has discount
+  bool get hasDiscount => false; // Implement discount logic later
+
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'] as String,
@@ -36,17 +41,15 @@ class ProductModel {
       description: json['description'] as String,
       price: (json['price'] as num).toDouble(),
       image: json['image'] as String,
-      category: json['category'] as String,
-      merchantId: json['merchantId'] as String,
-      merchantName: json['merchantName'] as String,
+      categoryId: json['categoryId'] as String,
+      merchantId: json['merchantId'] as String?,
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       reviewCount: json['reviewCount'] as int? ?? 0,
       isAvailable: json['isAvailable'] as bool? ?? true,
-      isFavorite: json['isFavorite'] as bool? ?? false,
+      tags: (json['tags'] as List<dynamic>?)?.cast<String>(),
     );
   }
-  
-  /// Convert to JSON
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -54,30 +57,27 @@ class ProductModel {
       'description': description,
       'price': price,
       'image': image,
-      'category': category,
+      'categoryId': categoryId,
       'merchantId': merchantId,
-      'merchantName': merchantName,
       'rating': rating,
       'reviewCount': reviewCount,
       'isAvailable': isAvailable,
-      'isFavorite': isFavorite,
+      'tags': tags,
     };
   }
-  
-  /// Create a copy with modified fields
+
   ProductModel copyWith({
     String? id,
     String? name,
     String? description,
     double? price,
     String? image,
-    String? category,
+    String? categoryId,
     String? merchantId,
-    String? merchantName,
     double? rating,
     int? reviewCount,
     bool? isAvailable,
-    bool? isFavorite,
+    List<String>? tags,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -85,13 +85,12 @@ class ProductModel {
       description: description ?? this.description,
       price: price ?? this.price,
       image: image ?? this.image,
-      category: category ?? this.category,
+      categoryId: categoryId ?? this.categoryId,
       merchantId: merchantId ?? this.merchantId,
-      merchantName: merchantName ?? this.merchantName,
       rating: rating ?? this.rating,
       reviewCount: reviewCount ?? this.reviewCount,
       isAvailable: isAvailable ?? this.isAvailable,
-      isFavorite: isFavorite ?? this.isFavorite,
+      tags: tags ?? this.tags,
     );
   }
 }

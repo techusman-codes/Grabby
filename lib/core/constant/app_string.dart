@@ -123,4 +123,69 @@ class AppStrings {
   static const String verificationFailed =
       'Verification failed. Please try again.';
   static const String congratulations = 'Congratulatons';
+
+  // main Screen text
+  static const String restaurantText = 'Popular restaurnats near you';
+  static const String restDec1 = 'Castus Restaurant-Sonoran Chicken';
+  static const String restDecsText1 =
+      'Internationl, Vegetarian Friendly, Vegan Options';
+  static const String restaurantDecs2 =
+      'Shiro-Stir Fried Tenderloin with Shitake Mushrooms';
+  static const String restDes2 = 'Japanese, Sushi';
+  static const String restaurantDecs3 = "HSE Gourmet's Chicken and Chips";
+  static const String restDes3 =
+      'American, Mediterranean, Asian, Vetnamese Cuisine';
+  static const String restaurantDecs4 =
+      'The Ice Cream Factory- Butter Pecan Waffle';
+  static const String restDes4 = 'Desert, Cafe';
+
+  static const String restaurantDecs5 = 'Bay Lounge- Sea food';
+  static const String restDes5 = 'African, Bar';
+
+  // Categories Section
+  static const String categoriesText = 'Categories';
+  static const String categoriesText1 = 'Pasteries';
+  static const String categoriesDecs1 = '519 Places';
+  static const String categoriesText2 = 'Fashion';
+  static const String categoriesDecs2 = '519 Places';
+  static const String categoriesText3 = 'Phone';
+  static const String categoriesDecs3 = '519 Places';
+  static const String categoriesText4 = 'Drink';
+  static const String categoriesDecs4 = '519 Places';
+  static const String categoriesText5 = 'Burger';
+  static const String categoriesDecs5 = '519 Places';
+  static const String categoriesText6 = 'Grill';
+  static const String categoriesDecs6 = '519 Places';
+  static const String categoriesText7 = 'Baby Products';
+  static const String categoriesDecs7 = '519 Places';
+  static const String categoriesText8 = 'Sport Apparels';
+  static const String categoriesDecs8 = '519 Places';
+  static const String categoriesText9 = 'Food';
+  static const String categoriesDecs9 = '519 Places';
+  static const String categoriesText10 = 'Coffe';
+  static const String categoriesDecs10 = '519 Places';
+  static const String categoriesText11 = 'Computing';
+  static const String categoriesDecs11 = '519 Places';
+
+  // Recommended Section
+
+  static const String reccommendedText = 'Recomended';
+  static const String recText1 = 'Leriq Store';
+  static const String rectDes1 = 'Sony ps4 1tb Slim';
+  static const String recPrice1 = 'N185,500';
+  static const String recText2 = 'Chelse Gadgets';
+  static const String rectDes2 = 'Dell Alienware M15';
+  static const String recPrice2 = 'N1,320,000';
+  static const String recText3 = 'GL Accessories';
+  static const String rectDes3 = 'Romoss 20,000mah';
+  static const String recPrice3 = 'N12,500';
+  static const String recText4 = 'GL Accesories';
+  static const String rectDes4 = 'Samsung Galaxy A12';
+  static const String recPrice4 = 'N82, 490';
+
+  // Advert Text
+  static const String adverText1 = 'LG 5.1 Ch.Home Theater ';
+  static const String adverText2 = 'LG 5.1 Ch.Home Theater ';
+  static const String adverText3 = 'LG 5.1 Ch.Home Theater ';
+  static const String adverText5 = 'LG 5.1 Ch.Home Theater ';
 }

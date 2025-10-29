@@ -18,4 +18,5 @@ class AppRoutes {
   static const String addAddress = '/add-address';
   static const String activateAccount = '/activate-account';
   static const String enableLocation = '/enable_location_screen';
+  static const String categories = '/catergories';
 }

@@ -45,7 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
       // For now, simulate success
 
       await StorageService.instance.setLoggedIn(true);
-      await StorageService.instance.setUserId('user123');
+      await StorageService.instance.setUserEmail(email);
+      await StorageService.instance.setUserId('Usman Umar Garba');
 
       if (mounted) {
         _showSnackBar('Login Successful!', isError: false);

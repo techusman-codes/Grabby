@@ -11,6 +11,8 @@ import 'package:grabby_app/screens/onboaring/widgets/divider_with_text.dart';
 import 'package:grabby_app/screens/onboaring/widgets/phone_number_field.dart';
 import 'package:grabby_app/screens/onboaring/widgets/social_login_button.dart';
 
+import '../../services/storage_service.dart';
+
 /// Registration screen for new users
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -73,6 +75,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       debugPrint('Phone: $phone');
       debugPrint('Newsletter: $_acceptNewsletter');
 
+      // TODO: Implement actual registration with Firebase
+
+      // Save user info
+      await StorageService.instance.setUserName(fullName);
+      await StorageService.instance.setUserEmail(email);
+      await StorageService.instance.setUserPhone(phone);
+
       if (mounted) {
         _showSnackBar('Account created successfully!', isError: false);
 
@@ -80,6 +89,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Navigator.of(
           context,
         ).pushReplacementNamed(AppRoutes.verification, arguments: email);
+
+        // Option 2: Go directly to home (if no verification needed)
+        // Uncomment this if you want to skip verification:
+
+        await StorageService.instance.setLoggedIn(true);
+        await StorageService.instance.setUserId('Usman Umar Garba');
+        Navigator.of(
+          context,
+        ).pushNamedAndRemoveUntil(AppRoutes.main_screen, (route) => false);
       }
     } catch (e) {
       if (mounted) {
