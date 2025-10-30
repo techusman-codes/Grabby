@@ -13,7 +13,7 @@ class SearchBarWidget extends StatelessWidget {
 
   const SearchBarWidget({
     super.key,
-    this.hint = 'Search Market Place',
+    this.hint = 'Search for products, restaurants...',
     this.onTap,
     this.onChanged,
     this.controller,

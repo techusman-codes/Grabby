@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void _navigateToNext() {
-    Timer(const Duration(seconds: 10), () {
+    Timer(const Duration(seconds: 20), () {
       // TODO: Check if user is logged in
       // For now, navigate to login
       Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);

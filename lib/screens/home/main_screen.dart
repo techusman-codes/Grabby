@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_colors.dart';
+import 'package:grabby_app/core/constant/app_string.dart';
 
 import '../../core/constant/app_routes.dart';
 import '../../data/mock_data.dart';
@@ -31,23 +32,23 @@ class _HomeScreenState extends State<MainScreen> {
   final Set<String> _favoriteProducts = {};
 
   // User name (from storage)
-  String _userName = 'Usman';
+  // String _userName = 'Usman';
 
-  @override
-  void initState() {
-    super.initState();
-    _loadUserInfo();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _loadUserInfo();
+  // }
 
   /// Load user info from storage
-  void _loadUserInfo() {
-    final name = StorageService.instance.getUserName();
-    if (name != null && name.isNotEmpty) {
-      setState(() {
-        _userName = name.split(' ')[0]; // First name only
-      });
-    }
-  }
+  // void _loadUserInfo() {
+  //   final name = StorageService.instance.getUserName();
+  //   if (name != null && name.isNotEmpty) {
+  //     setState(() {
+  //       _userName = name.split(' ')[0]; // First name only
+  //     });
+  //   }
+  // }
 
   /// Handle logout
   Future<void> _handleLogout() async {
@@ -132,116 +133,120 @@ class _HomeScreenState extends State<MainScreen> {
   }
 
   /// Handle search tap
-  void _onSearchTap() {
-    // TODO: Navigate to search screen
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     content: Text('Search - Coming soon!'),
-    //     behavior: SnackBarBehavior.floating,
-    //   ),
-    // );
-  }
+  // void _onSearchTap() {
+  //   // TODO: Navigate to search screen
+  //   // ScaffoldMessenger.of(context).showSnackBar(
+  //   //   SnackBar(
+  //   //     content: Text('Search - Coming soon!'),
+  //   //     behavior: SnackBarBehavior.floating,
+  //   //   ),
+  //   // );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: _buildAppBar()),
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: _buildAppBar()),
 
-            // Search Bar
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: SearchBarWidget(readOnly: true, onTap: _onSearchTap),
+              // Search Bar
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SearchBarWidget(),
+                ),
               ),
-            ),
 
-            // Popular Restaurants Section
-            SliverToBoxAdapter(child: _buildRestaurantsSection()),
-            // Categories Section
-            SliverToBoxAdapter(child: _buildCategoriesSection()),
+              // Popular Restaurants Section
+              SliverToBoxAdapter(child: _buildRestaurantsSection()),
+              // Categories Section
+              SliverToBoxAdapter(child: _buildCategoriesSection()),
 
-            // Recommended Products Section
-            SliverToBoxAdapter(child: _buildProductsSection()),
+              // Recommended Products Section
+              SliverToBoxAdapter(child: _buildProductsSection()),
 
-            // Bottom spacing
-            SliverToBoxAdapter(child: SizedBox(height: 80)),
-          ],
+              // Bottom spacing
+              SliverToBoxAdapter(child: SizedBox(height: 80)),
+            ],
+          ),
         ),
-      ),
 
-      // Bottom Navigation Bar
-      bottomNavigationBar: _buildBottomNavBar(),
+        // Bottom Navigation Bar
+        bottomNavigationBar: _buildBottomNavBar(),
+      ),
     );
   }
 
   /// Build app bar
   Widget _buildAppBar() {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(16),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Profile picture
-          CircleAvatar(
-            radius: 24,
-            backgroundColor: AppColors.primary.withOpacity(0.1),
-            backgroundImage: AssetImage('assets/images/ucee.jpeg'),
-            // child: Icon(Icons.person, color: AppColors.primary),
-          ),
-
-          const SizedBox(width: 12),
-
-          // Welcome text
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Welcome, $_userName',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
+          // 🔹 First Row: Profile, Welcome Text, Notification
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  // 👤 Profile Picture
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundColor: AppColors.primary.withOpacity(0.1),
+                    backgroundImage: const AssetImage(
+                      'assets/images/ucee.jpeg',
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.location_on,
-                      size: 14,
-                      color: AppColors.textSecondary,
+                  const SizedBox(width: 18),
+
+                  Text(
+                    AppStrings.profileText,
+                    style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
                     ),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Kaduna, Nigeria',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+
+              IconButton(
+                icon: const Icon(Icons.notifications_outlined),
+                color: AppColors.textPrimary,
+                onPressed: () {
+                  // TODO: Handle notifications
+                },
+              ),
+            ],
           ),
 
-          // Notification bell
-          IconButton(
-            icon: Icon(Icons.notifications_outlined),
-            color: AppColors.textPrimary,
-            onPressed: () {
-              // TODO: Show notifications
-            },
+          const SizedBox(height: 12),
+
+          Row(
+            children: const [
+              Icon(Icons.location_on, size: 25, color: Colors.black),
+              SizedBox(width: 4),
+              Text(
+                'Zaria, Nigeria',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black54,
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
-
-  /// Build promotional banner
 
   /// Build categories section
   Widget _buildCategoriesSection() {

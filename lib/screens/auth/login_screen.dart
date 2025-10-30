@@ -331,7 +331,8 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         // Text Field
         SizedBox(
-          height: 40,
+          width: double.infinity,
+          height: 56,
           child: TextFormField(
             controller: controller,
             obscureText: obscureText,
@@ -353,23 +354,23 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               suffixIcon: suffixIcon,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.primary, width: 1.5),
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: AppColors.primary, width: 12),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: AppColors.error, width: 1.5),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: AppColors.error, width: 1.5),
               ),
             ),

@@ -141,6 +141,8 @@ class AppStrings {
 
   static const String restaurantDecs5 = 'Bay Lounge- Sea food';
   static const String restDes5 = 'African, Bar';
+  static const String profileText = 'Welcome, Usman';
+  static const String searchBarhintText = 'Search Market Place';
 
   // Categories Section
   static const String categoriesText = 'Categories';
