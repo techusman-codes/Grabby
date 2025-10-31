@@ -63,11 +63,11 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) {
         return Container(
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -138,10 +138,10 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
               onTap: _showCountryPicker,
               borderRadius: BorderRadius.circular(12),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 18),
                 decoration: BoxDecoration(
                   color: Color(0xFFF5F5F5),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: [
@@ -167,7 +167,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
               ),
             ),
 
-            const SizedBox(width: 12),
+            const SizedBox(width: 18),
 
             // Phone number input
             Expanded(
@@ -188,7 +188,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
                 ),
 
                 cursorHeight: 20,
-                cursorColor: AppColors.primary,
+                cursorColor: AppColors.softblue,
 
                 decoration: InputDecoration(
                   hintText: 'Phone Number',
@@ -200,22 +200,22 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
                   filled: true,
                   fillColor: Color(0xFFF5F5F5),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
-                      color: AppColors.primary,
+                      color: AppColors.textWhite,
                       width: 1.5,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(color: AppColors.error, width: 1.5),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
@@ -224,7 +224,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
                   ),
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 16,
-                    vertical: 20,
+                    vertical: 26,
                   ),
                   isDense: true,
                   alignLabelWithHint: true,

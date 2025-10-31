@@ -13,7 +13,8 @@ class OnboardingBottomNav extends StatelessWidget {
     required this.currentPage,
     required this.totalPages,
     required this.onNextPressed,
-    required this.isLastPage, required void Function() onPressed,
+    required this.isLastPage,
+    required void Function() onPressed,
   });
 
   @override
@@ -59,15 +60,14 @@ class OnboardingBottomNav extends StatelessWidget {
     return ElevatedButton(
       onPressed: onNextPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.purple,
+        backgroundColor: AppColors.softblue,
         foregroundColor: AppColors.textWhite,
-        padding: EdgeInsets.symmetric(
-          horizontal: compact ? 32 : 24,
-          vertical: 16,
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+
+        padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 0,
-        minimumSize: compact ? null : const Size(double.infinity, 56),
+
+        minimumSize: compact ? null : const Size(double.infinity, 30),
       ),
       child: Row(
         mainAxisSize: compact ? MainAxisSize.min : MainAxisSize.max,
@@ -76,8 +76,8 @@ class OnboardingBottomNav extends StatelessWidget {
           Text(
             isLastPage ? 'Get Started' : 'Next',
             style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.normal,
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
               letterSpacing: 1,
             ),
           ),

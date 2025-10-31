@@ -38,29 +38,16 @@ class DividerWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Expanded(
-          child: Divider(
-            color: dividerColor ?? AppColors.border,
-            thickness: thickness,
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: spacing),
+        Center(
           child: Text(
-            text,
+            'OR',
             style: TextStyle(
-              color: textColor ?? AppColors.textPrimary,
+              color: AppColors.black,
               fontWeight: FontWeight.w600,
-              fontSize: fontSize,
+              fontSize: 23,
             ),
-          ),
-        ),
-        Expanded(
-          child: Divider(
-            color: dividerColor ?? AppColors.border,
-            thickness: thickness,
           ),
         ),
       ],

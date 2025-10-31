@@ -9,11 +9,10 @@ import 'package:grabby_app/screens/auth/registra_screen.dart';
 import 'package:grabby_app/screens/auth/veriition_screen.dart';
 import 'package:grabby_app/screens/home/category_screen.dart';
 import 'package:grabby_app/screens/home/main_screen.dart';
+import 'package:grabby_app/screens/location/location_permission.dart';
 import 'package:grabby_app/screens/onboaring/widgets/account_activate_screen.dart';
 import 'package:grabby_app/screens/onborading_screens.dart';
-
 import 'screens/splash/splash_screen.dart';
-
 import 'services/storage_service.dart';
 
 void main() async {
@@ -48,6 +47,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.enableLocation: (context) => const EnableLocationScreen(),
         AppRoutes.main_screen: (context) => const MainScreen(),
         AppRoutes.categories: (context) => const CategoriesScreen(),
+        AppRoutes.locationscreen: (context) => const LocationPermissionScreen(),
         AppRoutes.verification: (context) {
           // Get email from arguments
           final email = ModalRoute.of(context)?.settings.arguments as String?;

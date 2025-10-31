@@ -38,21 +38,21 @@ class AppTextStyles {
 
   static const TextStyle headlineLarge = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 32,
-    fontWeight: FontWeight.w600, // Semi-bold
-    height: 1.25,
+    fontSize: 36,
+    fontWeight: FontWeight.w900, // Semi-bold
+    height: 1.5,
     letterSpacing: 0,
-    color: AppColors.textPrimary,
+    color: AppColors.softblue,
     fontStyle: FontStyle.normal,
   );
 
   static const TextStyle headlineMedium = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 28,
-    fontWeight: FontWeight.w700, // Semi-bold
-    height: 4,
+    fontSize: 24,
+    fontWeight: FontWeight.w600, // Semi-bold
+    height: 1,
     letterSpacing: 0.1,
-    color: AppColors.textPrimary,
+    color: AppColors.black,
   );
 
   static const TextStyle headlineSmall = TextStyle(

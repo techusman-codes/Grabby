@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grabby_app/core/constant/app_colors.dart';
+
+import 'package:grabby_app/core/constant/app_text_style.dart';
 
 /// Header for authentication screens (logo + subtitle)
 ///
@@ -56,16 +57,12 @@ class AuthHeader extends StatelessWidget {
         else
           _buildTitleText(),
 
-        const SizedBox(height: 8),
+        const SizedBox(height: 2),
 
         // Subtitle
         Text(
           subtitle,
-          style: TextStyle(
-            fontSize: 16,
-            color: AppColors.textPrimary,
-            fontWeight: FontWeight.w400,
-          ),
+          style: AppTextStyles.headlineMedium,
           textAlign: TextAlign.center,
         ),
       ],
@@ -75,12 +72,7 @@ class AuthHeader extends StatelessWidget {
   Widget _buildTitleText() {
     return Text(
       title,
-      style: TextStyle(
-        fontSize: titleFontSize,
-        fontWeight: FontWeight.bold,
-        color: AppColors.primary,
-        letterSpacing: -0.5,
-      ),
+      style: AppTextStyles.headlineLarge,
       textAlign: TextAlign.center,
     );
   }

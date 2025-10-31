@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_colors.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
+import 'package:grabby_app/core/constant/app_images.dart';
+import 'package:grabby_app/core/constant/app_text_style.dart';
 import 'package:grabby_app/core/utils/validator.dart';
 import 'package:grabby_app/services/storage_service.dart';
+
+import '../onboaring/widgets/social_login_button.dart';
+import '../../core/constant/app_string.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -108,33 +113,25 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 35),
+                const SizedBox(height: 20),
 
-                // Grabby logo/text
-                Text(
-                  'Grabby',
-                  style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
-                ),
+                Text(AppStrings.appName, style: AppTextStyles.headlineLarge),
 
-                const SizedBox(height: 8),
+                const SizedBox(height: 5),
 
                 // Subtitle
                 Text(
-                  'Sign in to your account',
-                  style: TextStyle(fontSize: 16, color: AppColors.textPrimary),
+                  AppStrings.signinText,
+                  style: AppTextStyles.headlineMedium,
                 ),
 
-                const SizedBox(height: 40),
+                const SizedBox(height: 60),
 
                 // Email field
                 _buildTextField(
@@ -144,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   validator: Validators.validateEmail,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
 
                 // Password field
                 _buildTextField(
@@ -160,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
                       color: AppColors.textSecondary,
-                      size: 20,
+                      size: 22,
                     ),
                     onPressed: () {
                       setState(() {
@@ -170,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 12),
+                const SizedBox(height: 22),
 
                 // Forgot password link
                 Align(
@@ -180,32 +177,32 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamed(AppRoutes.forgotPassword);
                     },
                     child: Text(
-                      'Forgot Password?',
+                      AppStrings.forgotPassword,
                       style: TextStyle(
-                        color: AppColors.primary,
-                        fontSize: 14,
+                        color: AppColors.softblue,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 30),
 
                 // Sign in button
                 SizedBox(
                   width: double.infinity,
-                  height: 56,
+                  height: 60,
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _handleLogin,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
+                      backgroundColor: AppColors.softblue,
                       foregroundColor: Colors.white,
-                      disabledBackgroundColor: AppColors.primary.withOpacity(
+                      disabledBackgroundColor: AppColors.softblue.withOpacity(
                         0.6,
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 0,
                     ),
@@ -221,36 +218,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           )
                         : Text(
-                            'Sign in',
+                            AppStrings.sigin,
                             style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300,
+                              height: 1,
                             ),
                           ),
                   ),
                 ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 25),
 
                 // OR divider
-                Row(
+                Column(
                   children: [
-                    Expanded(
-                      child: Divider(color: AppColors.border, thickness: 1),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                    Center(
                       child: Text(
                         'OR',
                         style: TextStyle(
-                          color: AppColors.textPrimary,
+                          color: AppColors.black,
                           fontWeight: FontWeight.w600,
-                          fontSize: 14,
+                          fontSize: 23,
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Divider(color: AppColors.border, thickness: 1),
                     ),
                   ],
                 ),
@@ -261,19 +252,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildSocialButton(
-                      icon: Icons.apple,
+                    SocialLoginButton(
+                      imagePath: AppImages.appleIcon,
                       onTap: () => _handleSocialLogin('Apple'),
+                      enabled: !_isLoading,
                     ),
                     const SizedBox(width: 16),
-                    _buildSocialButton(
-                      icon: Icons.facebook,
+                    SocialLoginButton(
+                      imagePath: AppImages.facebookIcon,
                       onTap: () => _handleSocialLogin('Facebook'),
+                      enabled: !_isLoading,
                     ),
                     const SizedBox(width: 16),
-                    _buildSocialButton(
-                      icon: Icons.g_mobiledata_rounded,
+                    SocialLoginButton(
+                      imagePath: AppImages.googleIcon,
                       onTap: () => _handleSocialLogin('Google'),
+                      enabled: !_isLoading,
                     ),
                   ],
                 ),
@@ -285,21 +279,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account? ",
+                      AppStrings.dontHaveAccount,
                       style: TextStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 14,
+                        color: AppColors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
+                    SizedBox(width: 5),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).pushNamed(AppRoutes.register);
                       },
                       child: Text(
-                        'Create one',
+                        AppStrings.createOne,
                         style: TextStyle(
-                          color: AppColors.primary,
-                          fontSize: 14,
+                          color: AppColors.softblue,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -332,7 +328,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // Text Field
         SizedBox(
           width: double.infinity,
-          height: 56,
+          height: 68,
           child: TextFormField(
             controller: controller,
             obscureText: obscureText,
@@ -344,60 +340,41 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 1.4,
             ),
             decoration: InputDecoration(
-              //
+              hintText: hintText,
               filled: true,
               fillColor: const Color(0xFFF5F5F5),
-              isDense: true,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 14,
-              ),
+
               suffixIcon: suffixIcon,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: AppColors.primary, width: 12),
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: AppColors.textWhite, width: 1.5),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: AppColors.error, width: 1.5),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: AppColors.error, width: 1.5),
               ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 30,
+              ),
+              isDense: true,
+              alignLabelWithHint: true,
             ),
           ),
         ),
       ],
-    );
-  }
-
-  // Build social button
-  Widget _buildSocialButton({
-    required IconData icon,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: _isLoading ? null : onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        width: 56,
-        height: 56,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.border, width: 1.5),
-        ),
-        child: Icon(icon, size: 28, color: AppColors.textPrimary),
-      ),
     );
   }
 }

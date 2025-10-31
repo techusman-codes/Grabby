@@ -62,7 +62,7 @@ class OnboardingPageWidget extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 40),
+          const SizedBox(height: 50),
 
           // Text content section
           Expanded(
@@ -73,22 +73,22 @@ class OnboardingPageWidget extends StatelessWidget {
                 Text(
                   data.title,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w800,
                     color: AppColors.black,
                     fontSize: 24,
                   ),
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(height: 2),
+                const SizedBox(height: 25),
 
                 // Description
                 Text(
                   data.description,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                    height: 1.6,
-                    fontSize: 18,
+                    color: AppColors.black,
+                    height: 1.8,
+                    fontSize: 20,
                   ),
                   textAlign: TextAlign.center,
                   maxLines: 4,

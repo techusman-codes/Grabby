@@ -1,7 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_colors.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
+import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/core/utils/validator.dart';
 import 'package:grabby_app/screens/onboaring/widgets/auth_header.dart';
 import 'package:grabby_app/screens/onboaring/widgets/custom_buttom.dart';
@@ -11,6 +11,7 @@ import 'package:grabby_app/screens/onboaring/widgets/divider_with_text.dart';
 import 'package:grabby_app/screens/onboaring/widgets/phone_number_field.dart';
 import 'package:grabby_app/screens/onboaring/widgets/social_login_button.dart';
 
+import '../../core/constant/app_images.dart';
 import '../../services/storage_service.dart';
 
 /// Registration screen for new users
@@ -175,23 +176,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 60),
+                const SizedBox(height: 45),
 
                 // Header
-                AuthHeader(title: 'Grabby', subtitle: 'Create your account'),
+                AuthHeader(
+                  title: AppStrings.appName,
+                  subtitle: AppStrings.signinText,
+                ),
 
-                const SizedBox(height: 40),
+                const SizedBox(height: 30),
 
                 // Full Name Field
                 CustomTextField(
                   controller: _fullNameController,
                   label: '',
-                  hint: 'Full Name',
+                  hint: 'FullName',
                   textCapitalization: TextCapitalization.words,
                   validator: Validators.validateName,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
                 // Email Field
                 CustomTextField(
@@ -203,12 +207,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   textCapitalization: TextCapitalization.none,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
                 // Phone Number Field
                 PhoneNumberField(
                   controller: _phoneController,
-                  label: '', // Label is shown inside the component
+                  label: '',
                   initialCountryCode: _selectedCountryCode,
                   onCountryChanged: (code) {
                     setState(() {
@@ -218,7 +222,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   validator: Validators.validatePhoneNumber,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
                 // Password Field
                 CustomTextField(
@@ -240,13 +244,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       _acceptTerms = value;
                     });
                   },
-                  label: 'Accept Terms & Condition',
+                  label: AppStrings.acceptTerms,
                   trailing: GestureDetector(
                     onTap: _showTermsAndConditions,
                     child: Icon(
                       Icons.info_outline,
                       size: 18,
-                      color: AppColors.primary,
+                      color: AppColors.softblue,
                     ),
                   ),
                 ),
@@ -259,71 +263,76 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       _acceptNewsletter = value;
                     });
                   },
-                  label: 'Accept to receive Newsletter',
+                  label: AppStrings.acceptNews,
                 ),
 
                 const SizedBox(height: 24),
 
                 // Sign Up Button
                 CustomButton(
-                  text: 'Sign up',
+                  text: AppStrings.signup,
+
                   onPressed: _handleRegister,
                   isLoading: _isLoading,
                 ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 25),
 
                 // OR Divider
                 DividerWithText(text: 'OR'),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 25),
 
                 // Social Login Buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SocialLoginButton(
-                      icon: Icons.apple,
+                      imagePath: AppImages.appleIcon,
                       onTap: () => _handleSocialRegister('Apple'),
                       enabled: !_isLoading,
                     ),
                     const SizedBox(width: 16),
                     SocialLoginButton(
-                      icon: Icons.facebook,
+                      imagePath: AppImages.facebookIcon,
                       onTap: () => _handleSocialRegister('Facebook'),
                       enabled: !_isLoading,
                     ),
                     const SizedBox(width: 16),
                     SocialLoginButton(
-                      icon: Icons.g_mobiledata_rounded,
+                      imagePath: AppImages.googleIcon,
                       onTap: () => _handleSocialRegister('Google'),
                       enabled: !_isLoading,
                     ),
                   ],
                 ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 25),
 
-                // Already have account link
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.textPrimary,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      AppStrings.alreadyHaveAccount,
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                    children: [
-                      TextSpan(text: 'Already have an account? '),
-                      TextSpan(
-                        text: 'Sign in',
+                    SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: _navigateToLogin,
+                      child: Text(
+                        AppStrings.sigin,
                         style: TextStyle(
-                          color: AppColors.primary,
+                          color: AppColors.softblue,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = _navigateToLogin,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: 40),

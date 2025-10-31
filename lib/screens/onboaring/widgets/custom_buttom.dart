@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_colors.dart';
+import 'package:grabby_app/core/constant/app_string.dart';
 
 ///
 /// Usage:
@@ -59,7 +60,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? double.infinity,
-      height: height,
+      height: 60,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
@@ -90,11 +91,12 @@ class CustomButton extends StatelessWidget {
                 children: [
                   if (icon != null) ...[icon!, const SizedBox(width: 8)],
                   Text(
-                    text,
+                    AppStrings.signup,
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
                       color: textColor ?? AppColors.textWhite,
+                      height: 1,
                     ),
                   ),
                 ],

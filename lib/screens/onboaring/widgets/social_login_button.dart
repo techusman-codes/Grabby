@@ -11,8 +11,8 @@ import 'package:grabby_app/core/constant/app_colors.dart';
 /// )
 /// ```
 class SocialLoginButton extends StatelessWidget {
-  /// Icon to display
-  final IconData icon;
+  /// Image asset path to display
+  final String imagePath;
 
   /// Callback when tapped
   final VoidCallback onTap;
@@ -21,13 +21,13 @@ class SocialLoginButton extends StatelessWidget {
   final double size;
 
   /// Icon size
-  final double iconSize;
+
+  final double imageSize;
 
   /// Background color
   final Color? backgroundColor;
 
   /// Icon color
-  final Color? iconColor;
 
   /// Border color
   final Color? borderColor;
@@ -40,12 +40,14 @@ class SocialLoginButton extends StatelessWidget {
 
   const SocialLoginButton({
     super.key,
-    required this.icon,
+
+    required this.imagePath,
     required this.onTap,
     this.size = 56,
-    this.iconSize = 28,
+
+    this.imageSize = 28,
     this.backgroundColor,
-    this.iconColor,
+
     this.borderColor,
     this.borderRadius = 12,
     this.enabled = true,
@@ -68,12 +70,12 @@ class SocialLoginButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Icon(
-            icon,
-            size: iconSize,
-            color: enabled
-                ? (iconColor ?? AppColors.textPrimary)
-                : AppColors.textHint,
+          child: Image.asset(
+            imagePath,
+            width: imageSize,
+            height: imageSize,
+            // The 'color' property was removed as it would tint your social icons,
+            // which is likely not the desired effect for logos like Google's.
           ),
         ),
       ),

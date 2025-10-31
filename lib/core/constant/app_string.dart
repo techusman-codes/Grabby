@@ -22,7 +22,7 @@ class AppStrings {
   static const String skip = 'Skip';
   static const String uselocation = 'Use Location';
   static const String homeText = 'Home';
-  static const String sigin = 'Sign In';
+  static const String sigin = 'Sign in';
   static const String signup = 'Sign Up';
   static const String email = 'Email';
   static const String password = 'Password';
@@ -37,6 +37,7 @@ class AppStrings {
   static const String acceptNews = 'Accept to receive News Leters';
   static const String signinText = 'Sign in to your account';
   static const String singupText = 'Create your account';
+  static const String createOne = 'Create one';
   static const String activateAcct = 'Activate your account';
   static const String signwithGoogle = 'Chose an account to countinue';
   static const String signwithGoogleText = 'Use another account';

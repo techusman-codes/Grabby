@@ -25,6 +25,7 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color purple = Colors.deepPurpleAccent;
   static const Color purple1 = Colors.deepPurple;
+  static const Color softblue = Color(0xFF7558F2);
 
   // Border & Divider
   static const Color border = Color(0xFFDEE2E6);

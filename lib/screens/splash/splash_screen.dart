@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void _navigateToNext() {
-    Timer(const Duration(seconds: 20), () {
+    Timer(const Duration(seconds: 10), () {
       // TODO: Check if user is logged in
       // For now, navigate to login
       Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
                     Text(
                       AppStrings.appTagline,
                       style: AppTextStyles.displaySmall.copyWith(
-                        color: AppColors.purple,
+                        color: AppColors.softblue,
                       ),
                     ),
                   ],
