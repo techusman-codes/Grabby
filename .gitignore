@@ -32,6 +32,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.AndroidManifest.xxml/
+.AppDelegate.swift/
+
 
 # Symbolication related
 app.*.symbols
