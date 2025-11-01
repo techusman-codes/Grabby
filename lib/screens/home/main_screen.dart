@@ -20,10 +20,11 @@ class _HomeScreenState extends State<MainScreen> {
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(child: _buildAppBar()),
-
-              // Search Bar
+              SliverToBoxAdapter(child: _buildAppBar(), ),
+              
+              
             ],
+            
           ),
         ),
 
@@ -39,7 +40,6 @@ class _HomeScreenState extends State<MainScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 🔹 First Row: Profile, Welcome Text, Notification
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,6 +73,21 @@ class _HomeScreenState extends State<MainScreen> {
                 onPressed: () {
                   // TODO: Handle notifications
                 },
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              Icon(Icons.location_on, size: 22, color: AppColors.textPrimary),
+              SizedBox(width: 6),
+              Text(
+                "Kaduna, Nigeria",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                  color: AppColors.black,
+                ),
               ),
             ],
           ),

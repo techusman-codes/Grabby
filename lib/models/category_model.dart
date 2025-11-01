@@ -1,56 +1,54 @@
-/// Category model representing a product category
-/// 
-/// Used throughout the app for categorizing products
+/// this is going to be used throoughout the app
 class CategoryModel {
   final String id;
   final String name;
-  final String icon; // Emoji or asset path
-  final String? image; // Optional category image
-  final int productCount; // Number of products in category
-  
+  final String image;
+  final String icon;
+  final int productCount; // Number of Product in the category
+
   CategoryModel({
-    required this.id,
     required this.name,
+    required this.image,
     required this.icon,
-    this.image,
     this.productCount = 0,
+    required this.id,
   });
-  
-  /// Create from JSON (for API integration later)
+
+  // Create From Json (for API integration later)
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
-      id: json['id'] as String,
       name: json['name'] as String,
+      image: json['image'] as String,
       icon: json['icon'] as String,
-      image: json['image'] as String?,
+      id: json['id'] as String,
       productCount: json['productCount'] as int? ?? 0,
     );
   }
-  
-  /// Convert to JSON (for API integration later)
+
+  /// convert Json to API integration later
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'name': name,
-      'icon': icon,
       'image': image,
-      'productCount': productCount,
+      'icon': icon,
+      'prosuctCount': productCount,
     };
   }
-  
-  /// Create a copy with modified fields
+
+  // create a copy with modified files
   CategoryModel copyWith({
     String? id,
     String? name,
-    String? icon,
     String? image,
+    String? icon,
     int? productCount,
   }) {
     return CategoryModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      icon: icon ?? this.icon,
       image: image ?? this.image,
+      icon: icon ?? this.icon,
       productCount: productCount ?? this.productCount,
     );
   }
