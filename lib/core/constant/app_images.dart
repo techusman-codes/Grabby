@@ -49,14 +49,15 @@ class AppImages {
   static const String cat13 = 'assets/icons/cat13.png';
   static const String cat14 = 'assets/icons/cat14.png';
   static const String cat15 = 'assets/icons/cat15.png';
+  static const String cat16 = 'assets/icons/sport.png';
 
-  // Recommended imagess
+  // Product imagess
 
-  static const String rec1 = 'assets/icons/rect1.png';
-  static const String rec2 = 'assets/icons/rect3.png';
-  static const String rec3 = 'assets/icons/rect3.png';
-  static const String rec4 = 'assets/icons/rect4.png';
-  static const String rec5 = 'assets/icons/rect5.png';
-  static const String rec6 = 'assets/icons/rect6.png';
-  static const String rec7 = 'assets/icons/rect7.png';
+  static const String pro1 = 'assets/icons/rect1.png';
+  static const String pro2 = 'assets/icons/rect3.png';
+  static const String pro3 = 'assets/icons/rect3.png';
+  static const String pro4 = 'assets/icons/rect4.png';
+  static const String pro5 = 'assets/icons/rect5.png';
+  static const String pro6 = 'assets/icons/rect6.png';
+  static const String pro7 = 'assets/icons/rect7.png';
 }

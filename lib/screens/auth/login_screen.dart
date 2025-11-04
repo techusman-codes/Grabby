@@ -4,6 +4,7 @@ import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_images.dart';
 import 'package:grabby_app/core/constant/app_text_style.dart';
 import 'package:grabby_app/core/utils/validator.dart';
+import 'package:grabby_app/widgets/custom_text_field_login.dart';
 import 'package:grabby_app/services/storage_service.dart';
 
 import '../onboaring/widgets/social_login_button.dart';
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          padding: const EdgeInsets.all(25),
           child: Form(
             key: _formKey,
             child: Column(
@@ -134,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 60),
 
                 // Email field
-                _buildTextField(
+                CustomTextField(
                   controller: _emailController,
                   hintText: 'Email',
                   keyboardType: TextInputType.emailAddress,
@@ -144,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 25),
 
                 // Password field
-                _buildTextField(
+                CustomTextField(
                   controller: _passwordController,
 
                   isPassword: true,
@@ -309,72 +310,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  // Build text field
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    bool isPassword = false,
-    bool obscureText = false,
-    TextInputType keyboardType = TextInputType.text,
-    String? Function(String?)? validator,
-    Widget? suffixIcon,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Text Field
-        SizedBox(
-          width: double.infinity,
-          height: 68,
-          child: TextFormField(
-            controller: controller,
-            obscureText: obscureText,
-            keyboardType: keyboardType,
-            validator: validator,
-            style: TextStyle(
-              fontSize: 15,
-              color: AppColors.textPrimary,
-              height: 1.4,
-            ),
-            decoration: InputDecoration(
-              hintText: hintText,
-              filled: true,
-              fillColor: const Color(0xFFF5F5F5),
-
-              suffixIcon: suffixIcon,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide.none,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide.none,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.textWhite, width: 1.5),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.error, width: 1.5),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.error, width: 1.5),
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 30,
-              ),
-              isDense: true,
-              alignLabelWithHint: true,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

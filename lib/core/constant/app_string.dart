@@ -161,7 +161,7 @@ class AppStrings {
   static const String categoriesDecs6 = '519 Places';
   static const String categoriesText7 = 'Baby Products';
   static const String categoriesDecs7 = '519 Places';
-  static const String categoriesText8 = 'Sport Apparels';
+  static const String categoriesText8 = 'Sports';
   static const String categoriesDecs8 = '519 Places';
   static const String categoriesText9 = 'Food';
   static const String categoriesDecs9 = '519 Places';
@@ -169,26 +169,30 @@ class AppStrings {
   static const String categoriesDecs10 = '519 Places';
   static const String categoriesText11 = 'Computing';
   static const String categoriesDecs11 = '519 Places';
+  static const String categoriesText12 = 'Kitchen ware';
+  static const String categoriesDecs12 = '519 Places';
 
-  // Recommended Section
+  // Product Section
 
   static const String reccommendedText = 'Recomended';
-  static const String recText1 = 'Leriq Store';
-  static const String rectDes1 = 'Sony ps4 1tb Slim';
-  static const String recPrice1 = 'N185,500';
-  static const String recText2 = 'Chelse Gadgets';
-  static const String rectDes2 = 'Dell Alienware M15';
-  static const String recPrice2 = 'N1,320,000';
-  static const String recText3 = 'GL Accessories';
-  static const String rectDes3 = 'Romoss 20,000mah';
-  static const String recPrice3 = 'N12,500';
-  static const String recText4 = 'GL Accesories';
-  static const String rectDes4 = 'Samsung Galaxy A12';
-  static const String recPrice4 = 'N82, 490';
+  static const String proText1 = 'Leriq Store';
+  static const String proDes1 = 'Sony ps4 1tb Slim';
+  static const double proPrice1 = 85500;
+  static const String proText2 = 'Chelse Gadgets';
+  static const String proDes2 = 'Dell Alienware M15';
+  static const double proPrice2 = 1320000;
+  static const String proText3 = 'GL Accessories';
+  static const String proDes3 = 'Romoss 20,000mah';
+  static const double proPrice3 = 12500;
+  static const String proText4 = 'GL Accesories';
+  static const String protDes4 = 'Samsung Galaxy A12';
+  static const double proPrice4 = 82490;
 
   // Advert Text
   static const String adverText1 = 'LG 5.1 Ch.Home Theater ';
   static const String adverText2 = 'LG 5.1 Ch.Home Theater ';
   static const String adverText3 = 'LG 5.1 Ch.Home Theater ';
   static const String adverText5 = 'LG 5.1 Ch.Home Theater ';
+
+  // Restaurant Section
 }

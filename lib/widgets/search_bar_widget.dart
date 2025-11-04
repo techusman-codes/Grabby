@@ -1,51 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:grabby_app/core/constant/app_colors.dart';
+import '../core/constant/app_colors.dart';
 
-/// Custom search bar widget
-///
-/// Reusable search input for home and other screens
-class SearchBarWidget extends StatelessWidget {
-  final String hint;
-  final VoidCallback? onTap;
-  final Function(String)? onChanged;
-  final TextEditingController? controller;
-  final bool readOnly;
+class SearchWithFilter extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final VoidCallback? onFilterPressed;
+  final ValueChanged<String>? onChanged;
 
-  const SearchBarWidget({
+  const SearchWithFilter({
     super.key,
-    this.hint = 'Search for products, restaurants...',
-    this.onTap,
+    required this.controller,
+    required this.hintText,
+    this.onFilterPressed,
     this.onChanged,
-    this.controller,
-    this.readOnly = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: Color(0xFFF5F5F5),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.border, width: 1),
-      ),
-      child: TextField(
-        controller: controller,
-        readOnly: readOnly,
-        onTap: onTap,
-        onChanged: onChanged,
-        style: TextStyle(fontSize: 14, color: AppColors.textPrimary),
-        decoration: InputDecoration(
-          hintText: hint,
-          hintStyle: TextStyle(color: AppColors.textHint, fontSize: 14),
-          prefixIcon: Icon(
-            Icons.search,
-            color: AppColors.textSecondary,
-            size: 22,
+    return SizedBox(
+      height: 55,
+      child: Row(
+        children: [
+          Expanded(
+            child: TextFormField(
+              controller: controller,
+              onChanged: onChanged,
+              style: TextStyle(
+                fontSize: 15,
+                color: AppColors.textPrimary,
+                height: 1.4,
+              ),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                hintText: hintText,
+                hintStyle: const TextStyle(color: Colors.grey),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 20,
+                ),
+              ),
+            ),
           ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        ),
+          SizedBox(width: 15),
+
+          Container(
+            height: double.infinity,
+            width: 55,
+            margin: const EdgeInsets.only(right: 4, top: 4, bottom: 4),
+            decoration: BoxDecoration(
+              color: AppColors.softblue,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.filter_list, color: Colors.white),
+              onPressed: onFilterPressed,
+              tooltip: "Filter",
+            ),
+          ),
+        ],
       ),
     );
   }

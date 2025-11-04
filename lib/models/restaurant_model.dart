@@ -11,13 +11,15 @@ class RestaurantModel {
   final String? cuisineType;
   final int? deliveryTime; // in minutes
   final double? deliveryFee;
-  
+  final double? paymentMethod;
+
   RestaurantModel({
     required this.id,
     required this.name,
     required this.description,
     required this.image,
     required this.location,
+    required this.paymentMethod,
     this.rating = 0.0,
     this.reviewCount = 0,
     this.isOpen = true,
@@ -25,15 +27,16 @@ class RestaurantModel {
     this.deliveryTime,
     this.deliveryFee,
   });
-  
+
   /// Format delivery time
   String get formattedDeliveryTime {
     if (deliveryTime == null) return 'N/A';
     return '$deliveryTime mins';
   }
-  
+
   factory RestaurantModel.fromJson(Map<String, dynamic> json) {
     return RestaurantModel(
+      paymentMethod: json['PaymentMethod'],
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -47,7 +50,7 @@ class RestaurantModel {
       deliveryFee: (json['deliveryFee'] as num?)?.toDouble(),
     );
   }
-  
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -61,6 +64,7 @@ class RestaurantModel {
       'cuisineType': cuisineType,
       'deliveryTime': deliveryTime,
       'deliveryFee': deliveryFee,
+      'PaymentMethod': paymentMethod,
     };
   }
 }

@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:grabby_app/core/constant/app_colors.dart';
+
+import 'package:grabby_app/core/constant/app_images.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
+import 'package:grabby_app/data/mock_data.dart';
+import 'package:grabby_app/models/category_model.dart';
+import 'package:grabby_app/models/product_model.dart';
+import 'package:grabby_app/models/restaurant_model.dart';
+//import 'package:grabby_app/core/constant/app_text_style.dart';
+import 'package:grabby_app/widgets/custom_app_bar.dart';
+import 'package:grabby_app/widgets/custom_restaurant_section.dart';
+import 'package:grabby_app/widgets/search_bar_widget.dart';
+
+import '../../core/constant/app_text_style.dart';
+//import 'package:grabby_app/widgets/search_bar_widget.dart';
 
 /// Main home screen of the app
 class MainScreen extends StatefulWidget {
@@ -11,88 +23,49 @@ class MainScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<MainScreen> {
+  // Mock Data
+  final List<CategoryModel> categories = MockData.categories.take(12).toList();
+  final List<RestaurantModel> restaurants = MockData.restaurants;
+  final List<ProductModel> products = MockData.products;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(child: _buildAppBar(), ),
-              
-              
-            ],
-            
-          ),
-        ),
-
-        // Bottom Navigation Bar
-      ),
-    );
-  }
-
-  /// Build app bar
-  Widget _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  // 👤 Profile Picture
-                  CircleAvatar(
-                    radius: 28,
-                    backgroundColor: AppColors.primary.withOpacity(0.1),
-                    backgroundImage: const AssetImage(
-                      'assets/images/ucee.jpeg',
-                    ),
+    const double horizontalPadding = 16;
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.all(horizontalPadding),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  SizedBox(height: 20),
+                  CustomAppBar(
+                    profileName: AppStrings.profileText,
+                    profileImage: AppImages.userProfile,
+                    location: "Lagos Nigeria",
                   ),
-                  const SizedBox(width: 14),
-
+                  SizedBox(height: 16),
+                  SearchWithFilter(
+                    controller: TextEditingController(),
+                    hintText: AppStrings.searchBarhintText,
+                  ),
+                  SizedBox(height: 16),
                   Text(
-                    AppStrings.profileText,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
+                    AppStrings.restaurantText,
+                    style: AppTextStyles.displaySmall,
                   ),
-                ],
+                  SizedBox(height: 20),
+                  CustomRestaurantSection(restaurants: restaurants),
+                ]),
               ),
-
-              IconButton(
-                icon: const Icon(Icons.notifications_outlined),
-                color: AppColors.textPrimary,
-                onPressed: () {
-                  // TODO: Handle notifications
-                },
-              ),
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              Icon(Icons.location_on, size: 22, color: AppColors.textPrimary),
-              SizedBox(width: 6),
-              Text(
-                "Kaduna, Nigeria",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w300,
-                  color: AppColors.black,
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
+
+      // Bottom Navigation Bar
     );
   }
 }

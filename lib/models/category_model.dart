@@ -2,13 +2,14 @@
 class CategoryModel {
   final String id;
   final String name;
-  final String image;
   final String icon;
+  final String decs;
   final int productCount; // Number of Product in the category
 
+  // this are my Constructors.
   CategoryModel({
     required this.name,
-    required this.image,
+    required this.decs,
     required this.icon,
     this.productCount = 0,
     required this.id,
@@ -18,9 +19,9 @@ class CategoryModel {
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
       name: json['name'] as String,
-      image: json['image'] as String,
       icon: json['icon'] as String,
       id: json['id'] as String,
+      decs: json['textDec'],
       productCount: json['productCount'] as int? ?? 0,
     );
   }
@@ -30,9 +31,9 @@ class CategoryModel {
     return {
       'id': id,
       'name': name,
-      'image': image,
       'icon': icon,
       'prosuctCount': productCount,
+      decs: 'textDecs',
     };
   }
 
@@ -40,14 +41,16 @@ class CategoryModel {
   CategoryModel copyWith({
     String? id,
     String? name,
+    String? text,
     String? image,
     String? icon,
     int? productCount,
+    String? decs,
   }) {
     return CategoryModel(
       id: id ?? this.id,
+      decs: decs ?? this.decs,
       name: name ?? this.name,
-      image: image ?? this.image,
       icon: icon ?? this.icon,
       productCount: productCount ?? this.productCount,
     );

@@ -1,3 +1,6 @@
+import 'package:grabby_app/core/constant/app_images.dart';
+import 'package:grabby_app/core/constant/app_string.dart';
+
 import '../models/category_model.dart';
 import '../models/product_model.dart';
 import '../models/restaurant_model.dart';
@@ -11,27 +14,113 @@ class MockData {
 
   /// Categories
   static final List<CategoryModel> categories = [
-    CategoryModel(id: '1', name: 'Fashion', icon: '👗', productCount: 150),
-    CategoryModel(id: '2', name: 'Groceries', icon: '🛒', productCount: 200),
-    CategoryModel(id: '3', name: 'Electronics', icon: '📱', productCount: 85),
-    CategoryModel(id: '4', name: 'Gadgets', icon: '⌚', productCount: 120),
-    CategoryModel(id: '5', name: 'Health', icon: '💊', productCount: 75),
-    CategoryModel(id: '6', name: 'Food', icon: '🍔', productCount: 300),
-    CategoryModel(id: '7', name: 'Drinks', icon: '🥤', productCount: 50),
-    CategoryModel(id: '8', name: 'Gaming', icon: '🎮', productCount: 95),
-    CategoryModel(id: '9', name: 'Furniture', icon: '🛋️', productCount: 60),
-    CategoryModel(id: '10', name: 'Sports', icon: '⚽', productCount: 110),
-    CategoryModel(id: '11', name: 'Shoes', icon: '👟', productCount: 140),
-    CategoryModel(id: '12', name: 'Toys', icon: '🧸', productCount: 80),
+    CategoryModel(
+      id: '1',
+      name: AppStrings.categoriesText1,
+      icon: AppImages.cat13,
+      productCount: 1,
+      decs: AppStrings.categoriesDecs1,
+    ),
+    CategoryModel(
+      id: '2',
+      name: AppStrings.categoriesText2,
+      icon: AppImages.cat2,
+      productCount: 2,
+      decs: AppStrings.categoriesDecs2,
+    ),
+    CategoryModel(
+      id: '3',
+      name: AppStrings.categoriesText3,
+      icon: AppImages.cat1,
+      productCount: 3,
+      decs: AppStrings.categoriesDecs3,
+    ),
+    CategoryModel(
+      id: '4',
+      name: AppStrings.categoriesText12,
+      icon: AppImages.cat12,
+      productCount: 4,
+      decs: AppStrings.categoriesDecs12,
+    ),
+    CategoryModel(
+      id: '5',
+      name: AppStrings.categoriesText4,
+      icon: AppImages.cat9,
+      productCount: 5,
+      decs: AppStrings.categoriesDecs4,
+    ),
+    CategoryModel(
+      id: '6',
+      name: AppStrings.categoriesDecs5,
+      icon: AppImages.cat10,
+      productCount: 6,
+      decs: AppStrings.categoriesDecs5,
+    ),
+    CategoryModel(
+      id: '7',
+      name: AppStrings.categoriesDecs7,
+      icon: AppImages.cat11,
+      productCount: 7,
+      decs: AppStrings.categoriesDecs7,
+    ),
+    CategoryModel(
+      id: '8',
+      name: AppStrings.categoriesDecs8,
+      icon: AppImages.cat16,
+      productCount: 8,
+      decs: AppStrings.categoriesDecs8,
+    ),
+    CategoryModel(
+      id: '9',
+      name: AppStrings.categoriesDecs9,
+      icon: AppImages.cat10,
+      productCount: 9,
+      decs: AppStrings.categoriesDecs9,
+    ),
+    CategoryModel(
+      id: '10',
+      name: AppStrings.categoriesDecs11,
+      icon: AppImages.cat11,
+      productCount: 10,
+      decs: AppStrings.categoriesDecs11,
+    ),
+    CategoryModel(
+      id: '7',
+      name: AppStrings.categoriesDecs7,
+      icon: AppImages.cat11,
+      productCount: 7,
+      decs: AppStrings.categoriesDecs7,
+    ),
+    CategoryModel(
+      id: '8',
+      name: AppStrings.categoriesDecs8,
+      icon: AppImages.cat16,
+      productCount: 8,
+      decs: AppStrings.categoriesDecs8,
+    ),
+    CategoryModel(
+      id: '9',
+      name: AppStrings.categoriesDecs9,
+      icon: AppImages.cat10,
+      productCount: 9,
+      decs: AppStrings.categoriesDecs9,
+    ),
+    CategoryModel(
+      id: '10',
+      name: AppStrings.categoriesDecs11,
+      icon: AppImages.cat11,
+      productCount: 10,
+      decs: AppStrings.categoriesDecs11,
+    ),
   ];
 
   /// Restaurants
   static final List<RestaurantModel> restaurants = [
     RestaurantModel(
       id: '1',
-      name: 'Tasty Restaurant - Gateway by Jollof',
-      description: 'Delicious Nigerian cuisine',
-      image: 'https://via.placeholder.com/300x200',
+      name: AppStrings.restDec1,
+      description: AppStrings.restDecsText1,
+      image: AppImages.restau1,
       location: 'Lagos, Nigeria',
       rating: 4.5,
       reviewCount: 120,
@@ -39,12 +128,13 @@ class MockData {
       cuisineType: 'Nigerian',
       deliveryTime: 30,
       deliveryFee: 500,
+      paymentMethod: null,
     ),
     RestaurantModel(
       id: '2',
-      name: 'Chicken Republic',
-      description: 'Fast food and fried chicken',
-      image: 'https://via.placeholder.com/300x200',
+      name: AppStrings.restDes2,
+      description: AppStrings.restaurantDecs2,
+      image: AppImages.restau2,
       location: 'Victoria Island, Lagos',
       rating: 4.3,
       reviewCount: 95,
@@ -52,12 +142,13 @@ class MockData {
       cuisineType: 'Fast Food',
       deliveryTime: 25,
       deliveryFee: 400,
+      paymentMethod: null,
     ),
     RestaurantModel(
       id: '3',
-      name: 'Kilimanjaro Restaurant',
-      description: 'Continental dishes',
-      image: 'https://via.placeholder.com/300x200',
+      name: AppStrings.restDes3,
+      description: AppStrings.restaurantDecs3,
+      image: AppImages.restau3,
       location: 'Lekki, Lagos',
       rating: 4.7,
       reviewCount: 150,
@@ -65,6 +156,22 @@ class MockData {
       cuisineType: 'Continental',
       deliveryTime: 40,
       deliveryFee: 600,
+      paymentMethod: null,
+    ),
+
+    RestaurantModel(
+      id: '4',
+      name: AppStrings.restDes4,
+      description: AppStrings.restaurantDecs4,
+      image: AppImages.restau4,
+      location: 'Lekki Lagos',
+      rating: 5.5,
+      reviewCount: 200,
+      isOpen: true,
+      cuisineType: 'italiyan',
+      deliveryTime: 40,
+      deliveryFee: 500,
+      paymentMethod: null,
     ),
   ];
 
@@ -72,22 +179,22 @@ class MockData {
   static final List<ProductModel> products = [
     ProductModel(
       id: '1',
-      name: 'Leniq Store',
-      description: 'Sony PS5 1TB Slim',
-      price: 98500,
-      image: 'https://via.placeholder.com/200',
+      name: AppStrings.proText1,
+      description: AppStrings.proDes1,
+      price: AppStrings.proPrice1,
+      image: AppImages.pro1,
       categoryId: '8', // Gaming
       rating: 4.8,
       reviewCount: 45,
       isAvailable: true,
-      tags: ['popular', 'trending'],
+    
     ),
     ProductModel(
       id: '2',
-      name: 'Chelsea Gadgets',
-      description: 'DELL ALIENWARE R15',
-      price: 120000,
-      image: 'https://via.placeholder.com/200',
+      name: AppStrings.proText2,
+      description: AppStrings.proDes2,
+      price: AppStrings.proPrice2,
+      image: AppImages.pro2,
       categoryId: '3', // Electronics
       rating: 4.6,
       reviewCount: 32,
@@ -95,10 +202,10 @@ class MockData {
     ),
     ProductModel(
       id: '3',
-      name: 'GL Accessories',
-      description: 'Iphone 15(128GB+6Gb)',
-      price: 2300,
-      image: 'https://via.placeholder.com/200',
+      name: AppStrings.proText3,
+      description: AppStrings.proDes3,
+      price: AppStrings.proPrice3,
+      image: AppImages.pro1,
       categoryId: '3', // Electronics
       rating: 4.9,
       reviewCount: 78,
@@ -107,26 +214,16 @@ class MockData {
     ),
     ProductModel(
       id: '4',
-      name: 'GL Accessories',
-      description: 'Samsung Galaxy A25',
-      price: 2400,
-      image: 'https://via.placeholder.com/200',
+      name: AppStrings.proText4,
+      description: AppStrings.protDes4,
+      price: AppStrings.proPrice4,
+      image: AppImages.pro4,
       categoryId: '3', // Electronics
       rating: 4.4,
       reviewCount: 56,
       isAvailable: true,
     ),
-    ProductModel(
-      id: '5',
-      name: 'LG 5.1 Ch. Home Theatre',
-      description: 'Theatre System LHD675',
-      price: 85000,
-      image: 'https://via.placeholder.com/200',
-      categoryId: '3', // Electronics
-      rating: 4.7,
-      reviewCount: 23,
-      isAvailable: true,
-    ),
+    
   ];
 
   /// Get products by category

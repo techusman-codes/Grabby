@@ -23,7 +23,7 @@ class RestaurantCard extends StatelessWidget {
         width: 280,
         margin: const EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.red,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
