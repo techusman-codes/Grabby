@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../core/constant/app_colors.dart';
 import '../models/category_model.dart';
 
-
 class CategoryCard extends StatelessWidget {
   final CategoryModel category;
   final VoidCallback onTap;
@@ -30,8 +29,8 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Icon/Emoji
-            Text(category.icon, style: TextStyle(fontSize: 32)),
+            // Icon
+            Image.asset(category.icon, width: 32, height: 32),
 
             const SizedBox(height: 8),
 
@@ -40,6 +39,17 @@ class CategoryCard extends StatelessWidget {
               category.name,
               style: TextStyle(
                 fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              category.decs,
+              style: TextStyle(
+                fontSize: 10,
                 fontWeight: FontWeight.w500,
                 color: AppColors.textPrimary,
               ),
@@ -62,4 +72,3 @@ class CategoryCard extends StatelessWidget {
     );
   }
 }
-

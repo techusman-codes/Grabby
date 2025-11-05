@@ -17,7 +17,7 @@ class MockData {
     CategoryModel(
       id: '1',
       name: AppStrings.categoriesText1,
-      icon: AppImages.cat13,
+      icon: AppImages.cat1,
       productCount: 1,
       decs: AppStrings.categoriesDecs1,
     ),
@@ -31,7 +31,7 @@ class MockData {
     CategoryModel(
       id: '3',
       name: AppStrings.categoriesText3,
-      icon: AppImages.cat1,
+      icon: AppImages.cat3,
       productCount: 3,
       decs: AppStrings.categoriesDecs3,
     ),
@@ -194,7 +194,7 @@ class MockData {
       description: AppStrings.proDes2,
       price: AppStrings.proPrice2,
       image: AppImages.pro2,
-      categoryId: '3', 
+      categoryId: '3',
       rating: 4.6,
       reviewCount: 32,
       isAvailable: true,
