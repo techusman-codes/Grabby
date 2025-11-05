@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 import '../core/constant/app_colors.dart';
 import '../models/category_model.dart';
 
-/// Reusable category card widget
-///
-/// Displays a category with icon and name
-/// Used in both home screen and categories screen
+
 class CategoryCard extends StatelessWidget {
   final CategoryModel category;
   final VoidCallback onTap;
   final bool showProductCount;
 
   const CategoryCard({
-    Key? key,
+    super.key,
     required this.category,
     required this.onTap,
     this.showProductCount = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

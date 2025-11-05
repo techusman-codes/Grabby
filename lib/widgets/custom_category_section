@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import '../models/category_model.dart';
+import '../mock_data/mock_data.dart';
+import 'category_card.dart';
+
+class CustomCategorySection extends StatelessWidget {
+  const CustomCategorySection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Access your mock categories list directly
+    final categories = MockData.categories;
+
+    return SizedBox(
+      height: 120, // controls overall section height
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final category = categories[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: CategoryCard(category: category),
+          );
+        },
+      ),
+    );
+  }
+}

@@ -147,7 +147,7 @@ class MockData {
     RestaurantModel(
       id: '3',
       name: AppStrings.restDes3,
-      description: AppStrings.restaurantDecs3,
+      description: AppStrings.restDes3,
       image: AppImages.restau3,
       location: 'Lekki, Lagos',
       rating: 4.7,
@@ -187,7 +187,6 @@ class MockData {
       rating: 4.8,
       reviewCount: 45,
       isAvailable: true,
-    
     ),
     ProductModel(
       id: '2',
@@ -195,7 +194,7 @@ class MockData {
       description: AppStrings.proDes2,
       price: AppStrings.proPrice2,
       image: AppImages.pro2,
-      categoryId: '3', // Electronics
+      categoryId: '3', 
       rating: 4.6,
       reviewCount: 32,
       isAvailable: true,
@@ -223,7 +222,6 @@ class MockData {
       reviewCount: 56,
       isAvailable: true,
     ),
-    
   ];
 
   /// Get products by category

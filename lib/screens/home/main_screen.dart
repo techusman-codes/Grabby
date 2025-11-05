@@ -4,9 +4,11 @@ import 'package:grabby_app/core/constant/app_images.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/data/mock_data.dart';
 import 'package:grabby_app/models/category_model.dart';
+
 import 'package:grabby_app/models/product_model.dart';
 import 'package:grabby_app/models/restaurant_model.dart';
-//import 'package:grabby_app/core/constant/app_text_style.dart';
+import 'package:grabby_app/widgets/custom_category_section.dart';
+
 import 'package:grabby_app/widgets/custom_app_bar.dart';
 import 'package:grabby_app/widgets/custom_restaurant_section.dart';
 import 'package:grabby_app/widgets/search_bar_widget.dart';
@@ -27,6 +29,17 @@ class _HomeScreenState extends State<MainScreen> {
   final List<CategoryModel> categories = MockData.categories.take(12).toList();
   final List<RestaurantModel> restaurants = MockData.restaurants;
   final List<ProductModel> products = MockData.products;
+
+  void _onCategoryTap(CategoryModel category) {
+    // TODO: Navigate to a screen showing products for the selected category
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Tapped on ${category.name}'),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     const double horizontalPadding = 16;
@@ -58,6 +71,17 @@ class _HomeScreenState extends State<MainScreen> {
                   ),
                   SizedBox(height: 20),
                   CustomRestaurantSection(restaurants: restaurants),
+                  SizedBox(height: 30),
+                  Text(
+                    AppStrings.categoriesText,
+                    style: AppTextStyles.displaySmall,
+                  ),
+
+                  SizedBox(height: 20),
+                  CustomCategorySection(
+                    categories: categories,
+                    onCategoryTap: _onCategoryTap,
+                  ),
                 ]),
               ),
             ),
