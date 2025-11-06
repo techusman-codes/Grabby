@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:grabby_app/core/constant/app_images.dart';
+import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/data/mock_data.dart';
 import 'package:grabby_app/models/category_model.dart';
 
 import 'package:grabby_app/models/product_model.dart';
 import 'package:grabby_app/models/restaurant_model.dart';
+import 'package:grabby_app/widgets/categries_section_header.dart';
 import 'package:grabby_app/widgets/custom_category_section.dart';
 
 import 'package:grabby_app/widgets/custom_app_bar.dart';
@@ -42,7 +44,7 @@ class _HomeScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const double horizontalPadding = 16;
+    const double horizontalPadding = 15;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -71,7 +73,7 @@ class _HomeScreenState extends State<MainScreen> {
                   ),
                   SizedBox(height: 20),
                   CustomRestaurantSection(restaurants: restaurants),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   Text(
                     AppStrings.categoriesText,
                     style: AppTextStyles.displaySmall,
@@ -81,6 +83,15 @@ class _HomeScreenState extends State<MainScreen> {
                   CustomCategorySection(
                     categories: categories,
                     onCategoryTap: _onCategoryTap,
+                  ),
+                  SizedBox(height: 20),
+                  CategoriesSectionHeader(
+                    title: 'Recommended',
+                    actionText: 'View all',
+                    onPressed: () => Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.categorysecreen,
+                    ),
                   ),
                 ]),
               ),

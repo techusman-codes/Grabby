@@ -20,4 +20,6 @@ class AppRoutes {
   static const String enableLocation = '/enable_location_screen';
   static const String categories = '/catergories';
   static const String locationscreen = '/location_permission_screen';
+  static const String categorysecreen = '/category_secreen';
+  
 }

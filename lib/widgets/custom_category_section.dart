@@ -5,6 +5,7 @@ import 'category_card.dart';
 class CustomCategorySection extends StatelessWidget {
   final List<CategoryModel> categories;
   final Function(CategoryModel) onCategoryTap;
+
   const CustomCategorySection({
     super.key,
     required this.categories,
@@ -13,29 +14,25 @@ class CustomCategorySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // We take the first 4 categories to display in the row.
-    // You can adjust this logic if you want to show a different set of categories.
-    final displayedCategories = categories.take(4).toList();
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal, // horizontal scroll
+        itemCount: categories.length,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemBuilder: (context, index) {
+          final category = categories[index];
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(displayedCategories.length, (index) {
-        final category = displayedCategories[index];
-        // Use a Flexible widget to allow the CategoryCard to shrink and fit.
-        return Flexible(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: SizedBox(
-              width: 80, // Set a fixed width for the card
-              child: CategoryCard(
-                category: category,
-                onTap: () => onCategoryTap(category),
-              ),
+          return Container(
+            width: 84,
+            margin: const EdgeInsets.only(right: 12),
+            child: CategoryCard(
+              category: category,
+              onTap: () => onCategoryTap(category),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 }

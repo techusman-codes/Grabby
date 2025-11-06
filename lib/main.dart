@@ -55,6 +55,7 @@ class MyApp extends StatelessWidget {
 
           // We'll add more routes as we build screens
         },
+        AppRoutes.categorysecreen: (context) => const CategoriesScreen(),
       },
     );
   }

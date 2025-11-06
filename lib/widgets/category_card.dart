@@ -18,12 +18,12 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(10),
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(color: AppColors.border, width: 1),
         ),
         child: Column(
@@ -32,7 +32,7 @@ class CategoryCard extends StatelessWidget {
             // Icon
             Image.asset(category.icon, width: 32, height: 32),
 
-            const SizedBox(height: 8),
+            const SizedBox(height: 3),
 
             // Category name
             Text(

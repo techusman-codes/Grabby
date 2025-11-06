@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:grabby_app/core/constant/app_colors.dart';
-import 'package:grabby_app/core/constant/app_routes.dart';
-import 'package:grabby_app/core/constant/app_string.dart';
 import 'dart:async';
+import '../../core/constant/app_colors.dart';
+import '../../core/constant/app_routes.dart';
+import '../../core/constant/app_string.dart';
 
-import 'package:grabby_app/core/constant/app_text_style.dart';
+import '../../core/constant/app_text_style.dart';
+import '../../services/storage_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    // Setup animations
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -41,15 +41,31 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    // Navigate after delay
     _navigateToNext();
   }
 
   void _navigateToNext() {
-    Timer(const Duration(seconds: 10), () {
-      // TODO: Check if user is logged in
-      // For now, navigate to login
-      Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
+    Timer(const Duration(seconds: 3), () {
+      if (!mounted) return;
+
+      // Check onboarding status
+      final bool onboardingComplete = StorageService.instance
+          .isOnboardingComplete();
+
+      // Check login status
+      final bool isLoggedIn = StorageService.instance.isLoggedIn();
+
+      // Decision tree:
+      if (!onboardingComplete) {
+        // First time user → Show onboarding
+        Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
+      } else if (isLoggedIn) {
+        // Returning logged-in user → Go directly to home
+        Navigator.of(context).pushReplacementNamed(AppRoutes.main_screen);
+      } else {
+        // Returning user, not logged in → Show login
+        Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+      }
     });
   }
 
@@ -62,7 +78,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: AppColors.textWhite,
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,

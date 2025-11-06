@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grabby_app/core/constant/app_routes.dart';
 import '../../core/constant/app_colors.dart';
 
 import '../../data/mock_data.dart';
@@ -7,14 +8,14 @@ import '../../widgets/category_card.dart';
 
 /// Categories screen showing all available categories
 class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({Key? key}) : super(key: key);
+  const CategoriesScreen({super.key});
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  final List<CategoryModel> _categories = MockData.categories;
+  final List<CategoryModel> categories = MockData.categories;
 
   /// Handle category tap
   void _onCategoryTap(CategoryModel category) {
@@ -36,23 +37,24 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () =>
+              Navigator.of(context).popAndPushNamed(AppRoutes.main_screen),
         ),
       ),
       body: SafeArea(
         child: GridView.builder(
           padding: const EdgeInsets.all(16),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
+            crossAxisCount: 4,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
             childAspectRatio: 0.9,
           ),
-          itemCount: _categories.length,
+          itemCount: categories.length,
           itemBuilder: (context, index) {
             return CategoryCard(
-              category: _categories[index],
-              onTap: () => _onCategoryTap(_categories[index]),
+              category: categories[index],
+              onTap: () => _onCategoryTap(categories[index]),
               showProductCount: true,
             );
           },
