@@ -53,11 +53,8 @@ class AppImages {
 
   // Product imagess
 
-  static const String pro1 = 'assets/icons/rect1.png';
-  static const String pro2 = 'assets/icons/rect3.png';
-  static const String pro3 = 'assets/icons/rect3.png';
-  static const String pro4 = 'assets/icons/rect4.png';
-  static const String pro5 = 'assets/icons/rect5.png';
-  static const String pro6 = 'assets/icons/rect6.png';
-  static const String pro7 = 'assets/icons/rect7.png';
+  static const String pro1 = 'assets/icons/pro1.png';
+  static const String pro2 = 'assets/icons/pro2.png';
+  static const String pro3 = 'assets/icons/pro3.png';
+  static const String pro4 = 'assets/icons/pro4.png';
 }

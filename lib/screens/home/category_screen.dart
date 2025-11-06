@@ -43,7 +43,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
       body: SafeArea(
         child: GridView.builder(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(10),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             crossAxisSpacing: 10,

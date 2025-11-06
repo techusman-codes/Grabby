@@ -105,7 +105,6 @@ class RestaurantCard extends StatelessWidget {
                           ],
                         ),
 
-                        const SizedBox(width: 10),
                         if (restaurant.deliveryTime != null)
                           Row(
                             children: [
@@ -124,8 +123,6 @@ class RestaurantCard extends StatelessWidget {
                               ),
                             ],
                           ),
-
-                        const SizedBox(width: 8),
                         Expanded(
                           // Use Expanded to ensure it takes only the needed space
                           child: Row(

@@ -204,7 +204,7 @@ class MockData {
       name: AppStrings.proText3,
       description: AppStrings.proDes3,
       price: AppStrings.proPrice3,
-      image: AppImages.pro1,
+      image: AppImages.pro3,
       categoryId: '3', // Electronics
       rating: 4.9,
       reviewCount: 78,

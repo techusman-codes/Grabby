@@ -9,9 +9,11 @@ import 'package:grabby_app/models/category_model.dart';
 import 'package:grabby_app/models/product_model.dart';
 import 'package:grabby_app/models/restaurant_model.dart';
 import 'package:grabby_app/widgets/categries_section_header.dart';
+import 'package:grabby_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:grabby_app/widgets/custom_category_section.dart';
 
 import 'package:grabby_app/widgets/custom_app_bar.dart';
+import 'package:grabby_app/widgets/custom_product_section.dart';
 import 'package:grabby_app/widgets/custom_restaurant_section.dart';
 import 'package:grabby_app/widgets/search_bar_widget.dart';
 
@@ -23,16 +25,25 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<MainScreen> {
+class HomeScreenState extends State<MainScreen> {
   // Mock Data
   final List<CategoryModel> categories = MockData.categories.take(12).toList();
   final List<RestaurantModel> restaurants = MockData.restaurants;
   final List<ProductModel> products = MockData.products;
 
-  void _onCategoryTap(CategoryModel category) {
+  int _selectedIndex =
+      0; // State to manage the current index of the bottom nav bar
+  final Set<String> _favoriteProducts = {};
+  void onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void onCategoryTap(CategoryModel category) {
     // TODO: Navigate to a screen showing products for the selected category
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -42,6 +53,23 @@ class _HomeScreenState extends State<MainScreen> {
     );
   }
 
+  void _onProductTap(ProductModel product) {
+    // Handle navigation or details
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Tapped on ${product.name}')));
+  }
+
+  void _toggleFavorite(String productId) {
+    setState(() {
+      if (_favoriteProducts.contains(productId)) {
+        _favoriteProducts.remove(productId);
+      } else {
+        _favoriteProducts.add(productId);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     const double horizontalPadding = 15;
@@ -49,13 +77,13 @@ class _HomeScreenState extends State<MainScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverPadding(
-              padding: EdgeInsets.all(horizontalPadding),
+              padding: const EdgeInsets.all(horizontalPadding),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   CustomAppBar(
                     profileName: AppStrings.profileText,
                     profileImage: AppImages.userProfile,
@@ -66,23 +94,23 @@ class _HomeScreenState extends State<MainScreen> {
                     controller: TextEditingController(),
                     hintText: AppStrings.searchBarhintText,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                     AppStrings.restaurantText,
                     style: AppTextStyles.displaySmall,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   CustomRestaurantSection(restaurants: restaurants),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     AppStrings.categoriesText,
                     style: AppTextStyles.displaySmall,
                   ),
 
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   CustomCategorySection(
                     categories: categories,
-                    onCategoryTap: _onCategoryTap,
+                    onCategoryTap: onCategoryTap,
                   ),
                   SizedBox(height: 20),
                   CategoriesSectionHeader(
@@ -93,14 +121,24 @@ class _HomeScreenState extends State<MainScreen> {
                       AppRoutes.categorysecreen,
                     ),
                   ),
+
+                  ProductSection(
+                    
+                    products: products,
+                    onProductTap: _onProductTap,
+                    onFavoriteToggle: _toggleFavorite,
+                    favoriteProducts: _favoriteProducts,
+                  ),
                 ]),
               ),
             ),
           ],
         ),
       ),
-
-      // Bottom Navigation Bar
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: _selectedIndex,
+        onItemSelected: onItemTapped,
+      ),
     );
   }
 }
