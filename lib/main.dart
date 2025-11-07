@@ -9,9 +9,12 @@ import 'package:grabby_app/screens/auth/registra_screen.dart';
 import 'package:grabby_app/screens/auth/veriition_screen.dart';
 import 'package:grabby_app/screens/home/category_screen.dart';
 import 'package:grabby_app/screens/home/main_screen.dart';
+import 'package:grabby_app/screens/home/profile_screen.dart';
 import 'package:grabby_app/screens/location/location_permission.dart';
 import 'package:grabby_app/screens/onboaring/widgets/account_activate_screen.dart';
 import 'package:grabby_app/screens/onborading_screens.dart';
+import 'screens/home/cart_screen.dart';
+import 'screens/home/favorite_screen.dart';
 import 'screens/splash/splash_screen.dart';
 import 'services/storage_service.dart';
 
@@ -56,6 +59,9 @@ class MyApp extends StatelessWidget {
           // We'll add more routes as we build screens
         },
         AppRoutes.categorysecreen: (context) => const CategoriesScreen(),
+        AppRoutes.profile_screen: (context) => const ProfileScreen(),
+        AppRoutes.favorite_screen: (context) => const FavoriteScreen(),
+        AppRoutes.cart_screen: (context) => const CartScreen(),
       },
     );
   }

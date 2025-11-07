@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
 import '../core/constant/app_colors.dart';
+import '../core/constant/app_images.dart';
 
 /// Reusable Custom Bottom Navigation Bar
 class CustomBottomNavBar extends StatelessWidget {
@@ -28,39 +29,42 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               NavItem(
-                icon: Icons.home,
+                imagePath: AppImages.home,
                 label: 'Home',
                 isActive: currentIndex == 0,
                 onTap: () => onItemSelected(0),
               ),
               NavItem(
-                icon: Icons.favorite_border,
+                imagePath: AppImages.favorite,
                 label: 'Favorite',
                 isActive: currentIndex == 1,
-                onTap: () => onItemSelected(1),
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.favorite_screen),
               ),
               NavItem(
-                icon: Icons.apps,
+                imagePath: AppImages.category,
                 label: 'Category',
                 isActive: currentIndex == 2,
                 onTap: () => Navigator.pushNamed(context, AppRoutes.categories),
               ),
               NavItem(
-                icon: Icons.shopping_cart_outlined,
+                imagePath: AppImages.cart,
                 label: 'Cart',
                 isActive: currentIndex == 3,
-                onTap: () => onItemSelected(3),
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.cart_screen),
               ),
               NavItem(
-                icon: Icons.person_outline,
+                imagePath: AppImages.profile,
                 label: 'Profile',
                 isActive: currentIndex == 4,
-                onTap: () => onItemSelected(4),
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.profile_screen),
               ),
             ],
           ),
@@ -72,14 +76,14 @@ class CustomBottomNavBar extends StatelessWidget {
 
 /// 🔹 Reusable single navigation item widget
 class NavItem extends StatelessWidget {
-  final IconData icon;
+  final String imagePath;
   final String label;
   final bool isActive;
   final VoidCallback onTap;
 
   const NavItem({
     super.key,
-    required this.icon,
+    required this.imagePath,
     required this.label,
     required this.isActive,
     required this.onTap,
@@ -89,23 +93,23 @@ class NavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(10),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              color: isActive ? AppColors.primary : AppColors.textSecondary,
-              size: 24,
+            Image.asset(
+              imagePath,
+              color: isActive ? AppColors.softblue : AppColors.textSecondary,
+              width: 40,
             ),
             const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
                 fontSize: 12,
-                color: isActive ? AppColors.primary : AppColors.textSecondary,
+                color: isActive ? AppColors.softblue : AppColors.textSecondary,
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
               ),
             ),

@@ -21,5 +21,7 @@ class AppRoutes {
   static const String categories = '/catergories';
   static const String locationscreen = '/location_permission_screen';
   static const String categorysecreen = '/category_secreen';
-  
+  static const String profile_screen = '/profile_screen';
+  static const String cart_screen = '/cart_screen';
+  static const String favorite_screen = '/favorite_screen';
 }

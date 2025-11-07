@@ -57,4 +57,12 @@ class AppImages {
   static const String pro2 = 'assets/icons/pro2.png';
   static const String pro3 = 'assets/icons/pro3.png';
   static const String pro4 = 'assets/icons/pro4.png';
+
+  // Bottom Nav Bar Icons
+
+  static const String home = 'assets/icons/home.png';
+  static const String favorite = 'assets/icons/favorite.png';
+  static const String category = 'assets/icons/category.png';
+  static const String cart = 'assets/icons/cart.png';
+  static const String profile = 'assets/icons/profile.png';
 }
