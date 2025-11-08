@@ -65,4 +65,15 @@ class AppImages {
   static const String category = 'assets/icons/category.png';
   static const String cart = 'assets/icons/cart.png';
   static const String profile = 'assets/icons/profile.png';
+
+  // menu item images
+
+  static const String menu1 = 'assets/icons/menu1.png';
+  static const String menu2 = 'assets/icons/menu2.png';
+  static const String menu3 = 'assets/icons/menu3.png';
+  static const String menu4 = 'assets/icons/menu4.png';
+  static const String menu5 = 'assets/icons/menu5.png';
+  static const String menu6 = 'assets/icons/menu6.png';
+  static const String menu7 = 'assets/icons/menu7.png';
+  static const String menu8 = 'assets/icons/menu8.png';
 }
