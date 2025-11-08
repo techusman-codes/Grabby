@@ -9,8 +9,7 @@ import '../models/restaurant_model.dart';
 ///
 /// This will be replaced with real API calls later
 class MockData {
-  // Private constructor to prevent instantiation
-  MockData._();
+  MockData();
 
   /// Categories
   static final List<CategoryModel> categories = [
