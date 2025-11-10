@@ -24,4 +24,6 @@ class AppRoutes {
   static const String profile_screen = '/profile_screen';
   static const String cart_screen = '/cart_screen';
   static const String favorite_screen = '/favorite_screen';
+  static const String home_screen = '/home_screen';
+  static const String restaurant_profile = '/restaurant_profile';
 }

@@ -1,218 +1,38 @@
 // ============================================================================
-// FILE: lib/widgets/restaurant_card.dart
-// PURPOSE: Reusable card for displaying a restaurant in a list
-// USED IN: Home screen (restaurant list)
+// FILE: lib/widgets/custom_restaurant_card.dart
+// PURPOSE: Reusable cards for Menu Items and Reviews
 // ============================================================================
 
 import 'package:flutter/material.dart';
-
 import '../models/restaurant_profile_model.dart';
 
-class RestaurantCard extends StatelessWidget {
-  final RestaurantProfileModel restaurant;
-  final VoidCallback onTap; // Function to call when tapped
-
-  const RestaurantCard({
-    super.key,
-    required this.restaurant,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap, // When user taps, call the onTap function
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Cover Image with Favorite Button
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(12),
-                  ),
-                  child: Image.network(
-                    restaurant.imagePath,
-                    height: 160,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  top: 12,
-                  right: 12,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.favorite_border),
-                      onPressed: () {
-                        // Add favorite functionality later
-                      },
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            // Restaurant Info
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Logo and Name
-                  Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          restaurant.imagePath,
-                          width: 40,
-                          height: 40,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              restaurant.name,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.star,
-                                  size: 16,
-                                  color: Colors.amber,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  '${restaurant.rating}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  '(${restaurant.reviewCount})',
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Description
-                  Text(
-                    restaurant.description,
-                    style: const TextStyle(fontSize: 13, color: Colors.grey),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Delivery Info
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.access_time,
-                        size: 16,
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        restaurant.deliveryTime,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      const Icon(
-                        Icons.delivery_dining,
-                        size: 16,
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'N${restaurant.deliveryFee}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 // ============================================================================
-// FILE: lib/widgets/menu_item_card.dart
-// PURPOSE: Reusable card for displaying a menu item
-// USED IN: Restaurant profile screen (offerings tab)
+// MENU ITEM CARD
 // ============================================================================
 
 class MenuItemCard extends StatelessWidget {
   final MenuItem item;
-  final VoidCallback? onTap;
-  final VoidCallback? onFavoriteToggle;
+  final VoidCallback onTap;
+  final VoidCallback onFavoriteToggle;
 
   const MenuItemCard({
     super.key,
     required this.item,
-    this.onTap,
-    this.onFavoriteToggle,
+    required this.onTap,
+    required this.onFavoriteToggle,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFFE0E0E0)),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xFFE0E0E0)),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,12 +40,23 @@ class MenuItemCard extends StatelessWidget {
             // Image
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                item.imageUrl,
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
-              ),
+              child: item.imageUrl.startsWith('http')
+                  ? Image.network(
+                      item.imageUrl,
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Icon(Icons.broken_image, size: 80),
+                    )
+                  : Image.asset(
+                      item.imageUrl,
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Icon(Icons.broken_image, size: 80),
+                    ),
             ),
             const SizedBox(width: 12),
 
@@ -244,31 +75,28 @@ class MenuItemCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     item.description,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                      height: 1.4,
-                    ),
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'N${item.price.toStringAsFixed(0)}',
+                    'N${item.price.toStringAsFixed(2)}',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
+                      color: Color(0xFF6B4CE6),
                     ),
                   ),
                 ],
               ),
             ),
 
-            // Favorite Button
+            // Favorite Icon
             IconButton(
               icon: Icon(
                 item.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: item.isFavorite ? const Color(0xFF6B4CE6) : Colors.grey,
+                color: item.isFavorite ? Colors.red : Colors.grey,
               ),
               onPressed: onFavoriteToggle,
             ),
@@ -280,9 +108,7 @@ class MenuItemCard extends StatelessWidget {
 }
 
 // ============================================================================
-// FILE: lib/widgets/review_card.dart
-// PURPOSE: Reusable card for displaying a review
-// USED IN: Restaurant profile screen (overview tab)
+// REVIEW CARD
 // ============================================================================
 
 class ReviewCard extends StatelessWidget {
@@ -299,58 +125,58 @@ class ReviewCard extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              radius: 20,
               backgroundImage: NetworkImage(review.userAvatar),
+              radius: 20,
             ),
             const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    review.userName,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  review.userName,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
                   ),
-                  const SizedBox(height: 2),
-                  Row(
-                    children: List.generate(
-                      5,
-                      (index) => Icon(
-                        index < review.rating.floor()
-                            ? Icons.star
-                            : Icons.star_border,
-                        size: 14,
-                        color: Colors.amber,
-                      ),
+                ),
+                Text(
+                  review.timeAgo,
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+            ),
+            const Spacer(),
+            // Rating
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: const Color(0xFF6B4CE6).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  const Icon(Icons.star, color: Color(0xFF6B4CE6), size: 16),
+                  const SizedBox(width: 4),
+                  Text(
+                    review.rating.toStringAsFixed(1),
+                    style: const TextStyle(
+                      color: Color(0xFF6B4CE6),
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-            ),
-            Text(
-              review.timeAgo,
-              style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
           ],
         ),
         const SizedBox(height: 12),
 
         // Comment
-        Text(
-          review.comment,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black87,
-            height: 1.5,
-          ),
-        ),
+        Text(review.comment, style: const TextStyle(fontSize: 14, height: 1.5)),
+        const SizedBox(height: 12),
 
-        // Images (if any)
-        if (review.images.isNotEmpty) ...[
-          const SizedBox(height: 12),
+        // Images
+        if (review.images.isNotEmpty)
           SizedBox(
             height: 80,
             child: ListView.separated(
@@ -370,88 +196,43 @@ class ReviewCard extends StatelessWidget {
               },
             ),
           ),
-        ],
       ],
     );
   }
 }
 
 // ============================================================================
-// FILE: lib/widgets/section_title.dart
-// PURPOSE: Reusable section title widget
-// USED IN: Multiple screens for consistent headings
+// SECTION TITLE
 // ============================================================================
 
 class SectionTitle extends StatelessWidget {
   final String title;
-
   const SectionTitle({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     );
   }
 }
 
 // ============================================================================
-// FILE: lib/widgets/cuisine_chip.dart
-// PURPOSE: Reusable chip for displaying cuisines
-// USED IN: Restaurant profile screen (details tab)
+// CUISINE CHIP
 // ============================================================================
 
 class CuisineChip extends StatelessWidget {
   final String label;
-
   const CuisineChip({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF5F5F5),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(fontSize: 12, color: Colors.black87),
-      ),
+    return Chip(
+      label: Text(label),
+      backgroundColor: Colors.grey.shade200,
+      labelStyle: const TextStyle(fontSize: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
     );
   }
 }
-
-// ============================================================================
-// EXPLANATION:
-// ============================================================================
-//
-// These are REUSABLE widgets. Think of them as LEGO blocks:
-//
-// 1. RestaurantCard - Shows a restaurant in a list
-//    - Takes: Restaurant object
-//    - Returns: A beautiful card
-//
-// 2. MenuItemCard - Shows a menu item
-//    - Takes: MenuItem object
-//    - Returns: A card with image, name, price
-//
-// 3. ReviewCard - Shows a review
-//    - Takes: Review object
-//    - Returns: User info + comment + images
-//
-// 4. SectionTitle - Simple title text
-//    - Takes: String
-//    - Returns: Formatted title
-//
-// 5. CuisineChip - Rounded chip for cuisines
-//    - Takes: String
-//    - Returns: Rounded container with text
-//
-// WHY REUSABLE?
-// - Write once, use everywhere
-// - Change design in ONE place
-// - Consistent look across app
-//
-// ============================================================================

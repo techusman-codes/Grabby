@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:grabby_app/core/constant/app_images.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
-import 'package:grabby_app/core/constant/app_string.dart';
-import 'package:grabby_app/data/mock_data.dart';
+import 'package:grabby_app/core/constant/app_string.dart'; // This is the mock data for categories and products
+import 'package:grabby_app/data/restaurant_mock_data.dart';
 import 'package:grabby_app/models/category_model.dart';
 
 import 'package:grabby_app/models/product_model.dart';
-import 'package:grabby_app/models/restaurant_model.dart';
+import 'package:grabby_app/models/restaurant_profile_model.dart';
 import 'package:grabby_app/widgets/categries_section_header.dart';
 import 'package:grabby_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:grabby_app/widgets/custom_category_section.dart';
@@ -17,6 +17,7 @@ import 'package:grabby_app/widgets/custom_product_section.dart';
 import 'package:grabby_app/widgets/custom_restaurant_section.dart';
 import 'package:grabby_app/widgets/search_bar_widget.dart';
 
+import '../../data/mock_data.dart';
 import '../../core/constant/app_text_style.dart';
 //import 'package:grabby_app/widgets/search_bar_widget.dart';
 
@@ -31,8 +32,8 @@ class MainScreen extends StatefulWidget {
 class HomeScreenState extends State<MainScreen> {
   // Mock Data
   final List<CategoryModel> categories = MockData.categories.take(12).toList();
-  final List<RestaurantModel> restaurants = MockData.restaurants;
   final List<ProductModel> products = MockData.products;
+  final List<RestaurantProfileModel> restaurants = SampleData.getRestaurants();
 
   int _selectedIndex =
       0; // State to manage the current index of the bottom nav bar
@@ -123,7 +124,6 @@ class HomeScreenState extends State<MainScreen> {
                   ),
 
                   ProductSection(
-                    
                     products: products,
                     onProductTap: _onProductTap,
                     onFavoriteToggle: _toggleFavorite,

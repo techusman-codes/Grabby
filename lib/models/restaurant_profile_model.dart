@@ -81,11 +81,6 @@ class RestaurantDetails {
   });
 }
 
-// ============================================================================
-// FILE: lib/models/review.dart
-// PURPOSE: Define the structure of a Review
-// ============================================================================
-
 class Review {
   final String id;
   final String userName;

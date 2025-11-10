@@ -1,3 +1,5 @@
+
+
 /// Restaurant/Merchant model
 class RestaurantModel {
   final String id;
@@ -13,6 +15,8 @@ class RestaurantModel {
   final double? deliveryFee;
   final double? paymentMethod;
 
+  
+
   RestaurantModel({
     required this.id,
     required this.name,
@@ -26,8 +30,11 @@ class RestaurantModel {
     this.cuisineType,
     this.deliveryTime,
     this.deliveryFee,
+
+   
   });
 
+  
   /// Format delivery time
   String get formattedDeliveryTime {
     if (deliveryTime == null) return 'N/A';

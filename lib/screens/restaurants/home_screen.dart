@@ -6,8 +6,9 @@
 import 'package:flutter/material.dart';
 import 'package:grabby_app/models/restaurant_profile_model.dart';
 import '../../data/restaurant_mock_data.dart';
-import '../../widgets/restaurant_card.dart';
 
+
+import '../../widgets/restaurant_card.dart';
 import 'restaurant_profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      
+
       // App Bar
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -71,11 +72,11 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: restaurants.length,
         itemBuilder: (context, index) {
           final restaurant = restaurants[index];
-          
+
           // Use the RestaurantCard widget we created
           return RestaurantCard(
             restaurant: restaurant,
-            
+
             // What happens when user taps the card?
             onTap: () {
               // Navigate to restaurant profile screen
