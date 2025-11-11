@@ -1,14 +1,8 @@
-// ============================================================================
-// FILE: lib/widgets/custom_restaurant_card.dart
-// PURPOSE: Reusable cards for Menu Items and Reviews
-// ============================================================================
-
 import 'package:flutter/material.dart';
+import '../core/constant/app_colors.dart';
+import '../data/image_utils.dart';
 import '../models/restaurant_profile_model.dart';
-
-// ============================================================================
-// MENU ITEM CARD
-// ============================================================================
+// Import the new utility
 
 class MenuItemCard extends StatelessWidget {
   final MenuItem item;
@@ -29,34 +23,21 @@ class MenuItemCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFFE0E0E0)),
-        ),
+        decoration: BoxDecoration(color: Colors.white),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: item.imageUrl.startsWith('http')
-                  ? Image.network(
-                      item.imageUrl,
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.broken_image, size: 80),
-                    )
-                  : Image.asset(
-                      item.imageUrl,
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.broken_image, size: 80),
-                    ),
+              child: Image(
+                image: resolveImageProvider(item.imageUrl),
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.broken_image, size: 80),
+              ),
             ),
             const SizedBox(width: 12),
 
@@ -70,6 +51,7 @@ class MenuItemCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -85,7 +67,7 @@ class MenuItemCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF6B4CE6),
+                      color: Colors.black,
                     ),
                   ),
                 ],
@@ -96,7 +78,9 @@ class MenuItemCard extends StatelessWidget {
             IconButton(
               icon: Icon(
                 item.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: item.isFavorite ? Colors.red : Colors.grey,
+                color: item.isFavorite
+                    ? AppColors.softblue
+                    : AppColors.softblue,
               ),
               onPressed: onFavoriteToggle,
             ),
@@ -125,7 +109,7 @@ class ReviewCard extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(review.userAvatar),
+              backgroundImage: resolveImageProvider(review.userAvatar),
               radius: 20,
             ),
             const SizedBox(width: 12),
@@ -186,8 +170,8 @@ class ReviewCard extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    review.images[index],
+                  child: Image(
+                    image: resolveImageProvider(review.images[index]),
                     width: 80,
                     height: 80,
                     fit: BoxFit.cover,
@@ -213,7 +197,11 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: AppColors.black,
+      ),
     );
   }
 }
@@ -224,15 +212,15 @@ class SectionTitle extends StatelessWidget {
 
 class CuisineChip extends StatelessWidget {
   final String label;
+
   const CuisineChip({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Chip(
       label: Text(label),
-      backgroundColor: Colors.grey.shade200,
-      labelStyle: const TextStyle(fontSize: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+
+      labelStyle: const TextStyle(fontSize: 15, color: AppColors.black),
     );
   }
 }

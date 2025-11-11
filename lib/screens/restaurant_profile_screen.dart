@@ -4,8 +4,9 @@
 // ============================================================================
 
 import 'package:flutter/material.dart';
-import 'package:grabby_app/models/restaurant_profile_model.dart'
-    show MenuItem, RestaurantProfileModel ;
+import 'package:grabby_app/models/restaurant_profile_model.dart';
+// show MenuItem, RestaurantProfileModel;
+import '../core/constant/app_colors.dart';
 import '../widgets/custom_restaurant_card.dart';
 
 // ============================================================================
@@ -22,10 +23,10 @@ class RestaurantProfileScreen extends StatefulWidget {
 
   @override
   State<RestaurantProfileScreen> createState() =>
-      _RestaurantProfileScreenState();
+      RestaurantProfileScreenState();
 }
 
-class _RestaurantProfileScreenState extends State<RestaurantProfileScreen>
+class RestaurantProfileScreenState extends State<RestaurantProfileScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -53,15 +54,15 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen>
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.deepPurple),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Restaurant profile',
           style: TextStyle(
             color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+            fontSize: 26,
+            fontWeight: FontWeight.w400,
           ),
         ),
         centerTitle: false,
@@ -70,14 +71,15 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen>
         children: [
           // Restaurant Name
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Row(
               children: [
                 Text(
                   widget.restaurant.name,
                   style: const TextStyle(
                     fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
                   ),
                 ),
               ],
@@ -94,11 +96,12 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen>
             child: TabBar(
               controller: _tabController,
               labelColor: const Color(0xFF6B4CE6),
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: const Color(0xFF6B4CE6),
-              indicatorWeight: 3,
+              unselectedLabelColor: Colors.black,
+              indicatorColor: AppColors.softblue,
+              indicatorWeight: 6,
+              dividerColor: AppColors.softblue,
               labelStyle: const TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
               tabs: const [
@@ -126,10 +129,6 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen>
   }
 }
 
-// ============================================================================
-// TAB 1: OFFERINGS (Menu Items)
-// ============================================================================
-
 class OfferingsTab extends StatefulWidget {
   final RestaurantProfileModel restaurant;
 
@@ -140,7 +139,8 @@ class OfferingsTab extends StatefulWidget {
 }
 
 class _OfferingsTabState extends State<OfferingsTab> {
-  String selectedCategory = 'Breakfast';
+  // To track expanded categories
+  Map<String, bool> expandedCategories = {};
 
   // Group menu items by category
   Map<String, List<MenuItem>> _groupMenuItems() {
@@ -152,86 +152,113 @@ class _OfferingsTabState extends State<OfferingsTab> {
       }
       grouped[item.category]!.add(item);
     }
-
     return grouped;
   }
 
+  ///   Offereings Tabs Widgets
   @override
   Widget build(BuildContext context) {
     final groupedItems = _groupMenuItems();
     final categories = groupedItems.keys.toList();
 
-    // Set initial category if needed
-    if (!categories.contains(selectedCategory) && categories.isNotEmpty) {
-      selectedCategory = categories.first;
-    }
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      itemCount: categories.length,
+      itemBuilder: (context, index) {
+        final category = categories[index];
+        final items = groupedItems[category]!;
+        final isExpanded = expandedCategories[category] ?? false;
 
-    return Column(
-      children: [
-        // Category Headers
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(color: Color(0xFFE0E0E0), width: 1),
-            ),
-          ),
-          child: Row(
-            children: categories.map((category) {
-              final itemCount = groupedItems[category]?.length ?? 0;
-              return Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: _CategoryButton(
-                  label: category,
-                  count: itemCount,
-                  isSelected: selectedCategory == category,
-                  onTap: () {
-                    setState(() {
-                      selectedCategory = category;
-                    });
-                  },
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Category Header Row
+            InkWell(
+              onTap: () {
+                setState(() {
+                  expandedCategories[category] = !isExpanded;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
                 ),
-              );
-            }).toList(),
-          ),
-        ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Category Name
+                    Row(
+                      children: [
+                        Text(
+                          category,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.black,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Icon(
+                          isExpanded
+                              ? Icons.keyboard_arrow_up
+                              : Icons.keyboard_arrow_down,
+                          size: 20,
+                          color: AppColors.black,
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '${items.length} dishes',
+                      style: TextStyle(fontSize: 14, color: AppColors.black),
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
-        // Menu Items List
-        Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.all(16),
-            itemCount: groupedItems[selectedCategory]?.length ?? 0,
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
-            itemBuilder: (context, index) {
-              final item = groupedItems[selectedCategory]![index];
-              return MenuItemCard(
-                item: item,
-                onTap: () {
-                  // TODO: Show item details or add to cart
-                  print('Tapped: ${item.name}');
-                },
-                onFavoriteToggle: () {
-                  setState(() {
-                    item.isFavorite = !item.isFavorite;
-                  });
-                },
-              );
-            },
-          ),
-        ),
-      ],
+            // Expanded Items (if expanded)
+            if (isExpanded)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: List.generate(items.length, (i) {
+                    final item = items[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: MenuItemCard(
+                        item: item,
+                        onTap: () {
+                          print('Tapped: ${item.name}');
+                        },
+                        onFavoriteToggle: () {
+                          setState(() {
+                            item.isFavorite = !item.isFavorite;
+                          });
+                        },
+                      ),
+                    );
+                  }),
+                ),
+              ),
+
+            // Divider line after each category
+          ],
+        );
+      },
     );
   }
 }
 
 // Category Button Widget
-class _CategoryButton extends StatelessWidget {
+class CategoryButton extends StatelessWidget {
   final String label;
   final int count;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const _CategoryButton({
+  const CategoryButton({
+    super.key,
     required this.label,
     required this.count,
     required this.isSelected,
@@ -285,14 +312,11 @@ class DetailsTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Description
-          const SectionTitle(title: 'Description'),
-          const SizedBox(height: 8),
           Text(
             restaurant.details.fullDescription,
             style: const TextStyle(
-              fontSize: 14,
-              color: Colors.black87,
+              fontSize: 15,
+              color: Colors.black,
               height: 1.5,
             ),
           ),
@@ -308,7 +332,7 @@ class DetailsTab extends StatelessWidget {
                 .map((cuisine) => CuisineChip(label: cuisine))
                 .toList(),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
 
           // Services
           const SectionTitle(title: 'Services'),
@@ -316,8 +340,15 @@ class DetailsTab extends StatelessWidget {
           ...restaurant.details.services
               .map(
                 (service) => Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: Text(service, style: const TextStyle(fontSize: 14)),
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Text(
+                    service,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: AppColors.black,
+                      letterSpacing: 1,
+                    ),
+                  ),
                 ),
               )
               .toList(),
@@ -429,59 +460,45 @@ class OverviewTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Header with images
+        // Slidable Image Gallery
         SizedBox(
-          height: 200,
-          child: Stack(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(restaurant.imagePath),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(restaurant.imagePath),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Positioned(
-                bottom: 16,
-                right: 16,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Text(
-                    'Reviews (${restaurant.reviewCount})',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+          height: 250,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            itemCount: restaurant.menuItems.length,
+            itemBuilder: (context, index) {
+              final item = restaurant.menuItems[index];
+              return Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: _buildImageWidget(item.imageUrl, width: 300),
                 ),
-              ),
-            ],
+              );
+            },
           ),
         ),
+
+        // Section Title for Reviews
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SectionTitle(title: ''),
+                Text(
+                  '${restaurant.reviewCount} Reviews',
+                  style: const TextStyle(color: Colors.black, fontSize: 15),
+                  textDirection: TextDirection.rtl,
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 8),
 
         // Reviews List
         Expanded(
@@ -491,7 +508,7 @@ class OverviewTab extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   itemCount: restaurant.reviews.length,
                   separatorBuilder: (context, index) =>
-                      const Divider(height: 32),
+                      const SizedBox(height: 32),
                   itemBuilder: (context, index) {
                     return ReviewCard(review: restaurant.reviews[index]);
                   },
@@ -502,23 +519,19 @@ class OverviewTab extends StatelessWidget {
         if (restaurant.reviews.isNotEmpty)
           Padding(
             padding: const EdgeInsets.all(16),
-            child: OutlinedButton(
+            child: TextButton(
               onPressed: () {
                 // TODO: Navigate to all reviews screen
                 print('See all reviews');
               },
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Color(0xFF6B4CE6)),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
                 padding: const EdgeInsets.symmetric(vertical: 12),
               ),
               child: const Text(
                 'See All Reviews',
                 style: TextStyle(
-                  color: Color(0xFF6B4CE6),
-                  fontSize: 14,
+                  color: Colors.black,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -527,4 +540,31 @@ class OverviewTab extends StatelessWidget {
       ],
     );
   }
+}
+
+// Helper to build an image from either a network URL or a local asset
+Widget _buildImageWidget(String imagePath, {double? width, double? height}) {
+  // A placeholder for when the image path is empty
+  if (imagePath.isEmpty) {
+    return Container(
+      width: width,
+      height: height,
+      color: Colors.grey.shade200,
+      child: const Icon(Icons.image_not_supported),
+    );
+  }
+
+  final isNetworkImage =
+      imagePath.startsWith('http://') || imagePath.startsWith('https://');
+
+  return Image(
+    image:
+        (isNetworkImage ? NetworkImage(imagePath) : AssetImage(imagePath))
+            as ImageProvider,
+    width: width,
+    height: height,
+    fit: BoxFit.cover,
+    errorBuilder: (context, error, stackTrace) =>
+        const Icon(Icons.broken_image, size: 40),
+  );
 }

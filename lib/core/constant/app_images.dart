@@ -9,6 +9,8 @@ class AppImages {
   // Placeholders
   static const String productPlaceholder = '$_basePath/product_placeholder.png';
   static const String userPlaceholder = '$_basePath/user_placeholder.png';
+  static const String imagePlaceholder =
+      '$_basePath/image_placeholder.png'; // New placeholder
   static const String emptyCart = '$_basePath/empty_cart.png';
   static const String noOrders = '$_basePath/no_orders.png';
 
@@ -76,4 +78,10 @@ class AppImages {
   static const String menu6 = 'assets/icons/menu6.png';
   static const String menu7 = 'assets/icons/menu7.png';
   static const String menu8 = 'assets/icons/menu8.png';
+
+  // Review IMages
+
+  static const String rev1 = 'assets/icons/rev1.png';
+  static const String rev2 = 'assets/icons/rev2.png';
+  static const String rev3 = 'assets/icons/rev3.png';
 }
