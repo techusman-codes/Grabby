@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import '../core/constant/app_colors.dart';
+import '../core/constant/app_routes.dart';
 import '../models/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel category;
-  final VoidCallback onTap;
+
   final bool showProductCount;
 
   const CategoryCard({
     super.key,
     required this.category,
-    required this.onTap,
+
     this.showProductCount = false,
+    required Function() onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => Navigator.pushNamed(
+        context,
+        AppRoutes.maincategory_screen,
+        arguments: {'categoryId': category.id, 'categoryName': category.name},
+      ),
       borderRadius: BorderRadius.circular(10),
       child: Container(
         padding: const EdgeInsets.all(10),

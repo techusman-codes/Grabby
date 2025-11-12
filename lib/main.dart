@@ -3,7 +3,6 @@ import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/core/themes/app_theme.dart';
 import 'package:grabby_app/features/enable_location_screen.dart';
-
 import 'package:grabby_app/screens/auth/forgot_password.dart';
 import 'package:grabby_app/screens/auth/login_screen.dart';
 import 'package:grabby_app/screens/auth/registra_screen.dart';
@@ -15,10 +14,12 @@ import 'package:grabby_app/screens/location/location_permission.dart';
 import 'package:grabby_app/screens/onboaring/widgets/account_activate_screen.dart';
 import 'package:grabby_app/screens/onborading_screens.dart';
 import 'package:grabby_app/screens/restaurants/home_screen.dart';
-
+import 'models/product_model_screen.dart';
 import 'models/restaurant_profile_model.dart';
+import 'screens/category/categrory_screen.dart';
 import 'screens/home/cart_screen.dart';
 import 'screens/home/favorite_screen.dart';
+import 'screens/products/product_details_screen.dart';
 import 'screens/restaurant_profile_screen.dart';
 import 'screens/splash/splash_screen.dart';
 import 'services/storage_service.dart';
@@ -73,6 +74,22 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) =>
                 RestaurantProfileScreen(restaurant: restaurant),
+          );
+        }
+
+        if (settings.name == AppRoutes.maincategory_screen) {
+          final args = settings.arguments as Map<String, String>;
+          return MaterialPageRoute(
+            builder: (context) => CategoryScreen(
+              categoryId: args['categoryId']!,
+              categoryName: args['categoryName']!,
+            ),
+          );
+        }
+        if (settings.name == AppRoutes.productDetail) {
+          final product = settings.arguments as ProductModelScreens;
+          return MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(product: product),
           );
         }
         return null;

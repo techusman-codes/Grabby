@@ -64,7 +64,7 @@ class AccountActivatedScreen extends StatelessWidget {
                   const SizedBox(height: 50),
 
                   // Image (Rocket)
-                  Image.asset(AppImages.rocketScuccess, height: 200),
+                  Image.asset(AppImages.rocketSuccess, height: 200),
                 ],
               ),
               Padding(

@@ -153,24 +153,26 @@ class AppStrings {
   static const String categoriesDecs2 = '519 Places';
   static const String categoriesText3 = 'Phone';
   static const String categoriesDecs3 = '519 Places';
-  static const String categoriesText4 = 'Drink';
+  static const String categoriesText5 = 'Drink';
   static const String categoriesDecs4 = '519 Places';
-  static const String categoriesText5 = 'Burger';
+  static const String categoriesText6 = 'Burger';
   static const String categoriesDecs5 = '519 Places';
-  static const String categoriesText6 = 'Grill';
+  static const String categoriesText7 = 'Grill';
   static const String categoriesDecs6 = '519 Places';
-  static const String categoriesText7 = 'Baby Products';
+  static const String categoriesText9 = 'Baby Products';
   static const String categoriesDecs7 = '519 Places';
-  static const String categoriesText8 = 'Sports';
+  static const String categoriesText10 = 'Sports Appears';
   static const String categoriesDecs8 = '519 Places';
-  static const String categoriesText9 = 'Food';
+  static const String categoriesText11 = 'Food';
   static const String categoriesDecs9 = '519 Places';
-  static const String categoriesText10 = 'Coffe';
+  static const String categoriesText13 = 'Coffe';
   static const String categoriesDecs10 = '519 Places';
-  static const String categoriesText11 = 'Computing';
+  static const String categoriesText14 = 'Computing';
   static const String categoriesDecs11 = '519 Places';
-  static const String categoriesText12 = 'Kitchen ware';
+  static const String categoriesText4 = 'Kitchen ware';
   static const String categoriesDecs12 = '519 Places';
+  static const String categoriesText8 = 'Electronics';
+  static const String categoriesText12 = 'Groceries';
 
   // Product Section
 

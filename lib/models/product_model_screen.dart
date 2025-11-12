@@ -1,0 +1,110 @@
+// ============================================================================
+// FILE: lib/models/product_model.dart
+// PURPOSE: Model for products (fashion, electronics, food, etc.)
+// ============================================================================
+
+class ProductModelScreens {
+  final String id;
+  final String name;
+  final String description;
+  final double price;
+  final String image;
+  final List<String>? additionalImages;
+  final String categoryId;
+  final String categoryName;
+  final String sellerId;
+  final String sellerName;
+  final double rating;
+  final int reviewCount;
+  final int? deliveryTime;
+  final double? deliveryFee;
+  bool isFavorite;
+
+  ProductModelScreens({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
+    required this.categoryId,
+    required this.categoryName,
+    required this.sellerId,
+    required this.sellerName,
+    this.additionalImages,
+    this.rating = 0.0,
+    this.reviewCount = 0,
+    this.deliveryTime,
+    this.deliveryFee,
+    this.isFavorite = false,
+  });
+
+  // Format delivery time
+  String get formattedDeliveryTime {
+    if (deliveryTime == null) return 'N/A';
+    return '$deliveryTime mins';
+  }
+
+  // Format price
+  String get formattedPrice {
+    return 'N${price.toStringAsFixed(0)}';
+  }
+
+  factory ProductModelScreens.fromJson(Map<String, dynamic> json) {
+    return ProductModelScreens(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String,
+      price: (json['price'] as num).toDouble(),
+      image: json['image'] as String,
+      additionalImages: (json['additionalImages'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      categoryId: json['categoryId'] as String,
+      categoryName: json['categoryName'] as String,
+      sellerId: json['sellerId'] as String,
+      sellerName: json['sellerName'] as String,
+      rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
+      reviewCount: json['reviewCount'] as int? ?? 0,
+      deliveryTime: json['deliveryTime'] as int?,
+      deliveryFee: (json['deliveryFee'] as num?)?.toDouble(),
+      isFavorite: json['isFavorite'] as bool? ?? false,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'price': price,
+      'image': image,
+      'additionalImages': additionalImages,
+      'categoryId': categoryId,
+      'categoryName': categoryName,
+      'sellerId': sellerId,
+      'sellerName': sellerName,
+      'rating': rating,
+      'reviewCount': reviewCount,
+      'deliveryTime': deliveryTime,
+      'deliveryFee': deliveryFee,
+      'isFavorite': isFavorite,
+    };
+  }
+}
+
+// ============================================================================
+// EXPLANATION:
+// ============================================================================
+//
+// This model represents ANY product in your app:
+// - Fashion item (T-shirt, jeans, shoes)
+// - Electronics (phone, laptop, headphones)
+// - Food (from restaurants)
+// - Any other category
+//
+// KEY FIELDS:
+// - categoryId: Links to which category this belongs
+// - sellerId: Links to which restaurant/merchant sells this
+// - isFavorite: User can like/unlike the product
+//
+// ============================================================================

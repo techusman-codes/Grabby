@@ -19,7 +19,7 @@ class AppImages {
   static const String onboarding2 = 'assets/icons/onboarding_2.png';
   static const String onboarding3 = 'assets/icons/onboarding_3.png';
   static const String onboarding4 = 'assets/icons/onboarding_4.png';
-  static const String rocketScuccess = 'assets/icons/rocketsuccess.png';
+  static const String rocketSuccess = 'assets/icons/rocket_success.png';
 
   // Social Icons
   static const String googleIcon = 'assets/icons/Google.png';
@@ -50,7 +50,7 @@ class AppImages {
   static const String cat12 = 'assets/icons/cat12.png';
   static const String cat13 = 'assets/icons/cat13.png';
   static const String cat14 = 'assets/icons/cat14.png';
-  static const String cat15 = 'assets/icons/cat15.png';
+
   static const String cat16 = 'assets/icons/sport.png';
 
   // Product imagess
@@ -84,4 +84,27 @@ class AppImages {
   static const String rev1 = 'assets/icons/rev1.png';
   static const String rev2 = 'assets/icons/rev2.png';
   static const String rev3 = 'assets/icons/rev3.png';
+
+  // Fashion Images
+
+  static const String fashion1 = 'assets/icons/fa1.png';
+  static const String fashion2 = 'assets/icons/fa2.png';
+  static const String fashion3 = 'assets/icons/fa3.png';
+  static const String fashion4 = 'assets/icons/fa4.png';
+  static const String fashion5 = 'assets/icons/fa5.png';
+  static const String fashion6 = 'assets/icons/fa6.png';
+  static const String fashion7 = 'assets/icons/fa7.png';
+  static const String fashion8 = 'assets/icons/fa8.png';
+  static const String fashion9 = 'assets/icons/fa9.png';
+
+  // Foods Images
+
+  static const String food1 = 'assets/icons/fo1.png';
+  static const String food2 = 'assets/icons/fo2.png';
+  static const String food3 = 'assets/icons/fo3.png';
+  static const String food4 = 'assets/icons/fo4.png';
+  static const String food5 = 'assets/icons/fo5.png';
+  static const String food6 = 'assets/icons/fo6.png';
+  static const String food7 = 'assets/icons/fo7.png';
+  static const String food8 = 'assets/icons/fo8.png';
 }
