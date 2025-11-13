@@ -165,9 +165,9 @@ class AppStrings {
   static const String categoriesDecs8 = '519 Places';
   static const String categoriesText11 = 'Food';
   static const String categoriesDecs9 = '519 Places';
-  static const String categoriesText13 = 'Coffe';
+  static const String categoriesText13 = 'Coffee';
   static const String categoriesDecs10 = '519 Places';
-  static const String categoriesText14 = 'Computing';
+  static const String categoriesText14 = 'Computers';
   static const String categoriesDecs11 = '519 Places';
   static const String categoriesText4 = 'Kitchen ware';
   static const String categoriesDecs12 = '519 Places';

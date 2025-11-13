@@ -37,7 +37,7 @@ class SearchWithFilter extends StatelessWidget {
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 10,
-                  vertical: 20,
+                  vertical: 15,
                 ),
               ),
             ),
@@ -45,9 +45,10 @@ class SearchWithFilter extends StatelessWidget {
           SizedBox(width: 15),
 
           Container(
-            height: double.infinity,
+            height: 55,
             width: 55,
             margin: const EdgeInsets.only(right: 4, top: 4, bottom: 4),
+
             decoration: BoxDecoration(
               color: AppColors.softblue,
               borderRadius: BorderRadius.circular(10),

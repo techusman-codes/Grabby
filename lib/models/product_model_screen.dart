@@ -92,19 +92,3 @@ class ProductModelScreens {
   }
 }
 
-// ============================================================================
-// EXPLANATION:
-// ============================================================================
-//
-// This model represents ANY product in your app:
-// - Fashion item (T-shirt, jeans, shoes)
-// - Electronics (phone, laptop, headphones)
-// - Food (from restaurants)
-// - Any other category
-//
-// KEY FIELDS:
-// - categoryId: Links to which category this belongs
-// - sellerId: Links to which restaurant/merchant sells this
-// - isFavorite: User can like/unlike the product
-//
-// ============================================================================

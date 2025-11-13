@@ -33,14 +33,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Categories'),
-        centerTitle: true,
+        title: Row(
+          children: [Text('Categories', style: TextStyle(fontSize: 24))],
+        ),
+
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.textPrimary),
+          icon: Icon(Icons.arrow_back, color: AppColors.dotActive),
           onPressed: () =>
               Navigator.of(context).popAndPushNamed(AppRoutes.main_screen),
         ),
       ),
+
       body: SafeArea(
         child: GridView.builder(
           padding: const EdgeInsets.all(10),

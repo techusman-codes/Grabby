@@ -10,8 +10,7 @@ class SampleProductsData {
 
       case 'kitchenware':
         return getKitchenwaresProducts();
-      case 'drink':
-        return getDrinksProducts();
+
       case 'electronics':
         return getElectronicsProducts();
       case 'food':
@@ -25,7 +24,10 @@ class SampleProductsData {
         return getGroceryProducts();
       case 'coffee':
         return getCoffeeProducts();
-
+      case 'phones':
+        return getPhonesProducts();
+      case 'computers':
+        return getComputersProducts();
       default:
         return [];
     }
@@ -86,7 +88,7 @@ class SampleProductsData {
         description:
             'Comfortable running sneakers with excellent cushioning. Ideal for sports and daily wear.',
         price: 12000,
-        image: AppImages.fashion9,
+        image: AppImages.fashion8,
         categoryId: 'fashion',
         categoryName: 'Fashion',
         sellerId: 'seller2',
@@ -111,29 +113,14 @@ class SampleProductsData {
         deliveryTime: 30,
         deliveryFee: 500,
       ),
-      ProductModelScreens(
-        id: '1',
-        name: 'Leather Jacket',
-        description:
-            'Premium leather jacket with stylish design. Durable and fashionable.',
-        price: 25000,
-        image: 'assets/images/fashion/jacket1.png',
-        categoryId: 'fashion',
-        categoryName: 'Fashion',
-        sellerId: 'seller3',
-        sellerName: 'Luxury Fashion',
-        rating: 4.9,
-        reviewCount: 78,
-        deliveryTime: 60,
-        deliveryFee: 1000,
-      ),
+
       ProductModelScreens(
         id: 'f6',
-        name: 'Handbag',
+        name: "Okeye's Apparel",
         description:
             'Elegant leather handbag with spacious compartments. Perfect for work and outings.',
         price: 15000,
-        image: 'assets/images/fashion/handbag1.png',
+        image: AppImages.fashion4,
         categoryId: 'fashion',
         categoryName: 'Fashion',
         sellerId: 'seller3',
@@ -145,11 +132,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'f7',
-        name: 'Leather Jacket',
+        name: 'Black jogger with white',
         description:
-            'Premium leather jacket with stylish design. Durable and fashionable.',
+            'Premium Black jogger with white. Durable and fashionable.',
         price: 25000,
-        image: 'assets/images/fashion/jacket1.png',
+        image: AppImages.fashion6,
         categoryId: 'fashion',
         categoryName: 'Fashion',
         sellerId: 'seller3',
@@ -165,7 +152,7 @@ class SampleProductsData {
         description:
             'Elegant leather handbag with spacious compartments. Perfect for work and outings.',
         price: 15000,
-        image: 'assets/images/fashion/handbag1.png',
+        image: AppImages.fashion5,
         categoryId: 'fashion',
         categoryName: 'Fashion',
         sellerId: 'seller3',
@@ -177,33 +164,16 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'f9',
-        name: 'Leather Jacket',
-        description:
-            'Premium leather jacket with stylish design. Durable and fashionable.',
+        name: 'B & K Shoes',
+        description: 'Premium B & k Shoes with excellent cushioning .',
         price: 25000,
-        image: 'assets/images/fashion/jacket1.png',
+        image: AppImages.fashion7,
         categoryId: 'fashion',
         categoryName: 'Fashion',
         sellerId: 'seller3',
         sellerName: 'Luxury Fashion',
         rating: 4.9,
         reviewCount: 78,
-        deliveryTime: 60,
-        deliveryFee: 1000,
-      ),
-      ProductModelScreens(
-        id: 'f10',
-        name: 'Handbag',
-        description:
-            'Elegant leather handbag with spacious compartments. Perfect for work and outings.',
-        price: 15000,
-        image: 'assets/images/fashion/handbag1.png',
-        categoryId: 'fashion',
-        categoryName: 'Fashion',
-        sellerId: 'seller3',
-        sellerName: 'Luxury Fashion',
-        rating: 4.7,
-        reviewCount: 201,
         deliveryTime: 60,
         deliveryFee: 1000,
       ),
@@ -219,7 +189,7 @@ class SampleProductsData {
         description:
             'Noise-cancelling bluetooth headphones with premium sound quality.',
         price: 25000,
-        image: 'assets/images/electronics/headphones1.png',
+        image: AppImages.electronics1,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller4',
@@ -235,7 +205,7 @@ class SampleProductsData {
         description:
             'Latest smartphone with advanced features and powerful processor.',
         price: 150000,
-        image: 'assets/images/electronics/phone1.png',
+        image: AppImages.electronics2,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller4',
@@ -251,7 +221,7 @@ class SampleProductsData {
         description:
             'High-performance laptop for work and gaming. Fast and reliable.',
         price: 350000,
-        image: 'assets/images/electronics/laptop1.png',
+        image: AppImages.electronics3,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller5',
@@ -267,7 +237,7 @@ class SampleProductsData {
         description:
             'Fitness tracking smart watch with heart rate monitor and GPS.',
         price: 45000,
-        image: 'assets/images/electronics/watch1.png',
+        image: AppImages.electronics4,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller4',
@@ -283,7 +253,7 @@ class SampleProductsData {
         description:
             'Noise-cancelling bluetooth headphones with premium sound quality.',
         price: 25000,
-        image: 'assets/images/electronics/headphones1.png',
+        image: AppImages.electronics5,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller4',
@@ -299,7 +269,7 @@ class SampleProductsData {
         description:
             'Latest smartphone with advanced features and powerful processor.',
         price: 150000,
-        image: 'assets/images/electronics/phone1.png',
+        image: AppImages.electronics6,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller4',
@@ -315,7 +285,7 @@ class SampleProductsData {
         description:
             'High-performance laptop for work and gaming. Fast and reliable.',
         price: 350000,
-        image: 'assets/images/electronics/laptop1.png',
+        image: AppImages.electronics7,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller5',
@@ -331,7 +301,7 @@ class SampleProductsData {
         description:
             'Fitness tracking smart watch with heart rate monitor and GPS.',
         price: 45000,
-        image: 'assets/images/electronics/watch1.png',
+        image: AppImages.electronics8,
         categoryId: 'electronics',
         categoryName: 'Electronics',
         sellerId: 'seller4',
@@ -341,15 +311,21 @@ class SampleProductsData {
         deliveryTime: 45,
         deliveryFee: 800,
       ),
+    ];
+  }
+
+  // Phones Products
+  static List<ProductModelScreens> getPhonesProducts() {
+    return [
       ProductModelScreens(
-        id: 'e9',
-        name: 'Wireless Headphones',
+        id: 'e2',
+        name: 'Samsung',
         description:
-            'Noise-cancelling bluetooth headphones with premium sound quality.',
+            'Clean Samsung with headphones with premium sound quality.',
         price: 25000,
-        image: 'assets/images/electronics/headphones1.png',
-        categoryId: 'electronics',
-        categoryName: 'Electronics',
+        image: AppImages.phone2,
+        categoryId: 'phones',
+        categoryName: 'Phones',
         sellerId: 'seller4',
         sellerName: 'Tech Hub Lagos',
         rating: 4.8,
@@ -358,20 +334,247 @@ class SampleProductsData {
         deliveryFee: 800,
       ),
       ProductModelScreens(
-        id: 'e10',
-        name: 'Smartphone',
+        id: 'e2',
+        name: 'Iphones',
         description:
             'Latest smartphone with advanced features and powerful processor.',
         price: 150000,
-        image: 'assets/images/electronics/phone1.png',
-        categoryId: 'electronics',
-        categoryName: 'Electronics',
+        image: AppImages.phone1,
+        categoryId: 'phones',
+        categoryName: 'Phones',
         sellerId: 'seller4',
         sellerName: 'Tech Hub Lagos',
         rating: 4.6,
         reviewCount: 567,
         deliveryTime: 45,
         deliveryFee: 1000,
+      ),
+      ProductModelScreens(
+        id: 'e3',
+        name: 'Smart Phones',
+        description:
+            'High-performance Smart Phones for work and gaming. Fast and reliable.',
+        price: 350000,
+        image: AppImages.phone3,
+        categoryId: 'phones',
+        categoryName: 'Phones',
+        sellerId: 'seller5',
+        sellerName: 'Phones World',
+        rating: 4.9,
+        reviewCount: 123,
+        deliveryTime: 60,
+        deliveryFee: 1500,
+      ),
+      ProductModelScreens(
+        id: 'e4',
+        name: 'Smart Iphones',
+        description: 'Fitness  smart iphones with heart rate monitor and GPS.',
+        price: 45000,
+        image: AppImages.phone4,
+        categoryId: 'phones',
+        categoryName: 'Phones',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.7,
+        reviewCount: 189,
+        deliveryTime: 45,
+        deliveryFee: 800,
+      ),
+      ProductModelScreens(
+        id: 'e5',
+        name: 'iphone 11',
+        description:
+            'HIgh quality New IPhones with headphones with premium sound quality.',
+        price: 25000,
+        image: AppImages.phone5,
+        categoryId: 'phones',
+        categoryName: 'Phones',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.8,
+        reviewCount: 234,
+        deliveryTime: 45,
+        deliveryFee: 800,
+      ),
+      ProductModelScreens(
+        id: 'e6',
+        name: 'Vivo Smartphone',
+        description:
+            'Latest smartphone with advanced features and powerful processor.',
+        price: 150000,
+        image: AppImages.phone6,
+        categoryId: 'phones',
+        categoryName: 'Phones',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.6,
+        reviewCount: 567,
+        deliveryTime: 45,
+        deliveryFee: 1000,
+      ),
+      ProductModelScreens(
+        id: 'e7',
+        name: 'Samsung & Iphone',
+        description:
+            'High-performance Samsung and Iphones  for work and gaming. Fast and reliable.',
+        price: 350000,
+        image: AppImages.phone7,
+        categoryId: 'phones',
+        categoryName: 'Phones',
+        sellerId: 'seller5',
+        sellerName: 'Computer World',
+        rating: 4.9,
+        reviewCount: 123,
+        deliveryTime: 60,
+        deliveryFee: 1500,
+      ),
+      ProductModelScreens(
+        id: 'e8',
+        name: 'Smart Phone',
+        description:
+            'Fitness tracking smart watch with heart rate monitor and GPS.',
+        price: 45000,
+        image: AppImages.phone8,
+        categoryId: 'phone',
+        categoryName: 'Phones',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.7,
+        reviewCount: 189,
+        deliveryTime: 45,
+        deliveryFee: 800,
+      ),
+    ];
+  }
+
+  // Computers Products
+  static List<ProductModelScreens> getComputersProducts() {
+    return [
+      ProductModelScreens(
+        id: 'c1',
+        name: 'Computer',
+        description: 'Good Computers for use.',
+        price: 250000,
+        image: AppImages.laptop1,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.8,
+        reviewCount: 234,
+        deliveryTime: 45,
+        deliveryFee: 800,
+      ),
+      ProductModelScreens(
+        id: 'c2',
+        name: 'Gaming Desktop',
+        description: 'Latest Pc with advanced features and powerful processor.',
+        price: 150000,
+        image: AppImages.laptop2,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.6,
+        reviewCount: 567,
+        deliveryTime: 45,
+        deliveryFee: 1000,
+      ),
+      ProductModelScreens(
+        id: 'e3',
+        name: 'Laptop',
+        description:
+            'High-performance laptop for work and gaming. Fast and reliable.',
+        price: 350000,
+        image: AppImages.laptop3,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller5',
+        sellerName: 'Computer World',
+        rating: 4.9,
+        reviewCount: 123,
+        deliveryTime: 60,
+        deliveryFee: 1500,
+      ),
+      ProductModelScreens(
+        id: 'e4',
+        name: 'Laptop',
+        description:
+            'High-performance laptop for work and gaming. Fast and reliable.',
+        price: 45000,
+        image: AppImages.laptop4,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.7,
+        reviewCount: 189,
+        deliveryTime: 45,
+        deliveryFee: 800,
+      ),
+      ProductModelScreens(
+        id: 'e5',
+        name: 'Laptop',
+        description:
+            'High-performance laptop for work and gaming. Fast and reliable.',
+        price: 25000,
+        image: AppImages.laptop5,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.8,
+        reviewCount: 234,
+        deliveryTime: 45,
+        deliveryFee: 800,
+      ),
+      ProductModelScreens(
+        id: 'e6',
+        name: 'Laptop',
+        description:
+            'High-performance laptop for work and gaming. Fast and reliable.',
+        price: 150000,
+        image: AppImages.laptop6,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.6,
+        reviewCount: 567,
+        deliveryTime: 45,
+        deliveryFee: 1000,
+      ),
+      ProductModelScreens(
+        id: 'e7',
+        name: 'Laptop',
+        description:
+            'High-performance laptop for work and gaming. Fast and reliable.',
+        price: 350000,
+        image: AppImages.laptop4,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller5',
+        sellerName: 'Computer World',
+        rating: 4.9,
+        reviewCount: 123,
+        deliveryTime: 60,
+        deliveryFee: 1500,
+      ),
+      ProductModelScreens(
+        id: 'e8',
+        name: 'Laptops',
+        description:
+            'High-performance laptop for work and gaming. Fast and reliable.',
+        price: 45000,
+        image: AppImages.laptop1,
+        categoryId: 'computers',
+        categoryName: 'Computers',
+        sellerId: 'seller4',
+        sellerName: 'Tech Hub Lagos',
+        rating: 4.7,
+        reviewCount: 189,
+        deliveryTime: 45,
+        deliveryFee: 800,
       ),
     ];
   }
@@ -385,7 +588,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.food1,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -400,7 +603,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.food2,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -416,7 +619,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.food3,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -431,7 +634,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.food4,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -447,7 +650,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.food5,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -462,7 +665,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.food6,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -478,7 +681,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.food7,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -493,7 +696,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.food8,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -509,7 +712,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.menu5,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -524,7 +727,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.menu8,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -540,7 +743,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.menu8,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -555,7 +758,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.menu8,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -571,7 +774,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.menu7,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -586,7 +789,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.menu6,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -602,7 +805,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.menu4,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -617,7 +820,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.menu3,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -633,7 +836,7 @@ class SampleProductsData {
         description:
             'Delicious Nigerian jollof rice with chicken and plantain.',
         price: 2500,
-        image: 'assets/images/food/jollof1.png',
+        image: AppImages.menu2,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -648,7 +851,7 @@ class SampleProductsData {
         name: 'Fried Rice',
         description: 'Tasty fried rice with vegetables and choice of protein.',
         price: 2000,
-        image: 'assets/images/food/friedrice1.png',
+        image: AppImages.menu1,
         categoryId: 'food',
         categoryName: 'Food',
         sellerId: 'rest1',
@@ -661,214 +864,8 @@ class SampleProductsData {
     ];
   }
 
-  // Beauty Products
-  static List<ProductModelScreens> getBeautyProducts() {
-    return [
-      ProductModelScreens(
-        id: 'b1',
-        name: 'Face Cream',
-        description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
-        price: 3500,
-        image: 'assets/images/beauty/cream1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.7,
-        reviewCount: 156,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b2',
-        name: 'Lipstick Set',
-        description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
-        price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.8,
-        reviewCount: 289,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b3',
-        name: 'Face Cream',
-        description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
-        price: 3500,
-        image: 'assets/images/beauty/cream1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.7,
-        reviewCount: 156,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b4',
-        name: 'Lipstick Set',
-        description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
-        price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.8,
-        reviewCount: 289,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b5',
-        name: 'Face Cream',
-        description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
-        price: 3500,
-        image: 'assets/images/beauty/cream1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.7,
-        reviewCount: 156,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b6',
-        name: 'Lipstick Set',
-        description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
-        price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.8,
-        reviewCount: 289,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-    ];
-  }
-
-  // kitchen wire products
-
-  // Beauty Products
+  // Kitechen wires
   static List<ProductModelScreens> getKitchenwaresProducts() {
-    return [
-      ProductModelScreens(
-        id: 'b1',
-        name: 'Face Cream',
-        description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
-        price: 3500,
-        image: 'assets/images/beauty/cream1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.7,
-        reviewCount: 156,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b2',
-        name: 'Lipstick Set',
-        description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
-        price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.8,
-        reviewCount: 289,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b3',
-        name: 'Face Cream',
-        description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
-        price: 3500,
-        image: 'assets/images/beauty/cream1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.7,
-        reviewCount: 156,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b4',
-        name: 'Lipstick Set',
-        description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
-        price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.8,
-        reviewCount: 289,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b5',
-        name: 'Face Cream',
-        description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
-        price: 3500,
-        image: 'assets/images/beauty/cream1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.7,
-        reviewCount: 156,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-      ProductModelScreens(
-        id: 'b6',
-        name: 'Lipstick Set',
-        description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
-        price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
-        categoryId: 'beauty',
-        categoryName: 'Beauty',
-        sellerId: 'seller6',
-        sellerName: 'Beauty Express',
-        rating: 4.8,
-        reviewCount: 289,
-        deliveryTime: 40,
-        deliveryFee: 600,
-      ),
-    ];
-  }
-
-  // Driks Products
-  static List<ProductModelScreens> getDrinksProducts() {
     return [
       ProductModelScreens(
         id: 'b1',
@@ -979,7 +976,7 @@ class SampleProductsData {
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.baby1,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -991,11 +988,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b2',
-        name: 'Lipstick Set',
+        name: 'Pampers',
         description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+            'Premium Pampers set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.baby2,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1011,7 +1008,7 @@ class SampleProductsData {
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.baby3,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1023,11 +1020,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b4',
-        name: 'Lipstick Set',
+        name: 'Beauty Cream',
         description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+            'Premium Beauty Cream set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.baby4,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1043,7 +1040,7 @@ class SampleProductsData {
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.baby5,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1055,11 +1052,43 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b6',
-        name: 'Lipstick Set',
+        name: 'Towels',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.baby6,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'Cream and Oils',
+        description:
+            'Premium Cream and Oil set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.baby7,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'perfume',
+        description:
+            'Premium Perfume set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.baby8,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1078,11 +1107,11 @@ class SampleProductsData {
     return [
       ProductModelScreens(
         id: 'b1',
-        name: 'Face Cream',
+        name: 'Jersy sets',
         description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
+            'Moisturizing jersey sets for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.sport1,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1094,11 +1123,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b2',
-        name: 'Lipstick Set',
+        name: 'Playing Balls',
         description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+            'Premium set of playing balls  with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.sport2,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1110,11 +1139,10 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b3',
-        name: 'Face Cream',
-        description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
+        name: 'Hockey Balls',
+        description: 'Different variety of hockey balls',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.sport3,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1126,11 +1154,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b4',
-        name: 'Lipstick Set',
+        name: 'Sports tools',
         description:
-            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+            'Premium sport tools  set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.sport4,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1142,11 +1170,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b5',
-        name: 'Face Cream',
+        name: 'Sport Utills ',
         description:
-            'Moisturizing face cream for all skin types. Natural ingredients.',
+            'Moisturizing jersry for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.sport5,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1158,11 +1186,43 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b6',
-        name: 'Lipstick Set',
+        name: 'sport wears',
+        description:
+            'Premium sport  set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.sport6,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'Sport Utills',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.sport7,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'sport Balls',
+        description:
+            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.sport8,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1180,11 +1240,11 @@ class SampleProductsData {
     return [
       ProductModelScreens(
         id: 'b1',
-        name: 'Face Cream',
+        name: 'Grocety',
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.grocery1,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1196,11 +1256,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b2',
-        name: 'Lipstick Set',
+        name: 'Grocery ',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.grocery2,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1212,11 +1272,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b3',
-        name: 'Face Cream',
+        name: 'Grocery',
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.grocery3,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1228,11 +1288,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b4',
-        name: 'Lipstick Set',
+        name: 'Grocery',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.grocery4,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1244,11 +1304,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b5',
-        name: 'Face Cream',
+        name: 'Grocery',
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.grocery5,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1260,11 +1320,43 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b6',
-        name: 'Lipstick Set',
+        name: 'Grocery',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.grocery6,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'Grocery',
+        description:
+            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.grocery7,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'Grocery',
+        description:
+            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.grocery8,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1284,11 +1376,11 @@ class SampleProductsData {
     return [
       ProductModelScreens(
         id: 'b1',
-        name: 'Face Cream',
+        name: 'Coffee',
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.coffee1,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1300,11 +1392,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b2',
-        name: 'Lipstick Set',
+        name: 'Coffee',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.coffee1,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1316,11 +1408,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b3',
-        name: 'Face Cream',
+        name: 'Coffee',
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.coffee3,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1332,11 +1424,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b4',
-        name: 'Lipstick Set',
+        name: 'Coffee',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.coffee4,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1348,11 +1440,11 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b5',
-        name: 'Face Cream',
+        name: 'Coffee',
         description:
             'Moisturizing face cream for all skin types. Natural ingredients.',
         price: 3500,
-        image: 'assets/images/beauty/cream1.png',
+        image: AppImages.coffee5,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1364,11 +1456,43 @@ class SampleProductsData {
       ),
       ProductModelScreens(
         id: 'b6',
-        name: 'Lipstick Set',
+        name: 'Coffee',
         description:
             'Premium lipstick set with 5 different shades. Long-lasting formula.',
         price: 5000,
-        image: 'assets/images/beauty/lipstick1.png',
+        image: AppImages.coffee6,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'Coffee',
+        description:
+            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.coffee7,
+        categoryId: 'beauty',
+        categoryName: 'Beauty',
+        sellerId: 'seller6',
+        sellerName: 'Beauty Express',
+        rating: 4.8,
+        reviewCount: 289,
+        deliveryTime: 40,
+        deliveryFee: 600,
+      ),
+      ProductModelScreens(
+        id: 'b6',
+        name: 'Coffee',
+        description:
+            'Premium lipstick set with 5 different shades. Long-lasting formula.',
+        price: 5000,
+        image: AppImages.coffee4,
         categoryId: 'beauty',
         categoryName: 'Beauty',
         sellerId: 'seller6',
@@ -1381,23 +1505,3 @@ class SampleProductsData {
     ];
   }
 }
-
-// ============================================================================
-// EXPLANATION:
-// ============================================================================
-//
-// This file contains sample data for different categories
-// 
-// IN PRODUCTION:
-// - Replace this with API calls
-// - Example: await api.getProducts(categoryId)
-//
-// FOR TESTING:
-// - We use this sample data
-// - Easy to test without backend
-//
-// USAGE:
-// List<ProductModel> fashionItems = SampleProductsData.getProductsByCategory('fashion');
-// List<ProductModel> searchResults = SampleProductsData.searchProducts('shirt', 'fashion');
-//
-// ============================================================================

@@ -25,6 +25,7 @@ class AppImages {
   static const String googleIcon = 'assets/icons/Google.png';
   static const String facebookIcon = 'assets/icons/facebook.png';
   static const String appleIcon = 'assets/icons/apple.png';
+  static const String backArrow = 'assets/icons/back.png';
 
   // home screen images
   static const String userProfile = 'assets/images/ucee.jpeg';
@@ -107,4 +108,79 @@ class AppImages {
   static const String food6 = 'assets/icons/fo6.png';
   static const String food7 = 'assets/icons/fo7.png';
   static const String food8 = 'assets/icons/fo8.png';
+
+  // Phones
+
+  static const String phone1 = 'assets/icons/phone1.png';
+  static const String phone2 = 'assets/icons/phone2.png';
+  static const String phone3 = 'assets/icons/phone3.png';
+  static const String phone4 = 'assets/icons/phone4.png';
+  static const String phone5 = 'assets/icons/phone5.png';
+  static const String phone6 = 'assets/icons/phone6.png';
+  static const String phone7 = 'assets/icons/phone7.png';
+  static const String phone8 = 'assets/icons/phone8.png';
+
+  // Laptops
+
+  static const String laptop1 = 'assets/icons/laptop1.png';
+  static const String laptop2 = 'assets/icons/laptop2.png';
+  static const String laptop3 = 'assets/icons/laptop3.png';
+  static const String laptop4 = 'assets/icons/laptop4.png';
+  static const String laptop5 = 'assets/icons/laptop5.png';
+  static const String laptop6 = 'assets/icons/laptop6.png';
+  static const String laptop7 = 'assets/icons/laptop7.png';
+
+  // Electronics
+
+  static const String electronics1 = 'assets/icons/electronic1.png';
+  static const String electronics2 = 'assets/icons/electronic2.png';
+  static const String electronics3 = 'assets/icons/electronic3.png';
+  static const String electronics4 = 'assets/icons/electronic4.png';
+  static const String electronics5 = 'assets/icons/electronic5.png';
+  static const String electronics6 = 'assets/icons/electronic6.png';
+  static const String electronics7 = 'assets/icons/electronic7.png';
+  static const String electronics8 = 'assets/icons/electronic8.png';
+
+  // Sport Appearls
+
+  static const String sport1 = 'assets/icons/sport1.png';
+  static const String sport2 = 'assets/icons/sport2.jpeg';
+  static const String sport3 = 'assets/icons/sport3.png';
+  static const String sport4 = 'assets/icons/sport4.png';
+  static const String sport5 = 'assets/icons/sport5.png';
+  static const String sport6 = 'assets/icons/sport6.png';
+  static const String sport7 = 'assets/icons/sport7.jpeg';
+  static const String sport8 = 'assets/icons/sport8.jpg';
+
+  // Grocery
+
+  static const String grocery1 = 'assets/icons/gro1.png';
+  static const String grocery2 = 'assets/icons/gro2.jpeg';
+  static const String grocery3 = 'assets/icons/gro3.jpeg';
+  static const String grocery4 = 'assets/icons/gro4.png';
+  static const String grocery5 = 'assets/icons/gro5.png';
+  static const String grocery6 = 'assets/icons/gro6.png';
+  static const String grocery7 = 'assets/icons/gro7.png';
+  static const String grocery8 = 'assets/icons/gro1.png';
+
+  // coffee
+
+  static const String coffee1 = 'assets/icons/coffee1.jpeg';
+  static const String coffee2 = 'assets/icons/coffee2.jpeg';
+  static const String coffee3 = 'assets/icons/coffee2.png';
+  static const String coffee4 = 'assets/icons/coffee3.png';
+  static const String coffee5 = 'assets/icons/coffee3.jpeg';
+  static const String coffee6 = 'assets/icons/coffee5.jpeg';
+  static const String coffee7 = 'assets/icons/coffee6.jpeg';
+
+  // Baby Products
+
+  static const String baby1 = 'assets/icons/baby1.jpeg';
+  static const String baby2 = 'assets/icons/baby2.jpeg';
+  static const String baby3 = 'assets/icons/baby3.jpg';
+  static const String baby4 = 'assets/icons/baby4.png';
+  static const String baby5 = 'assets/icons/baby5.jpg';
+  static const String baby6 = 'assets/icons/baby6.jpeg';
+  static const String baby7 = 'assets/icons/baby6.png';
+  static const String baby8 = 'assets/icons/baby7.jpg';
 }

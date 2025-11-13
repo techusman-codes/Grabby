@@ -1,10 +1,7 @@
-// ============================================================================
-// FILE: lib/screens/category/category_screen.dart
-// PURPOSE: Fixed version - Display products for a specific category
-// ============================================================================
-
 import 'package:flutter/material.dart';
+import 'package:grabby_app/screens/onboaring/widgets/seach_bar_profiles.dart';
 import '../../core/constant/app_routes.dart';
+import '../../core/constant/app_string.dart';
 import '../../models/product_model_screen.dart';
 import '../../data/product_mock_data.dart';
 import '../../widgets/custom_product_card.dart';
@@ -72,37 +69,32 @@ class _CategoryScreenState extends State<CategoryScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color.fromARGB(255, 84, 10, 212),
+          ),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
-          widget.categoryName,
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              isSearching ? Icons.close : Icons.search,
-              color: Colors.black,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              widget.categoryName,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-            onPressed: () {
-              setState(() {
-                isSearching = !isSearching;
-                if (!isSearching) {
-                  _searchController.clear();
-                  displayedProducts = allProducts;
-                }
-              });
-            },
-          ),
-        ],
+          ],
+        ),
       ),
       body: Column(
         children: [
+          SearchWithFilterProfiles(
+            controller: TextEditingController(),
+            hintText: AppStrings.searchBarhintText,
+          ),
           // Search Bar (shown when isSearching is true)
           if (isSearching)
             Padding(
@@ -140,25 +132,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ),
             ),
-
-          // Products Count
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${displayedProducts.length} items found',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                // You can add filter button here later
-              ],
-            ),
-          ),
 
           // Products Grid
           Expanded(
@@ -220,4 +193,3 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
   }
 }
-
