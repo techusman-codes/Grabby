@@ -1,17 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 import '../../core/constant/app_colors.dart';
 import '../../models/product_model_screen.dart';
 
-
 class ProductDetailScreen extends StatefulWidget {
   final ProductModelScreens product;
 
-  const ProductDetailScreen({
-    super.key,
-    required this.product,
-  });
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -54,14 +48,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.deepPurple),
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
           IconButton(
             icon: Icon(
-              widget.product.isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: widget.product.isFavorite ? AppColors.softblue: Colors.white,
+              widget.product.isFavorite
+                  ? Icons.favorite
+                  : Icons.favorite_border,
+              color: widget.product.isFavorite
+                  ? AppColors.softblue
+                  : Colors.white,
             ),
             onPressed: () {
               setState(() {
@@ -136,7 +134,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         // Rating and Reviews
                         Row(
                           children: [
-                            const Icon(Icons.star, color: Colors.amber, size: 20),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               widget.product.rating.toStringAsFixed(1),
@@ -160,61 +162,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         // Price
                         Row(
                           children: [
-                            Text(
-                              widget.product.formattedPrice,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF6B4CE6),
+                            Center(
+                              child: Text(
+                                widget.product.formattedPrice,
+                                style: const TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF6B4CE6),
+                                ),
                               ),
                             ),
                           ],
-                        ),
-                        const SizedBox(height: 24),
-
-                        // Seller Info
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[50],
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: const Color(0xFFE0E0E0)),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.store,
-                                color: Color(0xFF6B4CE6),
-                                size: 24,
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'Sold by',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Text(
-                                      widget.product.sellerName,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Icon(
-                                Icons.chevron_right,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
                         ),
                         const SizedBox(height: 24),
 
@@ -240,24 +198,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                         const SizedBox(height: 24),
 
-                        // Description
-                        const Text(
-                          'Description',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          widget.product.description,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[700],
-                            height: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 100), // Space for bottom bar
+                        // Space for bottom bar
                       ],
                     ),
                   ),
@@ -355,52 +296,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         children: [
           Icon(icon, color: const Color(0xFF6B4CE6)),
           const SizedBox(height: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Colors.grey,
-            ),
-          ),
+          Text(label, style: const TextStyle(fontSize: 11, color: Colors.grey)),
           const SizedBox(height: 4),
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
           ),
         ],
       ),
     );
   }
 }
-
-// ============================================================================
-// EXPLANATION:
-// ============================================================================
-//
-// THIS IS THE PRODUCT DETAIL SCREEN
-//
-// RECEIVES:
-// - ProductModel object with all product data
-//
-// FEATURES:
-// 1. Large product image
-// 2. Product name, rating, reviews
-// 3. Price display
-// 4. Seller/Restaurant information
-// 5. Delivery time and fee
-// 6. Full description
-// 7. Quantity selector
-// 8. Add to Cart button
-// 9. Favorite toggle
-//
-// USAGE:
-// Navigator.pushNamed(
-//   context,
-//   AppRoutes.productDetail,
-//   arguments: product,
-// );
-//
-// ============================================================================
