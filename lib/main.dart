@@ -19,6 +19,7 @@ import 'models/restaurant_profile_model.dart';
 import 'screens/category/categrory_screen.dart';
 import 'screens/home/cart_screen.dart';
 import 'screens/home/favorite_screen.dart';
+import 'screens/menu/menu_items_details_screen.dart';
 import 'screens/products/product_details_screen.dart';
 import 'screens/restaurant_profile_screen.dart';
 import 'screens/splash/splash_screen.dart';
@@ -90,6 +91,18 @@ class MyApp extends StatelessWidget {
           final product = settings.arguments as ProductModelScreens;
           return MaterialPageRoute(
             builder: (context) => ProductDetailScreen(product: product),
+          );
+        }
+        if (settings.name == AppRoutes.menuItemDetails) {
+          final args = settings.arguments as Map<String, dynamic>;
+          return MaterialPageRoute(
+            builder: (context) => MenuItemDetailScreen(
+              menuItem: args['menuItem'] as MenuItem,
+              restaurantName: args['restaurantName'] as String,
+              restaurantId: args['restaurantId'] as String?,
+              deliveryTime: args['deliveryTime'] as int?,
+              deliveryFee: args['deliveryFee'] as double?,
+            ),
           );
         }
         return null;

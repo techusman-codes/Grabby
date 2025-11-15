@@ -5,9 +5,6 @@ import '../models/category_model.dart';
 import '../models/product_model.dart';
 import '../models/restaurant_model.dart';
 
-/// Mock data for development
-///
-/// This will be replaced with real API calls later
 class MockData {
   MockData();
 

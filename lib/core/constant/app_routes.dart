@@ -28,4 +28,5 @@ class AppRoutes {
   static const String restaurant_profile = '/restaurant_profile';
   static const String maincategory_screen = '/category_screen';
   static const String productDetails = '/products-details';
+  static const String menuItemDetails = '/menu-item-details';
 }

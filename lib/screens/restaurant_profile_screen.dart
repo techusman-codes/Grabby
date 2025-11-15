@@ -1,17 +1,14 @@
-// ============================================================================
-// FILE: lib/screens/restaurant_profile_screen.dart
-// PURPOSE: Show restaurant details with 3 tabs
-// ============================================================================
+
 
 import 'package:flutter/material.dart';
+import 'package:grabby_app/models/product_model_screen.dart';
+import 'package:grabby_app/screens/products/product_details_screen.dart';
 import 'package:grabby_app/models/restaurant_profile_model.dart';
 // show MenuItem, RestaurantProfileModel;
 import '../core/constant/app_colors.dart';
 import '../widgets/custom_restaurant_card.dart';
 
-// ============================================================================
-// MAIN PROFILE SCREEN
-// ============================================================================
+
 
 class RestaurantProfileScreen extends StatefulWidget {
   final RestaurantProfileModel restaurant; // Receives restaurant data
@@ -155,7 +152,6 @@ class _OfferingsTabState extends State<OfferingsTab> {
     return grouped;
   }
 
-  ///   Offereings Tabs Widgets
   @override
   Widget build(BuildContext context) {
     final groupedItems = _groupMenuItems();
@@ -229,7 +225,34 @@ class _OfferingsTabState extends State<OfferingsTab> {
                       child: MenuItemCard(
                         item: item,
                         onTap: () {
-                          print('Tapped: ${item.name}');
+                          // 1. Convert MenuItem to ProductModelScreens
+                          final product = ProductModelScreens(
+                            name: item.name,
+                            description: item.description,
+                            image: item.imageUrl,
+                            price: item.price,
+                            rating: widget.restaurant.rating,
+                            reviewCount: widget.restaurant.reviewCount,
+
+                            // Use the helper to parse the string into a Duration
+                            isFavorite: item.isFavorite,
+                            // These are placeholders as they are not in MenuItem
+                            deliveryFee: 2.50,
+                            id: '',
+                            categoryId: '',
+                            categoryName: '',
+                            sellerId: '',
+                            sellerName: '',
+                          );
+
+                          // 2. Navigate to ProductDetailScreen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductDetailScreen(product: product),
+                            ),
+                          );
                         },
                         onFavoriteToggle: () {
                           setState(() {
@@ -296,9 +319,7 @@ class CategoryButton extends StatelessWidget {
   }
 }
 
-// ============================================================================
-// TAB 2: DETAILS
-// ============================================================================
+
 
 class DetailsTab extends StatelessWidget {
   final RestaurantProfileModel restaurant;

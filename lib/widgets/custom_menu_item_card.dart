@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../models/restaurant_profile_model.dart';
 
-
 class MenuItemCard extends StatelessWidget {
   final MenuItem item;
   final VoidCallback? onTap;
@@ -89,10 +88,3 @@ class MenuItemCard extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
