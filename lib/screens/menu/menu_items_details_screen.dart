@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../models/cart_item_model.dart';
 import '../../models/restaurant_profile_model.dart';
 import '../../core/constant/app_colors.dart';
 import '../../data/image_utils.dart';
+import '../../services/cart_services.dart';
+
 
 class MenuItemDetailScreen extends StatefulWidget {
   final MenuItem menuItem;
@@ -83,39 +86,29 @@ class _MenuItemDetailScreenState extends State<MenuItemDetailScreen> {
   }
 
   void _addToCart() {
-    // TODO: Implement cart service (next step)
-    // For now, show success message
+    // Generate unique ID for cart item
+    final cartItemId =
+        '${widget.menuItem.id}_${DateTime.now().millisecondsSinceEpoch}';
 
-    final cartItem = {
-      'menuItem': widget.menuItem,
-      'restaurantName': widget.restaurantName,
-      'restaurantId': widget.restaurantId,
-      'quantity': quantity,
-      'size': selectedSize,
-      'addons': selectedAddons,
-      'totalPrice': _calculateTotalPrice(),
-    };
-
-    print('Adding to cart: $cartItem');
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${widget.menuItem.name} (x$quantity) added to cart!'),
-        backgroundColor: Colors.green,
-        duration: const Duration(seconds: 2),
-        action: SnackBarAction(
-          label: 'VIEW CART',
-          textColor: Colors.white,
-          onPressed: () {
-            // TODO: Navigate to cart screen
-            // Navigator.pushNamed(context, AppRoutes.cart_screen);
-          },
-        ),
-      ),
+    // Create cart item
+    final cartItem = CartItemModel(
+      id: cartItemId,
+      productId: widget.menuItem.id,
+      productName: widget.menuItem.name,
+      productImage: widget.menuItem.imageUrl,
+      basePrice: _calculateTotalPrice(), // Including size and addons
+      quantity: quantity,
+      size: selectedSize,
+      addons: selectedAddons.isNotEmpty ? selectedAddons : null,
+      restaurantId: widget.restaurantId,
+      restaurantName: widget.restaurantName,
     );
 
-    // Optional: Go back after adding
-    // Navigator.pop(context);
+    // Add to cart
+    CartService.instance.addItem(cartItem);
+
+    // Pop the screen and return true to signal success.
+    Navigator.pop(context, true);
   }
 
   @override

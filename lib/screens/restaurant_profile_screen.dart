@@ -1,4 +1,7 @@
-
+// ============================================================================
+// FILE: lib/screens/restaurant_profile_screen.dart
+// PURPOSE: Show restaurant details with 3 tabs
+// ============================================================================
 
 import 'package:flutter/material.dart';
 import 'package:grabby_app/models/product_model_screen.dart';
@@ -7,8 +10,6 @@ import 'package:grabby_app/models/restaurant_profile_model.dart';
 // show MenuItem, RestaurantProfileModel;
 import '../core/constant/app_colors.dart';
 import '../widgets/custom_restaurant_card.dart';
-
-
 
 class RestaurantProfileScreen extends StatefulWidget {
   final RestaurantProfileModel restaurant; // Receives restaurant data
@@ -238,7 +239,7 @@ class _OfferingsTabState extends State<OfferingsTab> {
                             isFavorite: item.isFavorite,
                             // These are placeholders as they are not in MenuItem
                             deliveryFee: 2.50,
-                            id: '',
+                            id: item.id, // Use the actual ID from the menu item
                             categoryId: '',
                             categoryName: '',
                             sellerId: '',
@@ -319,7 +320,9 @@ class CategoryButton extends StatelessWidget {
   }
 }
 
-
+// ============================================================================
+// TAB 2: DETAILS
+// ============================================================================
 
 class DetailsTab extends StatelessWidget {
   final RestaurantProfileModel restaurant;

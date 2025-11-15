@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../core/constant/app_colors.dart';
 import '../../models/product_model_screen.dart';
+import '../../models/cart_item_model.dart';
+import '../../services/cart_services.dart';
+import '../home/shoping_cart_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductModelScreens product;
@@ -29,13 +32,38 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   }
 
   void _addToCart() {
-    // TODO: Implement cart service (we'll do this next)
-    // For now, just show a snackbar
+    // 1. Create a CartItemModel from the product details
+    final cartItem = CartItemModel(
+      id: '${widget.product.id}_${DateTime.now().millisecondsSinceEpoch}',
+      productId: widget.product.id,
+      productName: widget.product.name,
+      productImage: widget.product.image,
+      basePrice: widget.product.price,
+      quantity: quantity,
+      restaurantName: widget.product.sellerName,
+    );
+
+    // 2. Add the item to the cart using the CartService
+    CartService.instance.addItem(cartItem);
+
+    // 3. Show a confirmation SnackBar with a "View Cart" action
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('${widget.product.name} added to cart!'),
         backgroundColor: Colors.green,
         duration: const Duration(seconds: 2),
+        action: SnackBarAction(
+          label: 'VIEW CART',
+          textColor: Colors.white,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ShoppingCartScreen(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
