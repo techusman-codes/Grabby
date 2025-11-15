@@ -1,4 +1,7 @@
-
+// ============================================================================
+// FILE: lib/screens/cart/schedule_screen.dart
+// PURPOSE: Fixed version with month dropdown and 7-day week view
+// ============================================================================
 
 import 'package:flutter/material.dart';
 import '../../../core/constant/app_colors.dart';
@@ -14,24 +17,70 @@ class ScheduleScreen extends StatefulWidget {
 class _ScheduleScreenState extends State<ScheduleScreen> {
   DateTime selectedDate = DateTime.now();
   String? selectedTime;
+  int selectedMonth = DateTime.now().month;
+  int selectedYear = DateTime.now().year;
 
-  // Generate next 7 days
-  List<DateTime> get availableDates {
-    return List.generate(
-      7,
-      (index) => DateTime.now().add(Duration(days: index)),
-    );
+  // Available time slots (30-minute intervals from 8:00 AM to 6:00 PM)
+  final List<String> timeSlots = [
+    '8:00 AM',
+    '8:30 AM',
+    '9:00 AM',
+    '9:30 AM',
+    '10:00 AM',
+    '10:30 AM',
+    '11:00 AM',
+    '11:30 AM',
+    '12:00 PM',
+    '12:30 PM',
+    '1:00 PM',
+    '1:30 PM',
+    '2:00 PM',
+    '2:30 PM',
+    '3:00 PM',
+    '3:30 PM',
+    '4:00 PM',
+    '4:30 PM',
+    '5:00 PM',
+    '5:30 PM',
+    '6:00 PM',
+  ];
+
+  // Get all months
+  List<Map<String, dynamic>> get availableMonths {
+    final List<Map<String, dynamic>> months = [];
+    final currentDate = DateTime.now();
+
+    // Get next 12 months
+    for (int i = 0; i < 12; i++) {
+      final date = DateTime(currentDate.year, currentDate.month + i);
+      months.add({
+        'month': date.month,
+        'year': date.year,
+        'display': DateFormat('MMMM yyyy').format(date),
+      });
+    }
+    return months;
   }
 
-  // Available time slots
-  final List<String> timeSlots = [
-    '08:00 AM - 10:00 AM',
-    '10:00 AM - 12:00 PM',
-    '12:00 PM - 02:00 PM',
-    '02:00 PM - 04:00 PM',
-    '04:00 PM - 06:00 PM',
-    '06:00 PM - 08:00 PM',
-  ];
+  // Current week number (to track which week to display)
+  int currentWeekOffset = 0;
+
+  // Get current week (7 days: Mon-Sun)
+  List<DateTime> get currentWeekDates {
+    // Start from first day of selected month
+    final firstDayOfMonth = DateTime(selectedYear, selectedMonth, 1);
+
+    // Find the Monday of the first week (might be in previous month)
+    final firstMonday = firstDayOfMonth.subtract(
+      Duration(days: firstDayOfMonth.weekday - 1),
+    );
+
+    // Calculate the Monday of the current week offset
+    final weekStart = firstMonday.add(Duration(days: 7 * currentWeekOffset));
+
+    // Generate 7 days starting from that Monday
+    return List.generate(7, (index) => weekStart.add(Duration(days: index)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,87 +110,246 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Section Title: Select Date
-                  const Text(
-                    'Select Delivery Date',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  // Date Selection Container
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.grey[300]!),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Date Selector
-                  SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: availableDates.length,
-                      itemBuilder: (context, index) {
-                        final date = availableDates[index];
-                        final isSelected = _isSameDay(date, selectedDate);
-                        final isToday = _isToday(date);
-
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedDate = date;
-                            });
-                          },
-                          child: Container(
-                            width: 80,
-                            margin: const EdgeInsets.only(right: 12),
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: isSelected
-                                  ? AppColors.softblue
-                                  : Colors.grey[100],
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: isSelected
-                                    ? AppColors.softblue
-                                    : Colors.grey[300]!,
-                                width: 2,
+                    child: Column(
+                      children: [
+                        // Date header with month dropdown
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Date',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Row(
                               children: [
-                                Text(
-                                  DateFormat('MMM').format(date),
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : Colors.grey[600],
-                                    fontWeight: FontWeight.w500,
+                                // Previous week button
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.chevron_left,
+                                    color: AppColors.softblue,
+                                    size: 20,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      currentWeekOffset--;
+                                    });
+                                  },
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
                                   ),
                                 ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  DateFormat('dd').format(date),
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        isSelected ? Colors.white : Colors.black,
+                                // Small month dropdown
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 6,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[100],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton<String>(
+                                      value: '${selectedMonth}_$selectedYear',
+                                      isDense: true,
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down,
+                                        color: AppColors.softblue,
+                                        size: 18,
+                                      ),
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        if (newValue != null) {
+                                          final parts = newValue.split('_');
+                                          setState(() {
+                                            selectedMonth = int.parse(parts[0]);
+                                            selectedYear = int.parse(parts[1]);
+                                            currentWeekOffset =
+                                                0; // Reset to first week
+                                            selectedDate = DateTime(
+                                              selectedYear,
+                                              selectedMonth,
+                                              1,
+                                            );
+                                          });
+                                        }
+                                      },
+                                      items: availableMonths.map((monthData) {
+                                        return DropdownMenuItem<String>(
+                                          value:
+                                              '${monthData['month']}_${monthData['year']}',
+                                          child: Text(
+                                            monthData['display'],
+                                            style: const TextStyle(
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ),
                                   ),
                                 ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  isToday ? 'Today' : DateFormat('EEE').format(date),
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : Colors.grey[600],
+                                // Next week button
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.chevron_right,
+                                    color: AppColors.softblue,
+                                    size: 20,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      currentWeekOffset++;
+                                    });
+                                  },
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        );
-                      },
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+
+                        // 7-Day Week View (No scrolling, fits screen)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: currentWeekDates.map((date) {
+                            final isSelected = _isSameDay(date, selectedDate);
+                            final isToday = _isToday(date);
+                            final isPastDate = date.isBefore(
+                              DateTime.now().subtract(const Duration(days: 1)),
+                            );
+
+                            return Expanded(
+                              child: GestureDetector(
+                                onTap: isPastDate
+                                    ? null
+                                    : () {
+                                        setState(() {
+                                          selectedDate = date;
+                                        });
+                                      },
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 3,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 12,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? AppColors.softblue
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: isPastDate
+                                          ? Colors.grey[300]!
+                                          : isSelected
+                                          ? AppColors.softblue
+                                          : Colors.transparent,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      // Day abbreviation
+                                      Text(
+                                        DateFormat('EEE').format(date),
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: isPastDate
+                                              ? Colors.grey[400]
+                                              : isSelected
+                                              ? Colors.white
+                                              : Colors.grey[600],
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 6),
+
+                                      // Date number
+                                      Text(
+                                        DateFormat('dd').format(date),
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: isPastDate
+                                              ? Colors.grey[400]
+                                              : isSelected
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+
+                                      // Today badge or month
+                                      if (isToday)
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 4,
+                                            vertical: 2,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: isSelected
+                                                ? Colors.white.withOpacity(0.3)
+                                                : AppColors.softblue
+                                                      .withOpacity(0.1),
+                                            borderRadius: BorderRadius.circular(
+                                              6,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            'Today',
+                                            style: TextStyle(
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.bold,
+                                              color: isSelected
+                                                  ? Colors.white
+                                                  : AppColors.softblue,
+                                            ),
+                                          ),
+                                        )
+                                      else
+                                        Text(
+                                          DateFormat('MMM').format(date),
+                                          style: TextStyle(
+                                            fontSize: 9,
+                                            color: isPastDate
+                                                ? Colors.grey[400]
+                                                : isSelected
+                                                ? Colors.white.withOpacity(0.8)
+                                                : Colors.grey[500],
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 32),
@@ -149,23 +357,21 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   // Section Title: Select Time
                   const Text(
                     'Select Delivery Time',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
 
-                  // Time Slots
+                  // Time Slots (4 per row)
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 2.5,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4, // 4 items per row
+                          childAspectRatio: 1.8, // Width to height ratio
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                        ),
                     itemCount: timeSlots.length,
                     itemBuilder: (context, index) {
                       final time = timeSlots[index];
@@ -178,46 +384,32 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           });
                         },
                         child: Container(
-                          padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: isSelected
-                                ? AppColors.softblue.withOpacity(0.1)
-                                : Colors.grey[50],
-                            borderRadius: BorderRadius.circular(12),
+                                ? AppColors.softblue
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10),
                             border: Border.all(
                               color: isSelected
                                   ? AppColors.softblue
                                   : Colors.grey[300]!,
-                              width: 2,
+                              width: 1.5,
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.access_time,
-                                size: 18,
+                          child: Center(
+                            child: Text(
+                              time,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.w500,
                                 color: isSelected
-                                    ? AppColors.softblue
-                                    : Colors.grey[600],
+                                    ? Colors.white
+                                    : Colors.black87,
                               ),
-                              const SizedBox(width: 8),
-                              Flexible(
-                                child: Text(
-                                  time,
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: isSelected
-                                        ? FontWeight.bold
-                                        : FontWeight.w500,
-                                    color: isSelected
-                                        ? AppColors.softblue
-                                        : Colors.black87,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       );
@@ -317,4 +509,3 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     return _isSameDay(date, now);
   }
 }
-

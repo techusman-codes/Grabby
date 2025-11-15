@@ -17,7 +17,6 @@ import 'package:grabby_app/screens/restaurants/home_screen.dart';
 import 'models/product_model_screen.dart';
 import 'models/restaurant_profile_model.dart';
 import 'screens/category/categrory_screen.dart';
-
 import 'screens/home/favorite_screen.dart';
 import 'screens/home/shoping_cart_screen.dart';
 import 'screens/menu/menu_items_details_screen.dart';
@@ -67,8 +66,9 @@ class MyApp extends StatelessWidget {
         AppRoutes.categorysecreen: (context) => const CategoriesScreen(),
         AppRoutes.profile_screen: (context) => const ProfileScreen(),
         AppRoutes.favorite_screen: (context) => const FavoriteScreen(),
-        AppRoutes.cart_screen: (context) => const ShoppingCartScreen(),
+        AppRoutes.shopingCart: (context) => const ShoppingCartScreen(),
         AppRoutes.home_screen: (context) => const HomeScreen(),
+        AppRoutes.cart_screen: (context) => ShoppingCartScreen(),
       },
       onGenerateRoute: (settings) {
         if (settings.name == AppRoutes.restaurant_profile) {

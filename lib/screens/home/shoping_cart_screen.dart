@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/constant/app_routes.dart';
 import '../../models/cart_item_model.dart';
 import '../../core/constant/app_colors.dart';
 import '../../data/image_utils.dart';
@@ -43,21 +44,20 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.deepPurple),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Shopping Cart',
           style: TextStyle(
             color: Colors.black,
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
           TextButton(
             onPressed: () {
-              // Navigate back to products or home
               Navigator.pop(context);
             },
             child: Text(
@@ -101,7 +101,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
           ),
           const SizedBox(height: 32),
           ElevatedButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pushNamed(context, AppRoutes.categories),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.softblue,
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
@@ -179,14 +179,8 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
         // Bottom Action Buttons
         Container(
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 10,
-                offset: const Offset(0, -2),
-              ),
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+           
             ],
           ),
           child: SafeArea(

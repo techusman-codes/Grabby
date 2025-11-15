@@ -537,9 +537,6 @@ class _ExpiryDateFormatter extends TextInputFormatter {
   }
 }
 
-// ============================================================================
-// EXPLANATION:
-// ============================================================================
 //
 // FAKE PAYMENT SCREEN
 //
@@ -571,4 +568,4 @@ class _ExpiryDateFormatter extends TextInputFormatter {
 // - Flutterwave (https://flutterwave.com)
 // - Stripe (https://stripe.com)
 //
-// ============================================================================
+
