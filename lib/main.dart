@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
@@ -23,6 +24,7 @@ import 'screens/menu/menu_items_details_screen.dart';
 import 'screens/products/product_details_screen.dart';
 import 'screens/restaurant_profile_screen.dart';
 import 'screens/splash/splash_screen.dart';
+
 import 'services/storage_service.dart';
 
 void main() async {
@@ -32,7 +34,7 @@ void main() async {
   await StorageService.instance.init();
 
   // TODO: Initialize Firebase here
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
@@ -111,3 +113,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: AppStrings.appName,
+//       debugShowCheckedModeBanner: false,
+//       theme: AppTheme.lightTheme,
+//       home: const FirebaseTestScreen(), // CHANGE TO THIS TEMPORARILY
+//       // ... rest of your code
+//     );
+//   }
+// }

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:grabby_app/core/constant/app_colors.dart';
-import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
-import 'package:grabby_app/screens/onboaring/widgets/custom_buttom.dart';
-import 'package:grabby_app/screens/onboaring/widgets/otp_input.dart';
+import 'package:grabby_app/core/constant/app_routes.dart';
+
+// ADD THESE IMPORTS
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 
-/// Email verification screen
-///
-/// Allows users to enter OTP code sent to their email
+import '../../services/email_services.dart';
+import '../../services/otp_services.dart';
+import '../onboaring/widgets/custom_buttom.dart';
+import '../onboaring/widgets/otp_input.dart';
+
 class VerificationScreen extends StatefulWidget {
-  /// Email address where code was sent
   final String? email;
 
   const VerificationScreen({super.key, this.email});
@@ -20,133 +22,180 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  /// Current OTP value
+  final GlobalKey<FormState> _otpInputKey = GlobalKey<FormState>();
   String _otp = '';
-
-  /// Loading state
   bool _isLoading = false;
-
-  /// Resend countdown timer
-  int _resendCountdown = 60;
-  Timer? _timer;
   bool _canResend = false;
-
-  /// OTP input key (to clear input)
-  final GlobalKey _otpInputKey = GlobalKey();
+  int _resendCountdown = 60;
+  Timer? _countdownTimer;
 
   @override
   void initState() {
     super.initState();
-    _startResendTimer();
+    _startResendCountdown();
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _countdownTimer?.cancel();
     super.dispose();
   }
 
-  /// Start countdown timer for resend button
-  void _startResendTimer() {
+  void _startResendCountdown() {
     setState(() {
-      _resendCountdown = 60;
       _canResend = false;
+      _resendCountdown = 60;
     });
 
-    _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_resendCountdown > 0) {
-        setState(() {
+    _countdownTimer?.cancel();
+    _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_resendCountdown > 0) {
           _resendCountdown--;
-        });
-      } else {
-        setState(() {
+        } else {
           _canResend = true;
-        });
-        timer.cancel();
-      }
+          timer.cancel();
+        }
+      });
     });
   }
 
-  /// Handle OTP completion
   Future<void> _handleVerification(String otp) async {
+    if (otp.length != 6) {
+      _showError('Please enter complete verification code');
+      return;
+    }
+
     setState(() {
-      _otp = otp;
       _isLoading = true;
     });
 
     try {
-      // Simulate API call
-      await Future.delayed(Duration(seconds: 2));
+      // Get current user ID
+      final user = FirebaseAuth.instance.currentUser;
 
-      debugPrint('Verifying OTP: $otp');
+      if (user == null) {
+        _showError('User not found. Please login again.');
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
 
-      // TODO: Implement actual verification with backend
-      // For demo, accept any 6-digit code
-      if (otp.length == 6) {
+      // Verify OTP with Firebase
+      final result = await OTPService.instance.verifyOTP(
+        userId: user.uid,
+        enteredOTP: otp,
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (result['success']) {
+        // Show success message
+        _showSuccess(result['message']);
+
+        // Send welcome email (optional)
+        await EmailService.instance.sendWelcomeEmail(
+          email: widget.email ?? user.email ?? '',
+          userName: user.displayName ?? 'User',
+        );
+
+        // Wait a moment for user to see success message
+        await Future.delayed(const Duration(seconds: 1));
+
+        // Navigate to main screen
         if (mounted) {
-          _showSnackBar(AppStrings.verificationSuccess, isError: false);
-
-          // Navigate to home or login
-          await Future.delayed(Duration(seconds: 1));
-          Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.main_screen,
+            (route) => false,
+          );
         }
       } else {
-        throw Exception('Invalid code');
+        // Show error message from Firebase
+        _showError(result['message']);
       }
     } catch (e) {
-      if (mounted) {
-        _showSnackBar(AppStrings.invalidCode, isError: true);
-
-        // Clear OTP input
-        // Note: We'll need to add a clear method to OtpInput
-      }
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
+      setState(() {
+        _isLoading = false;
+      });
+      _showError('Verification failed. Please try again.');
+      print('Verification error: $e');
     }
   }
 
-  /// Handle resend code
   Future<void> _handleResendCode() async {
-    if (!_canResend) return;
+    if (!_canResend || _isLoading) return;
 
     setState(() {
       _isLoading = true;
     });
 
     try {
-      // Simulate API call
-      await Future.delayed(Duration(seconds: 2));
+      // Get current user
+      final user = FirebaseAuth.instance.currentUser;
 
-      debugPrint('Resending code to: ${widget.email}');
-
-      if (mounted) {
-        _showSnackBar(AppStrings.codeResent, isError: false);
-        _startResendTimer();
-      }
-    } catch (e) {
-      if (mounted) {
-        _showSnackBar('Failed to resend code', isError: true);
-      }
-    } finally {
-      if (mounted) {
+      if (user == null) {
+        _showError('User not found. Please login again.');
         setState(() {
           _isLoading = false;
         });
+        return;
       }
+
+      // Generate and send new OTP
+      final otp = await OTPService.instance.resendOTP(userId: user.uid);
+
+      // Send OTP email
+      await EmailService.instance.sendOTPEmail(
+        email: widget.email ?? user.email ?? '',
+        otp: otp,
+        userName: user.displayName ?? 'User',
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      // Show success message
+      _showSuccess('New verification code sent to your email!');
+
+      // // Clear OTP input
+      // _otpInputKey.currentState?.clear();
+      // setState(() {
+      //   _otp = otp;
+      // });
+
+      // Restart countdown
+      _startResendCountdown();
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      _showError('Failed to resend code. Please try again.');
+      print('Resend error: $e');
     }
   }
 
-  /// Show snackbar message
-  void _showSnackBar(String message, {bool isError = false}) {
+  void _showError(String message) {
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: isError ? AppColors.error : AppColors.success,
+        backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void _showSuccess(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.green,
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -282,7 +331,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
               // Verify Button
               CustomButton(
                 text: AppStrings.verify,
-
                 onPressed: _otp.length == 6 && !_isLoading
                     ? () => _handleVerification(_otp)
                     : null,

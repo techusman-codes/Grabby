@@ -3,6 +3,7 @@ import 'package:grabby_app/core/constant/app_colors.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/core/utils/validator.dart';
+import 'package:grabby_app/screens/auth/veriition_screen.dart';
 import 'package:grabby_app/screens/onboaring/widgets/auth_header.dart';
 import 'package:grabby_app/screens/onboaring/widgets/custom_buttom.dart';
 import 'package:grabby_app/screens/onboaring/widgets/custom_checkbox.dart';
@@ -10,7 +11,7 @@ import 'package:grabby_app/screens/onboaring/widgets/custom_text_field.dart';
 import 'package:grabby_app/screens/onboaring/widgets/divider_with_text.dart';
 import 'package:grabby_app/screens/onboaring/widgets/phone_number_field.dart';
 import 'package:grabby_app/screens/onboaring/widgets/social_login_button.dart';
-
+import 'package:grabby_app/services/auth_services.dart';
 import '../../core/constant/app_images.dart';
 import '../../services/storage_service.dart';
 
@@ -27,7 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // Text controllers
-  final _fullNameController = TextEditingController();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -40,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    _fullNameController.dispose();
+    _nameController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
     _passwordController.dispose();
@@ -63,51 +64,56 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() => _isLoading = true);
 
     try {
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
-
-      final fullName = _fullNameController.text.trim();
+      // Get form data
+      final fullName = _nameController.text.trim();
       final email = _emailController.text.trim();
       final phone = _selectedCountryCode + _phoneController.text.trim();
+      final password = _passwordController.text;
 
       debugPrint('Register attempt:');
       debugPrint('Name: $fullName');
       debugPrint('Email: $email');
       debugPrint('Phone: $phone');
-      debugPrint('Newsletter: $_acceptNewsletter');
 
-      // TODO: Implement actual registration with Firebase
+      // Register with Firebase
+      final result = await AuthService.instance.registerWithEmailPassword(
+        name: fullName,
+        email: email,
+        password: password,
+      );
 
-      // Save user info
-      await StorageService.instance.setUserName(fullName);
-      await StorageService.instance.setUserEmail(email);
-      await StorageService.instance.setUserPhone(phone);
+      setState(() => _isLoading = false);
 
-      if (mounted) {
-        _showSnackBar('Account created successfully!', isError: false);
+      if (result['success']) {
+        // Save user info to local storage
+        await StorageService.instance.setUserName(fullName);
+        await StorageService.instance.setUserEmail(email);
+        await StorageService.instance.setUserPhone(phone);
+
+        // Show success message
+        _showSucccess(
+          'Account created! Please check your email for verification code.',
+        );
 
         // Navigate to verification screen
-        Navigator.of(
-          context,
-        ).pushReplacementNamed(AppRoutes.verification, arguments: email);
-
-        // Option 2: Go directly to home (if no verification needed)
-        // Uncomment this if you want to skip verification:
-
-        await StorageService.instance.setLoggedIn(true);
-        await StorageService.instance.setUserId('Usman Umar Garba');
-        Navigator.of(
-          context,
-        ).pushNamedAndRemoveUntil(AppRoutes.main_screen, (route) => false);
+        if (mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => VerificationScreen(email: email),
+            ),
+          );
+        }
+      } else {
+        // Show error message from Firebase
+        _showSnackBar(result['message'], isError: true);
       }
     } catch (e) {
+      setState(() => _isLoading = false);
       if (mounted) {
         _showSnackBar('Registration failed. Please try again.', isError: true);
       }
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
+      debugPrint('Registration error: $e');
     }
   }
 
@@ -137,16 +143,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   /// Navigate to terms page
   void _showTermsAndConditions() {
-    // TODO: Navigate to terms page or show dialog
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Terms & Conditions'),
-        content: Text('Terms and conditions content goes here...'),
+        title: const Text('Terms & Conditions'),
+        content: const Text('Terms and conditions content goes here...'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Close'),
+            child: const Text('Close'),
           ),
         ],
       ),
@@ -164,8 +169,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+  void _showSucccess(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // ... Your existing build method stays exactly the same
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -188,7 +204,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 // Full Name Field
                 CustomTextField(
-                  controller: _fullNameController,
+                  controller: _nameController,
                   label: '',
                   hint: 'FullName',
                   textCapitalization: TextCapitalization.words,
@@ -271,7 +287,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // Sign Up Button
                 CustomButton(
                   text: AppStrings.signup,
-
                   onPressed: _handleRegister,
                   isLoading: _isLoading,
                 ),
@@ -320,7 +335,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     GestureDetector(
                       onTap: _navigateToLogin,
                       child: Text(

@@ -159,8 +159,8 @@ class _OtpInputState extends State<OtpInput> {
             width: 2,
           ),
         ),
-        child: TextField(
-          cursorHeight: 20,
+        child: TextFormField(
+          cursorHeight: 10,
           controller: _controllers[index],
           focusNode: _focusNodes[index],
           textAlign: TextAlign.center,

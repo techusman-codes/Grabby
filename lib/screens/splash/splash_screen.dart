@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen>
         Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
       } else if (isLoggedIn) {
         // Returning logged-in user → Go directly to home
-        Navigator.of(context).pushReplacementNamed(AppRoutes.main_screen);
+        Navigator.of(context).pushReplacementNamed(AppRoutes.login);
       } else {
         // Returning user, not logged in → Show login
         Navigator.of(context).pushReplacementNamed(AppRoutes.login);
