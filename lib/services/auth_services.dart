@@ -3,8 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'email_services.dart';
 import 'otp_services.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService extends ChangeNotifier {
+  // IMplementing the Google Sign-IN
+  // final GoogleSignIn _googleSignIn = GoogleSignIn();
   // Singleton pattern - only one instance
   static final AuthService _instance = AuthService._internal();
   factory AuthService() => _instance;

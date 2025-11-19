@@ -310,6 +310,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(width: 16),
                     SocialLoginButton(
                       imagePath: AppImages.facebookIcon,
+                      
                       onTap: () => _handleSocialRegister('Facebook'),
                       enabled: !_isLoading,
                     ),
