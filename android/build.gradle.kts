@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         // ✅ Needed for Firebase and Google Services
-        classpath("com.google.gms:google-services:4.4.2")
+        classpath("com.google.gms:google-services:4.3.15")
     }
 }
 

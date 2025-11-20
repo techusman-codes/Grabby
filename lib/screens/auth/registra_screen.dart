@@ -3,7 +3,7 @@ import 'package:grabby_app/core/constant/app_colors.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/core/utils/validator.dart';
-import 'package:grabby_app/screens/auth/veriition_screen.dart';
+import 'package:grabby_app/screens/home/main_screen.dart';
 import 'package:grabby_app/screens/onboaring/widgets/auth_header.dart';
 import 'package:grabby_app/screens/onboaring/widgets/custom_buttom.dart';
 import 'package:grabby_app/screens/onboaring/widgets/custom_checkbox.dart';
@@ -99,9 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (mounted) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (context) => VerificationScreen(email: email),
-            ),
+            MaterialPageRoute(builder: (context) => MainScreen()),
           );
         }
       } else {
@@ -122,17 +120,57 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() => _isLoading = true);
 
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      Map<String, dynamic>? result;
 
-      debugPrint('$provider registration initiated');
+      switch (provider.toLowerCase()) {
+        case 'google':
+          result = await AuthService.instance.signInWithGoogle();
+          break;
 
-      if (mounted) {
-        _showSnackBar('$provider Sign Up - Coming Soon!');
+        case 'apple':
+          _showSnackBar('Apple Sign-In - Coming Soon!');
+          setState(() => _isLoading = false);
+          return;
+
+        case 'facebook':
+          _showSnackBar('Facebook Sign-In - Coming Soon!');
+          setState(() => _isLoading = false);
+          return;
+
+        default:
+          _showSnackBar('Unknown provider');
+          setState(() => _isLoading = false);
+          return;
       }
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
+
+      setState(() => _isLoading = false);
+
+      if (result['success']) {
+        // Save user data to local storage
+        final user = result['user'];
+        await StorageService.instance.setUserName(user.displayName ?? 'User');
+        await StorageService.instance.setUserEmail(user.email ?? '');
+        await StorageService.instance.setLoggedIn(true);
+        await StorageService.instance.setUserId(user.uid);
+
+        // Show success message
+        _showSucccess(result['message']);
+
+        // Navigate to main screen
+        if (mounted) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.main_screen,
+            (route) => false,
+          );
+        }
+      } else {
+        _showSnackBar(result['message'], isError: true);
       }
+    } catch (e) {
+      setState(() => _isLoading = false);
+      _showSnackBar('Sign-in failed. Please try again.', isError: true);
+      debugPrint('Social sign-in error: $e');
     }
   }
 
@@ -310,7 +348,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(width: 16),
                     SocialLoginButton(
                       imagePath: AppImages.facebookIcon,
-                      
+
                       onTap: () => _handleSocialRegister('Facebook'),
                       enabled: !_isLoading,
                     ),

@@ -3,11 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'email_services.dart';
 import 'otp_services.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService extends ChangeNotifier {
-  // IMplementing the Google Sign-IN
-  // final GoogleSignIn _googleSignIn = GoogleSignIn();
   // Singleton pattern - only one instance
   static final AuthService _instance = AuthService._internal();
   factory AuthService() => _instance;
@@ -28,6 +26,86 @@ class AuthService extends ChangeNotifier {
 
   // Stream of auth state changes (auto-updates when user logs in/out)
   Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+  // ============================================================================
+  // GOOGLE SIGN-IN
+  // ============================================================================
+  Future<Map<String, dynamic>> signInWithGoogle() async {
+    try {
+      // Step 1: Trigger Google Sign-In flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      if (googleUser == null) {
+        // User cancelled the sign-in
+        return {'success': false, 'message': 'Sign-in cancelled'};
+      }
+
+      // Step 2: Obtain auth details from request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Step 3: Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Step 4: Sign in to Firebase with the credential
+      final UserCredential userCredential = await _auth.signInWithCredential(
+        credential,
+      );
+
+      // Step 5: Check if user is new
+      final bool isNewUser =
+          userCredential.additionalUserInfo?.isNewUser ?? false;
+
+      // Step 6: If new user, create Firestore document
+      if (isNewUser) {
+        await _firestore.collection('users').doc(userCredential.user!.uid).set({
+          'uid': userCredential.user!.uid,
+          'name': userCredential.user!.displayName ?? 'User',
+          'email': userCredential.user!.email,
+          'profilePicture': userCredential.user!.photoURL,
+          'phone': userCredential.user!.phoneNumber,
+          'createdAt': FieldValue.serverTimestamp(),
+          'emailVerified': true, // Google accounts are pre-verified
+          'signInMethod': 'google',
+        });
+      }
+
+      notifyListeners();
+
+      return {
+        'success': true,
+        'message': 'Signed in with Google successfully!',
+        'user': userCredential.user,
+        'isNewUser': isNewUser,
+      };
+    } on FirebaseAuthException catch (e) {
+      String message = 'Google sign-in failed';
+      if (e.code == 'account-exists-with-different-credential') {
+      } else if (e.code == 'invalid-credential') {
+        message = 'Invalid credentials. Please try again.';
+      }
+
+      return {'success': false, 'message': message};
+    } catch (e) {
+      print('Google Sign-In Error: $e');
+      return {
+        'success': false,
+        'message': 'An error occurred: ${e.toString()}',
+      };
+    }
+  }
+
+  // ============================================================================
+  // GOOGLE SIGN-OUT
+  // ============================================================================
+  Future<void> signOutGoogle() async {
+    await GoogleSignIn().signOut();
+    await _auth.signOut();
+    notifyListeners();
+  }
 
   // ============================================================================
   // REGISTER NEW USER

@@ -6,6 +6,7 @@ import 'package:grabby_app/core/constant/app_text_style.dart';
 import 'package:grabby_app/core/utils/validator.dart';
 import 'package:grabby_app/widgets/custom_text_field_login.dart';
 import 'package:grabby_app/services/storage_service.dart';
+import 'package:grabby_app/services/auth_services.dart';
 
 import '../onboaring/widgets/social_login_button.dart';
 import '../../core/constant/app_string.dart';
@@ -42,23 +43,29 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      await Future.delayed(const Duration(seconds: 2));
-
       final email = _emailController.text.trim();
-      debugPrint('Login attempt - Email: $email');
+      final password = _passwordController.text;
 
-      // TODO: Implement actual login with Firebase
-      // For now, simulate success
+      // Implement actual login with Firebase
+      final result = await AuthService.instance.loginWithEmailPassword(
+        email: email,
+        password: password,
+      );
 
-      await StorageService.instance.setLoggedIn(true);
-      await StorageService.instance.setUserEmail(email);
-      await StorageService.instance.setUserId('Usman Umar Garba');
+      if (result['success']) {
+        final user = result['user'];
+        await StorageService.instance.setLoggedIn(true);
+        await StorageService.instance.setUserEmail(user.email ?? '');
+        await StorageService.instance.setUserId(user.uid);
 
-      if (mounted) {
-        _showSnackBar('Login Successful!', isError: false);
-        Navigator.of(
-          context,
-        ).pushNamedAndRemoveUntil(AppRoutes.main_screen, (route) => false);
+        if (mounted) {
+          _showSnackBar('Login Successful!', isError: false);
+          Navigator.of(
+            context,
+          ).pushNamedAndRemoveUntil(AppRoutes.main_screen, (route) => false);
+        }
+      } else {
+        _showSnackBar(result['message'], isError: true);
       }
     } catch (e) {
       if (mounted) {

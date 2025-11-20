@@ -33,7 +33,7 @@ void main() async {
   // Initialize storage service
   await StorageService.instance.init();
 
-  // TODO: Initialize Firebase here
+  // // TODO: Initialize Firebase here
   await Firebase.initializeApp();
 
   runApp(const MyApp());
@@ -113,5 +113,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

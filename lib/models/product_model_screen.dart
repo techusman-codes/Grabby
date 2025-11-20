@@ -1,7 +1,4 @@
-// ============================================================================
-// FILE: lib/models/product_model.dart
-// PURPOSE: Model for products (fashion, electronics, food, etc.)
-// ============================================================================
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductModelScreens {
   final String id;
@@ -49,9 +46,10 @@ class ProductModelScreens {
     return 'N${price.toStringAsFixed(0)}';
   }
 
+  // FROM JSON (Firestore → Dart object)
   factory ProductModelScreens.fromJson(Map<String, dynamic> json) {
     return ProductModelScreens(
-      id: json['id'] as String,
+      id: json['id'] as String? ?? '',
       name: json['name'] as String,
       description: json['description'] as String,
       price: (json['price'] as num).toDouble(),
@@ -71,9 +69,10 @@ class ProductModelScreens {
     );
   }
 
+  // TO JSON (Dart object → Firestore)
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      // Don't include 'id' here - Firestore generates it
       'name': name,
       'description': description,
       'price': price,
@@ -88,7 +87,7 @@ class ProductModelScreens {
       'deliveryTime': deliveryTime,
       'deliveryFee': deliveryFee,
       'isFavorite': isFavorite,
+      'createdAt': FieldValue.serverTimestamp(), // Firestore timestamp
     };
   }
 }
-
