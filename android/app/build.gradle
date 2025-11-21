@@ -26,7 +26,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.grabby_app"
-    compileSdkVersion 34 // Or your target SDK version
+    compileSdkVersion 36 // Or your target SDK version
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -44,8 +44,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.grabby_app"
-        minSdkVersion 21 // Or your min SDK version
-        targetSdkVersion 34 // Or your target SDK version
+        minSdkVersion flutter.minSdkVersion // Or your min SDK version
+        targetSdkVersion 36 // Or your target SDK version
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -63,6 +63,6 @@ flutter {
 
 dependencies {
 
-    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    // implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
 }

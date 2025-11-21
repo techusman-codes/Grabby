@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:grabby_app/data/restaurant_mock_data.dart';
 import 'package:grabby_app/core/constant/app_routes.dart';
 import 'package:grabby_app/core/constant/app_string.dart';
 import 'package:grabby_app/core/themes/app_theme.dart';
@@ -24,8 +26,30 @@ import 'screens/menu/menu_items_details_screen.dart';
 import 'screens/products/product_details_screen.dart';
 import 'screens/restaurant_profile_screen.dart';
 import 'screens/splash/splash_screen.dart';
-
 import 'services/storage_service.dart';
+
+/// A one-time function to upload mock data to Firestore.
+/// Run the app once with this, then remove the call in main().
+Future<void> uploadMockData() async {
+  final firestore = FirebaseFirestore.instance;
+  final restaurants = SampleData.getRestaurants();
+
+  // Use a batch write for efficiency
+  final batch = firestore.batch();
+
+  for (var restaurant in restaurants) {
+    // Create a document reference for each restaurant in the 'restaurants' collection
+    final docRef = firestore.collection('restaurants').doc(restaurant.id);
+    batch.set(docRef, restaurant.toJson());
+  }
+
+  try {
+    await batch.commit();
+    debugPrint('✅ Successfully uploaded mock data to Firestore!');
+  } catch (e) {
+    debugPrint('❌ Error uploading mock data: $e');
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,8 +57,10 @@ void main() async {
   // Initialize storage service
   await StorageService.instance.init();
 
-  // // TODO: Initialize Firebase here
   await Firebase.initializeApp();
+
+  // TODO: Run this once to upload data, then REMOVE this line.
+  // await uploadMockData();
 
   runApp(const MyApp());
 }

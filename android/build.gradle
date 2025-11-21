@@ -1,14 +1,18 @@
 buildscript {
-    ext.kotlin_version = '1.9.23' // Or the version you are using
+    // Set Kotlin version. 1.9.22 is a good, modern version.
+    ext.kotlin_version = '2.1.0' 
+    
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.4.0' // Or your gradle plugin version
+        // AGP (Android Gradle Plugin) version is compatible with Gradle 8.2 used by Flutter
+        classpath 'com.android.tools.build:gradle:8.4.0' 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // Add this line
+        
+        // Google Services plugin for Firebase/Analytics setup
         classpath 'com.google.gms:google-services:4.4.1'
     }
 }
@@ -20,10 +24,11 @@ allprojects {
     }
 }
 
+// Configuration for where Gradle places build artifacts
 rootProject.buildDir = '../build'
+
+// Configuration for subprojects (like the app module and plugins)
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
-subprojects {
-    project.evaluationDependsOn(':app')
-}
+

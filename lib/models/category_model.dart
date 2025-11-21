@@ -21,7 +21,7 @@ class CategoryModel {
       name: json['name'] as String,
       icon: json['icon'] as String,
       id: json['id'] as String,
-      decs: json['textDec'],
+      decs: json['decs'] as String? ?? '',
       productCount: json['productCount'] as int? ?? 0,
     );
   }
@@ -32,8 +32,8 @@ class CategoryModel {
       'id': id,
       'name': name,
       'icon': icon,
-      'prosuctCount': productCount,
-      decs: 'textDecs',
+      'productCount': productCount,
+      'decs': decs,
     };
   }
 
